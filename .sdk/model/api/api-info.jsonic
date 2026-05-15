@@ -1,0 +1,25 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "BluTV API Support"
+        url: "https://www.blutv.com"
+      }
+      description: "This API handles user authentication for BluTV, allowing users to log in with their credentials or via social media accounts like Facebook and Google. It also provides functionality for password recovery and user registration, enhancing security and user experience."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://www.blutv.com/api"
+        }
+      ]
+      termsOfService: "https://www.blutv.com"
+      title: "BluTV Authentication API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

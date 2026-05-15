@@ -1,0 +1,46 @@
+{
+  "existing": {
+    "social_login": {
+      "SOCIAL_LOGIN00": {
+        "access_token": "s46",
+        "expires_in": "s47",
+        "provider": "s48",
+        "refresh_token": "s49",
+        "success": true,
+        "token": "s4b",
+        "user": {}
+      },
+      "SOCIAL_LOGIN01": {
+        "access_token": "s8c",
+        "expires_in": "s8d",
+        "provider": "s8e",
+        "refresh_token": "s8f",
+        "success": true,
+        "token": "s91",
+        "user": {}
+      },
+      "SOCIAL_LOGIN02": {
+        "access_token": "sd2",
+        "expires_in": "sd3",
+        "provider": "sd4",
+        "refresh_token": "sd5",
+        "success": true,
+        "token": "sd7",
+        "user": {}
+      }
+    }
+  },
+  "new": {
+    "social_login": {
+      "social_login_ref01": {
+        "access_token": "s118",
+        "expires_in": "s119",
+        "provider": "s11a",
+        "refresh_token": "s11b",
+        "success": true,
+        "token": "s11d",
+        "user": {}
+      }
+    }
+  }
+}

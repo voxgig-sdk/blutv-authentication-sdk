@@ -1,0 +1,50 @@
+{
+  "existing": {
+    "login": {
+      "LOGIN00": {
+        "email": "s50",
+        "expires_in": "s51",
+        "password": "s52",
+        "refresh_token": "s53",
+        "remember_me": true,
+        "success": false,
+        "token": "s56",
+        "user": {}
+      },
+      "LOGIN01": {
+        "email": "sa0",
+        "expires_in": "sa1",
+        "password": "sa2",
+        "refresh_token": "sa3",
+        "remember_me": true,
+        "success": false,
+        "token": "sa6",
+        "user": {}
+      },
+      "LOGIN02": {
+        "email": "sf0",
+        "expires_in": "sf1",
+        "password": "sf2",
+        "refresh_token": "sf3",
+        "remember_me": true,
+        "success": false,
+        "token": "sf6",
+        "user": {}
+      }
+    }
+  },
+  "new": {
+    "login": {
+      "login_ref01": {
+        "email": "s140",
+        "expires_in": "s141",
+        "password": "s142",
+        "refresh_token": "s143",
+        "remember_me": true,
+        "success": false,
+        "token": "s146",
+        "user": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "register": {
+      "REGISTER00": {
+        "email": "s32",
+        "name": "s33",
+        "password": "s34",
+        "phone": "s35",
+        "terms_accepted": true
+      },
+      "REGISTER01": {
+        "email": "s64",
+        "name": "s65",
+        "password": "s66",
+        "phone": "s67",
+        "terms_accepted": true
+      },
+      "REGISTER02": {
+        "email": "s96",
+        "name": "s97",
+        "password": "s98",
+        "phone": "s99",
+        "terms_accepted": true
+      }
+    }
+  },
+  "new": {
+    "register": {
+      "register_ref01": {
+        "email": "sc8",
+        "name": "sc9",
+        "password": "sca",
+        "phone": "scb",
+        "terms_accepted": true
+      }
+    }
+  }
+}

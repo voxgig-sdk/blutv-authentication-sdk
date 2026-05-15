@@ -1,0 +1,32 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 4
+  metrics: count: path: 4
+  metrics: count: method: 4
+
+  entity: login: {
+    path: "/auth/login": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: password_recovery: {
+    path: "/auth/password-recovery": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: register: {
+    path: "/auth/register": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: social_login: {
+    path: "/auth/social-login": {
+      op: create: method: *POST
+    }
+  }
+
+}

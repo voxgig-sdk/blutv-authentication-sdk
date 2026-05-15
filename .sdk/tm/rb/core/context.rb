@@ -1,0 +1,105 @@
+# BlutvAuthentication SDK context
+
+require_relative '../utility/struct/voxgig_struct'
+require_relative 'control'
+require_relative 'operation'
+require_relative 'spec'
+require_relative 'result'
+require_relative 'response'
+require_relative 'error'
+require_relative 'helpers'
+
+class BlutvAuthenticationContext
+  attr_accessor :id, :out, :client, :utility, :ctrl, :meta, :config,
+                :entopts, :options, :entity, :shared, :opmap,
+                :data, :reqdata, :match, :reqmatch, :point,
+                :spec, :result, :response, :op
+
+  def initialize(ctxmap = {}, basectx = nil)
+    ctxmap ||= {}
+    @id = "C#{rand(10000000..99999999)}"
+    @out = {}
+
+    @client = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "client") || basectx&.client
+    @utility = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "utility") || basectx&.utility
+
+    @ctrl = BlutvAuthenticationControl.new
+    ctrl_raw = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "ctrl")
+    if ctrl_raw.is_a?(Hash)
+      @ctrl.throw_err = ctrl_raw["throw"] if ctrl_raw.key?("throw")
+      @ctrl.explain = ctrl_raw["explain"] if ctrl_raw["explain"].is_a?(Hash)
+    elsif basectx&.ctrl
+      @ctrl = basectx.ctrl
+    end
+
+    m = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "meta")
+    @meta = m.is_a?(Hash) ? m : (basectx&.meta || {})
+
+    cfg = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "config")
+    @config = cfg.is_a?(Hash) ? cfg : basectx&.config
+
+    eo = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "entopts")
+    @entopts = eo.is_a?(Hash) ? eo : basectx&.entopts
+
+    o = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "options")
+    @options = o.is_a?(Hash) ? o : basectx&.options
+
+    e = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "entity")
+    @entity = e || basectx&.entity
+
+    s = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "shared")
+    @shared = s.is_a?(Hash) ? s : basectx&.shared
+
+    om = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "opmap")
+    @opmap = om.is_a?(Hash) ? om : (basectx&.opmap || {})
+
+    @data = BlutvAuthenticationHelpers.to_map(BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "data")) || {}
+    @reqdata = BlutvAuthenticationHelpers.to_map(BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "reqdata")) || {}
+    @match = BlutvAuthenticationHelpers.to_map(BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "match")) || {}
+    @reqmatch = BlutvAuthenticationHelpers.to_map(BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "reqmatch")) || {}
+
+    pt = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "point")
+    @point = pt.is_a?(Hash) ? pt : basectx&.point
+
+    sp = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "spec")
+    @spec = sp.is_a?(BlutvAuthenticationSpec) ? sp : basectx&.spec
+
+    r = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "result")
+    @result = r.is_a?(BlutvAuthenticationResult) ? r : basectx&.result
+
+    rp = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "response")
+    @response = rp.is_a?(BlutvAuthenticationResponse) ? rp : basectx&.response
+
+    opname = BlutvAuthenticationHelpers.get_ctx_prop(ctxmap, "opname") || ""
+    @op = resolve_op(opname)
+  end
+
+  def resolve_op(opname)
+    return @opmap[opname] if @opmap[opname]
+    return BlutvAuthenticationOperation.new({}) if opname.empty?
+
+    entname = @entity&.respond_to?(:get_name) ? @entity.get_name : "_"
+    opcfg = VoxgigStruct.getpath(@config, "entity.#{entname}.op.#{opname}")
+
+    input = (opname == "update" || opname == "create") ? "data" : "match"
+
+    points = []
+    if opcfg.is_a?(Hash)
+      t = VoxgigStruct.getprop(opcfg, "points")
+      points = t if t.is_a?(Array)
+    end
+
+    op = BlutvAuthenticationOperation.new({
+      "entity" => entname,
+      "name" => opname,
+      "input" => input,
+      "points" => points,
+    })
+    @opmap[opname] = op
+    op
+  end
+
+  def make_error(code, msg)
+    BlutvAuthenticationError.new(code, msg, self)
+  end
+end

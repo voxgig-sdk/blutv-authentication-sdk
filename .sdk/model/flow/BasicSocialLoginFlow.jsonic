@@ -1,0 +1,18 @@
+# BasicSocialLoginFlow
+
+main: kit: flow: BasicSocialLoginFlow:
+{
+  entity: "social_login",
+  kind: "basic",
+  name: "BasicSocialLoginFlow",
+  step: [
+    {
+      input: {
+        ref: "social_login_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicSocialLoginFlow"
+}

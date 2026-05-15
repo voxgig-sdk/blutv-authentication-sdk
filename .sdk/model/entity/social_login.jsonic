@@ -1,0 +1,68 @@
+# Entity: social_login
+
+main: kit: entity: social_login: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "access_token"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "expires_in"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "provider"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "refresh_token"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "token"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "user"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "social_login"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/auth/social-login"
+          parts: [
+            "auth"
+            "social-login"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
