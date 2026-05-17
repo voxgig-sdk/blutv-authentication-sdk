@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/blutv-authentication-sdk/core"
+	"github.com/voxgig-sdk/blutv-authentication-sdk/go/core"
 )
 
 type BaseFeature struct {

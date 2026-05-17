@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/blutv-authentication-sdk/core"
+	"github.com/voxgig-sdk/blutv-authentication-sdk/go/core"
 )
 
 type LogFeature struct {

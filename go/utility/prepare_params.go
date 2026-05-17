@@ -1,9 +1,9 @@
 package utility
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/blutv-authentication-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/blutv-authentication-sdk/core"
+	"github.com/voxgig-sdk/blutv-authentication-sdk/go/core"
 )
 
 func prepareParamsUtil(ctx *core.Context) map[string]any {

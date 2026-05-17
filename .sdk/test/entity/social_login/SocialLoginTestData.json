@@ -8,7 +8,8 @@
         "refresh_token": "s49",
         "success": true,
         "token": "s4b",
-        "user": {}
+        "user": {},
+        "id": "SOCIAL_LOGIN00"
       },
       "SOCIAL_LOGIN01": {
         "access_token": "s8c",
@@ -17,7 +18,8 @@
         "refresh_token": "s8f",
         "success": true,
         "token": "s91",
-        "user": {}
+        "user": {},
+        "id": "SOCIAL_LOGIN01"
       },
       "SOCIAL_LOGIN02": {
         "access_token": "sd2",
@@ -26,7 +28,8 @@
         "refresh_token": "sd5",
         "success": true,
         "token": "sd7",
-        "user": {}
+        "user": {},
+        "id": "SOCIAL_LOGIN02"
       }
     }
   },

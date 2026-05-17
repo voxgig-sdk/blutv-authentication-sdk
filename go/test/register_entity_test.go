@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/blutv-authentication-sdk"
-	"github.com/voxgig-sdk/blutv-authentication-sdk/core"
+	sdk "github.com/voxgig-sdk/blutv-authentication-sdk/go"
+	"github.com/voxgig-sdk/blutv-authentication-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/blutv-authentication-sdk/go/utility/struct"
 )
 
 func TestRegisterEntity(t *testing.T) {

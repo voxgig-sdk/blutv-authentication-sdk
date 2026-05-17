@@ -6,21 +6,24 @@
         "name": "s33",
         "password": "s34",
         "phone": "s35",
-        "terms_accepted": true
+        "terms_accepted": true,
+        "id": "REGISTER00"
       },
       "REGISTER01": {
         "email": "s64",
         "name": "s65",
         "password": "s66",
         "phone": "s67",
-        "terms_accepted": true
+        "terms_accepted": true,
+        "id": "REGISTER01"
       },
       "REGISTER02": {
         "email": "s96",
         "name": "s97",
         "password": "s98",
         "phone": "s99",
-        "terms_accepted": true
+        "terms_accepted": true,
+        "id": "REGISTER02"
       }
     }
   },

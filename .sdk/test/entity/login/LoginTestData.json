@@ -9,7 +9,8 @@
         "remember_me": true,
         "success": false,
         "token": "s56",
-        "user": {}
+        "user": {},
+        "id": "LOGIN00"
       },
       "LOGIN01": {
         "email": "sa0",
@@ -19,7 +20,8 @@
         "remember_me": true,
         "success": false,
         "token": "sa6",
-        "user": {}
+        "user": {},
+        "id": "LOGIN01"
       },
       "LOGIN02": {
         "email": "sf0",
@@ -29,7 +31,8 @@
         "remember_me": true,
         "success": false,
         "token": "sf6",
-        "user": {}
+        "user": {},
+        "id": "LOGIN02"
       }
     }
   },

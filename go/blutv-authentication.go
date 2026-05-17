@@ -1,10 +1,10 @@
 package voxgigblutvauthenticationsdk
 
 import (
-	"github.com/voxgig-sdk/blutv-authentication-sdk/core"
-	"github.com/voxgig-sdk/blutv-authentication-sdk/entity"
-	"github.com/voxgig-sdk/blutv-authentication-sdk/feature"
-	_ "github.com/voxgig-sdk/blutv-authentication-sdk/utility"
+	"github.com/voxgig-sdk/blutv-authentication-sdk/go/core"
+	"github.com/voxgig-sdk/blutv-authentication-sdk/go/entity"
+	"github.com/voxgig-sdk/blutv-authentication-sdk/go/feature"
+	_ "github.com/voxgig-sdk/blutv-authentication-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
