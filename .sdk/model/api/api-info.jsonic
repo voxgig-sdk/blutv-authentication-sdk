@@ -18,8 +18,31 @@ main: {
       termsOfService: "https://www.blutv.com"
       title: "BluTV Authentication API"
       version: "1.0.0"
+      tagline: "Internal sign-in, registration, password recovery, and social login endpoints for the Turkish streaming service BluTV"
+      homepage: "https://www.blutv.com/"
+      docs_url: "https://freepublicapis.com/blutv-authentication-api"
+      license_short: "Undocumented internal API; use at your own risk"
+      license_md: `- No public licence or developer terms are published for these endpoints.
+- The API is an internal service powering the BluTV website, not an open developer API.
+- The catalogue entry on FreePublicAPIs lists it as unreliable (0% uptime over the last 30 days) and notes it cannot be revived.
+- BluTV has been absorbed into HBO Max in Turkey, so production use is not recommended.`
+      about_md: `[BluTV](https://www.blutv.com/) is a Turkish subscription video-on-demand streaming platform. The endpoints grouped under this SDK are the browser-facing authentication routes that the BluTV web client uses to sign users in, register new accounts, recover passwords, and connect social-media identities.
+
+What the API exposes:
+
+- Credential login for existing BluTV subscribers.
+- New-account registration.
+- Password-recovery flows.
+- Social login hand-off (e.g. Facebook, Google).
+
+Operational notes: this is an internal site API rather than a documented developer product. The [FreePublicAPIs catalogue entry](https://freepublicapis.com/blutv-authentication-api) currently flags the endpoints as dead, CORS is disabled, and the base path \`https://www.blutv.com/api\` no longer responds normally because BluTV's catalogue has been merged into HBO Max Turkey. Treat the SDK as a historical reference rather than something to wire into production.`
+      entity_desc: {
+        login: "Credential-based sign-in flow for existing BluTV accounts."
+        password_recovery: "Endpoints that start and complete the forgotten-password reset journey."
+        register: "New-user account creation against the BluTV authentication backend."
+        social_login: "OAuth-style hand-off for signing in with a linked social-media account (e.g. Facebook, Google)."
+      }
+      auth: false
     }
   }
-}
-
 }

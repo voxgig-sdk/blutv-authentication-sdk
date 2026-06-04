@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'BLUTV_AUTHENTICATION_TEST_LOGIN_ENTID': idmap,
     'BLUTV_AUTHENTICATION_TEST_LIVE': 'FALSE',
     'BLUTV_AUTHENTICATION_TEST_EXPLAIN': 'FALSE',
-    'BLUTV_AUTHENTICATION_APIKEY': 'NONE',
   })
 
   idmap = env['BLUTV_AUTHENTICATION_TEST_LOGIN_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new BlutvAuthenticationSDK(merge([
       {
-        apikey: env.BLUTV_AUTHENTICATION_APIKEY,
       },
       extra
     ]))

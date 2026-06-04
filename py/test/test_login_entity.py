@@ -87,7 +87,6 @@ def _login_basic_setup(extra):
         "BLUTVAUTHENTICATION_TEST_LOGIN_ENTID": idmap,
         "BLUTVAUTHENTICATION_TEST_LIVE": "FALSE",
         "BLUTVAUTHENTICATION_TEST_EXPLAIN": "FALSE",
-        "BLUTVAUTHENTICATION_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -98,7 +97,6 @@ def _login_basic_setup(extra):
     if env.get("BLUTVAUTHENTICATION_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("BLUTVAUTHENTICATION_APIKEY"),
             },
             extra or {},
         ])

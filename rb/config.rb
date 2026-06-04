@@ -15,9 +15,6 @@ module BlutvAuthenticationConfig
       },
       "options" => {
         "base" => "https://www.blutv.com/api",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

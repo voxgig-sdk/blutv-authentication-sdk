@@ -86,7 +86,6 @@ function social_login_basic_setup(extra)
     ["BLUTVAUTHENTICATION_TEST_SOCIAL_LOGIN_ENTID"] = idmap,
     ["BLUTVAUTHENTICATION_TEST_LIVE"] = "FALSE",
     ["BLUTVAUTHENTICATION_TEST_EXPLAIN"] = "FALSE",
-    ["BLUTVAUTHENTICATION_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -98,7 +97,6 @@ function social_login_basic_setup(extra)
   if env["BLUTVAUTHENTICATION_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["BLUTVAUTHENTICATION_APIKEY"],
       },
       extra or {},
     })
