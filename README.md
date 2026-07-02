@@ -1,21 +1,8 @@
 # BlutvAuthentication SDK
 
-Internal sign-in, registration, password recovery, and social login endpoints for the Turkish streaming service BluTV
+BluTV Authentication API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About BluTV Authentication API
-
-[BluTV](https://www.blutv.com/) is a Turkish subscription video-on-demand streaming platform. The endpoints grouped under this SDK are the browser-facing authentication routes that the BluTV web client uses to sign users in, register new accounts, recover passwords, and connect social-media identities.
-
-What the API exposes:
-
-- Credential login for existing BluTV subscribers.
-- New-account registration.
-- Password-recovery flows.
-- Social login hand-off (e.g. Facebook, Google).
-
-Operational notes: this is an internal site API rather than a documented developer product. The [FreePublicAPIs catalogue entry](https://freepublicapis.com/blutv-authentication-api) currently flags the endpoints as dead, CORS is disabled, and the base path `https://www.blutv.com/api` no longer responds normally because BluTV's catalogue has been merged into HBO Max Turkey. Treat the SDK as a historical reference rather than something to wire into production.
 
 ## Try it
 
@@ -49,27 +36,28 @@ gem install blutv-authentication-sdk
 luarocks install blutv-authentication-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { BlutvAuthenticationSDK } from 'blutv-authentication'
 
-const client = new BlutvAuthenticationSDK({})
+const client = new BlutvAuthenticationSDK({
+  apikey: process.env.BLUTV-AUTHENTICATION_APIKEY,
+})
 
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -99,10 +87,10 @@ The API exposes 4 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Login** | Credential-based sign-in flow for existing BluTV accounts. | `/auth/login` |
-| **PasswordRecovery** | Endpoints that start and complete the forgotten-password reset journey. | `/auth/password-recovery` |
-| **Register** | New-user account creation against the BluTV authentication backend. | `/auth/register` |
-| **SocialLogin** | OAuth-style hand-off for signing in with a linked social-media account (e.g. Facebook, Google). | `/auth/social-login` |
+| **Login** |  | `/auth/login` |
+| **PasswordRecovery** |  | `/auth/password-recovery` |
+| **Register** |  | `/auth/register` |
+| **SocialLogin** |  | `/auth/social-login` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,9 +100,12 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from blutvauthentication_sdk import BlutvAuthenticationSDK
 
-client = BlutvAuthenticationSDK({})
+client = BlutvAuthenticationSDK({
+    "apikey": os.environ.get("BLUTV-AUTHENTICATION_APIKEY"),
+})
 
 ```
 
@@ -124,7 +115,9 @@ client = BlutvAuthenticationSDK({})
 <?php
 require_once 'blutvauthentication_sdk.php';
 
-$client = new BlutvAuthenticationSDK([]);
+$client = new BlutvAuthenticationSDK([
+    "apikey" => getenv("BLUTV-AUTHENTICATION_APIKEY"),
+]);
 
 ```
 
@@ -133,7 +126,9 @@ $client = new BlutvAuthenticationSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/blutv-authentication-sdk/go"
 
-client := sdk.NewBlutvAuthenticationSDK(map[string]any{})
+client := sdk.NewBlutvAuthenticationSDK(map[string]any{
+    "apikey": os.Getenv("BLUTV-AUTHENTICATION_APIKEY"),
+})
 
 ```
 
@@ -142,7 +137,9 @@ client := sdk.NewBlutvAuthenticationSDK(map[string]any{})
 ```ruby
 require_relative "BlutvAuthentication_sdk"
 
-client = BlutvAuthenticationSDK.new({})
+client = BlutvAuthenticationSDK.new({
+  "apikey" => ENV["BLUTV-AUTHENTICATION_APIKEY"],
+})
 
 ```
 
@@ -151,7 +148,9 @@ client = BlutvAuthenticationSDK.new({})
 ```lua
 local sdk = require("blutv-authentication_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("BLUTV-AUTHENTICATION_APIKEY"),
+})
 
 ```
 
@@ -171,25 +170,21 @@ const result = await client.Login().load({ id: 'test01' })
 ### Python
 
 ```python
-client = BlutvAuthenticationSDK.test(None, None)
-result, err = client.Login(None).load(
-    {"id": "test01"}, None
-)
+client = BlutvAuthenticationSDK.test()
+result, err = client.Login().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = BlutvAuthenticationSDK::test(null, null);
-[$result, $err] = $client->Login(null)->load(
-    ["id" => "test01"], null
-);
+$client = BlutvAuthenticationSDK::test();
+[$result, $err] = $client->Login()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Login(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -198,19 +193,15 @@ result, err := client.Login(nil).Load(
 ### Ruby
 
 ```ruby
-client = BlutvAuthenticationSDK.test(nil, nil)
-result, err = client.Login(nil).load(
-  { "id" => "test01" }, nil
-)
+client = BlutvAuthenticationSDK.test
+result, err = client.Login().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Login(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Login():load({ id = "test01" })
 ```
 
 ## How it works
@@ -314,16 +305,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the BluTV Authentication API
-
-- Upstream: [https://www.blutv.com/](https://www.blutv.com/)
-- API docs: [https://freepublicapis.com/blutv-authentication-api](https://freepublicapis.com/blutv-authentication-api)
-
-- No public licence or developer terms are published for these endpoints.
-- The API is an internal service powering the BluTV website, not an open developer API.
-- The catalogue entry on FreePublicAPIs lists it as unreliable (0% uptime over the last 30 days) and notes it cannot be revived.
-- BluTV has been absorbed into HBO Max in Turkey, so production use is not recommended.
 
 ---
 

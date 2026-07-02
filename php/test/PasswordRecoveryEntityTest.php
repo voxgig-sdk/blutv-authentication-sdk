@@ -80,6 +80,7 @@ function password_recovery_basic_setup($extra)
         "BLUTVAUTHENTICATION_TEST_PASSWORD_RECOVERY_ENTID" => $idmap,
         "BLUTVAUTHENTICATION_TEST_LIVE" => "FALSE",
         "BLUTVAUTHENTICATION_TEST_EXPLAIN" => "FALSE",
+        "BLUTVAUTHENTICATION_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -91,6 +92,7 @@ function password_recovery_basic_setup($extra)
     if ($env["BLUTVAUTHENTICATION_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["BLUTVAUTHENTICATION_APIKEY"],
             ],
             $extra ?? [],
         ]);

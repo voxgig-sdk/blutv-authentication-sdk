@@ -110,6 +110,7 @@ func registerBasicSetup(extra map[string]any) *entityTestSetup {
 		"BLUTVAUTHENTICATION_TEST_REGISTER_ENTID": idmap,
 		"BLUTVAUTHENTICATION_TEST_LIVE":      "FALSE",
 		"BLUTVAUTHENTICATION_TEST_EXPLAIN":   "FALSE",
+		"BLUTVAUTHENTICATION_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["BLUTVAUTHENTICATION_TEST_REGISTER_ENTID"])
@@ -120,6 +121,7 @@ func registerBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["BLUTVAUTHENTICATION_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["BLUTVAUTHENTICATION_APIKEY"],
 			},
 			extra,
 		})

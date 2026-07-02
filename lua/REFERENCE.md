@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -119,10 +119,10 @@ local login = client:Login(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Login(nil):create({
+local result, err = client:Login():create({
   email = --[[ `$STRING` ]],
   password = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 ### Common Methods
@@ -176,9 +176,9 @@ local password_recovery = client:PasswordRecovery(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:PasswordRecovery(nil):create({
+local result, err = client:PasswordRecovery():create({
   email = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 ### Common Methods
@@ -234,11 +234,11 @@ local register = client:Register(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Register(nil):create({
+local result, err = client:Register():create({
   email = --[[ `$STRING` ]],
   name = --[[ `$STRING` ]],
   password = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 ### Common Methods
@@ -296,10 +296,10 @@ local social_login = client:SocialLogin(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:SocialLogin(nil):create({
+local result, err = client:SocialLogin():create({
   access_token = --[[ `$STRING` ]],
   provider = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 ### Common Methods

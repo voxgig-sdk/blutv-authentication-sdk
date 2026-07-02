@@ -38,6 +38,10 @@ class Config {
   options = {
     base: 'https://www.blutv.com/api',
 
+    auth: {
+      prefix: 'Bearer',
+    },
+
     headers: {
       "content-type": "application/json"
     },
@@ -64,85 +68,85 @@ class Config {
     "login": {
       "fields": [
         {
+          "active": true,
           "name": "email",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "expires_in",
           "req": false,
           "type": "`$INTEGER`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "password",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 2
         },
         {
+          "active": true,
           "name": "refresh_token",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 3
         },
         {
+          "active": true,
           "name": "remember_me",
           "req": false,
           "type": "`$BOOLEAN`",
-          "active": true,
           "index$": 4
         },
         {
+          "active": true,
           "name": "success",
           "req": false,
           "type": "`$BOOLEAN`",
-          "active": true,
           "index$": 5
         },
         {
+          "active": true,
           "name": "token",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 6
         },
         {
+          "active": true,
           "name": "user",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 7
         }
       ],
       "name": "login",
       "op": {
         "create": {
+          "input": "data",
           "name": "create",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/auth/login",
               "parts": [
                 "auth",
                 "login"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "create"
         }
       },
@@ -153,50 +157,50 @@ class Config {
     "password_recovery": {
       "fields": [
         {
+          "active": true,
           "name": "email",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "message",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "success",
           "req": false,
           "type": "`$BOOLEAN`",
-          "active": true,
           "index$": 2
         }
       ],
       "name": "password_recovery",
       "op": {
         "create": {
+          "input": "data",
           "name": "create",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/auth/password-recovery",
               "parts": [
                 "auth",
                 "password-recovery"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "create"
         }
       },
@@ -207,64 +211,64 @@ class Config {
     "register": {
       "fields": [
         {
+          "active": true,
           "name": "email",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "name",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "password",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 2
         },
         {
+          "active": true,
           "name": "phone",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 3
         },
         {
+          "active": true,
           "name": "terms_accepted",
           "req": false,
           "type": "`$BOOLEAN`",
-          "active": true,
           "index$": 4
         }
       ],
       "name": "register",
       "op": {
         "create": {
+          "input": "data",
           "name": "create",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/auth/register",
               "parts": [
                 "auth",
                 "register"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "create"
         }
       },
@@ -275,78 +279,78 @@ class Config {
     "social_login": {
       "fields": [
         {
+          "active": true,
           "name": "access_token",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "expires_in",
           "req": false,
           "type": "`$INTEGER`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "provider",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 2
         },
         {
+          "active": true,
           "name": "refresh_token",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 3
         },
         {
+          "active": true,
           "name": "success",
           "req": false,
           "type": "`$BOOLEAN`",
-          "active": true,
           "index$": 4
         },
         {
+          "active": true,
           "name": "token",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 5
         },
         {
+          "active": true,
           "name": "user",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 6
         }
       ],
       "name": "social_login",
       "op": {
         "create": {
+          "input": "data",
           "name": "create",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/auth/social-login",
               "parts": [
                 "auth",
                 "social-login"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "create"
         }
       },

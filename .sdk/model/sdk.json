@@ -1,44 +1,13 @@
 {
-  "name": "blutv-authentication",
-  "origin": "voxgig-sdk",
   "def": "blutv-authentication_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
-      "info": {
-        "contact": {
-          "name": "BluTV API Support",
-          "url": "https://www.blutv.com"
-        },
-        "description": "This API handles user authentication for BluTV, allowing users to log in with their credentials or via social media accounts like Facebook and Google. It also provides functionality for password recovery and user registration, enhancing security and user experience.",
-        "servers": [
-          {
-            "description": "Production server",
-            "url": "https://www.blutv.com/api"
-          }
-        ],
-        "termsOfService": "https://www.blutv.com",
-        "title": "BluTV Authentication API",
-        "version": "1.0.0",
-        "tagline": "Internal sign-in, registration, password recovery, and social login endpoints for the Turkish streaming service BluTV",
-        "homepage": "https://www.blutv.com/",
-        "docs_url": "https://freepublicapis.com/blutv-authentication-api",
-        "license_short": "Undocumented internal API; use at your own risk",
-        "license_md": "- No public licence or developer terms are published for these endpoints.\n- The API is an internal service powering the BluTV website, not an open developer API.\n- The catalogue entry on FreePublicAPIs lists it as unreliable (0% uptime over the last 30 days) and notes it cannot be revived.\n- BluTV has been absorbed into HBO Max in Turkey, so production use is not recommended.",
-        "about_md": "[BluTV](https://www.blutv.com/) is a Turkish subscription video-on-demand streaming platform. The endpoints grouped under this SDK are the browser-facing authentication routes that the BluTV web client uses to sign users in, register new accounts, recover passwords, and connect social-media identities.\n\nWhat the API exposes:\n\n- Credential login for existing BluTV subscribers.\n- New-account registration.\n- Password-recovery flows.\n- Social login hand-off (e.g. Facebook, Google).\n\nOperational notes: this is an internal site API rather than a documented developer product. The [FreePublicAPIs catalogue entry](https://freepublicapis.com/blutv-authentication-api) currently flags the endpoints as dead, CORS is disabled, and the base path `https://www.blutv.com/api` no longer responds normally because BluTV's catalogue has been merged into HBO Max Turkey. Treat the SDK as a historical reference rather than something to wire into production.",
-        "entity_desc": {
-          "login": "Credential-based sign-in flow for existing BluTV accounts.",
-          "password_recovery": "Endpoints that start and complete the forgotten-password reset journey.",
-          "register": "New-user account creation against the BluTV authentication backend.",
-          "social_login": "OAuth-style hand-off for signing in with a linked social-media account (e.g. Facebook, Google)."
-        },
-        "auth": false
-      },
       "config": {
         "auth": {
           "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
         },
         "docs_order": [
           "ts",
@@ -47,283 +16,286 @@
           "go",
           "rb",
           "lua"
-        ]
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
       },
       "entity": {
         "login": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "email",
               "req": true,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "expires_in",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "password",
               "req": true,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "refresh_token",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "remember_me",
               "req": false,
-              "type": "`$BOOLEAN`",
-              "active": true
+              "type": "`$BOOLEAN`"
             },
             {
+              "active": true,
               "name": "success",
               "req": false,
-              "type": "`$BOOLEAN`",
-              "active": true
+              "type": "`$BOOLEAN`"
             },
             {
+              "active": true,
               "name": "token",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "user",
               "req": false,
-              "type": "`$OBJECT`",
-              "active": true
+              "type": "`$OBJECT`"
             }
           ],
           "name": "login",
           "op": {
             "create": {
+              "input": "data",
               "name": "create",
               "points": [
                 {
+                  "active": true,
+                  "args": {},
                   "method": "POST",
                   "orig": "/auth/login",
                   "parts": [
                     "auth",
                     "login"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
         },
         "password_recovery": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "email",
               "req": true,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "message",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "success",
               "req": false,
-              "type": "`$BOOLEAN`",
-              "active": true
+              "type": "`$BOOLEAN`"
             }
           ],
           "name": "password_recovery",
           "op": {
             "create": {
+              "input": "data",
               "name": "create",
               "points": [
                 {
+                  "active": true,
+                  "args": {},
                   "method": "POST",
                   "orig": "/auth/password-recovery",
                   "parts": [
                     "auth",
                     "password-recovery"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
         },
         "register": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "email",
               "req": true,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "name",
               "req": true,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "password",
               "req": true,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "phone",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "terms_accepted",
               "req": false,
-              "type": "`$BOOLEAN`",
-              "active": true
+              "type": "`$BOOLEAN`"
             }
           ],
           "name": "register",
           "op": {
             "create": {
+              "input": "data",
               "name": "create",
               "points": [
                 {
+                  "active": true,
+                  "args": {},
                   "method": "POST",
                   "orig": "/auth/register",
                   "parts": [
                     "auth",
                     "register"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
         },
         "social_login": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "access_token",
               "req": true,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "expires_in",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "provider",
               "req": true,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "refresh_token",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "success",
               "req": false,
-              "type": "`$BOOLEAN`",
-              "active": true
+              "type": "`$BOOLEAN`"
             },
             {
+              "active": true,
               "name": "token",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "user",
               "req": false,
-              "type": "`$OBJECT`",
-              "active": true
+              "type": "`$OBJECT`"
             }
           ],
           "name": "social_login",
           "op": {
             "create": {
+              "input": "data",
               "name": "create",
               "points": [
                 {
+                  "active": true,
+                  "args": {},
                   "method": "POST",
                   "orig": "/auth/social-login",
                   "parts": [
                     "auth",
                     "social-login"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
@@ -331,9 +303,6 @@
       },
       "feature": {
         "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
           "active": true,
           "config": {
             "options": {
@@ -341,6 +310,14 @@
             }
           },
           "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
             "PostConstruct": {
               "active": true,
               "await": false
@@ -349,25 +326,11 @@
               "active": true,
               "await": false
             },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
+            "PostOperation": {
+              "active": false,
               "await": false
             },
             "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
               "active": true,
               "await": false
             },
@@ -383,20 +346,32 @@
               "active": true,
               "await": false
             },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
             "PreTarget": {
               "active": false,
               "await": false
             },
-            "PostOperation": {
-              "active": false,
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
               "await": false
             }
           },
+          "name": "test",
           "target": {
-            "ts": {
+            "go": {
               "deps": {}
             },
-            "go": {
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
               "deps": {}
             },
             "lua": {
@@ -411,111 +386,143 @@
             "rb": {
               "deps": {}
             },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
+            "ts": {
               "deps": {}
             }
-          }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
         }
       },
       "flow": {
         "BasicLoginFlow": {
+          "active": true,
           "entity": "login",
+          "key$": "BasicLoginFlow",
           "kind": "basic",
           "name": "BasicLoginFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "login_ref01"
               },
-              "op": "create",
-              "active": true,
               "match": {},
-              "data": {},
+              "op": "create",
               "spec": [],
               "valid": []
             }
-          ],
-          "key$": "BasicLoginFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicPasswordRecoveryFlow": {
+          "active": true,
           "entity": "password_recovery",
+          "key$": "BasicPasswordRecoveryFlow",
           "kind": "basic",
           "name": "BasicPasswordRecoveryFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "password_recovery_ref01"
               },
-              "op": "create",
-              "active": true,
               "match": {},
-              "data": {},
+              "op": "create",
               "spec": [],
               "valid": []
             }
-          ],
-          "key$": "BasicPasswordRecoveryFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicRegisterFlow": {
+          "active": true,
           "entity": "register",
+          "key$": "BasicRegisterFlow",
           "kind": "basic",
           "name": "BasicRegisterFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "register_ref01"
               },
-              "op": "create",
-              "active": true,
               "match": {},
-              "data": {},
+              "op": "create",
               "spec": [],
               "valid": []
             }
-          ],
-          "key$": "BasicRegisterFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicSocialLoginFlow": {
+          "active": true,
           "entity": "social_login",
+          "key$": "BasicSocialLoginFlow",
           "kind": "basic",
           "name": "BasicSocialLoginFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "social_login_ref01"
               },
-              "op": "create",
-              "active": true,
               "match": {},
-              "data": {},
+              "op": "create",
               "spec": [],
               "valid": []
             }
-          ],
-          "key$": "BasicSocialLoginFlow",
-          "active": true,
-          "param": {}
+          ]
         }
       },
+      "info": {
+        "contact": {
+          "name": "BluTV API Support",
+          "url": "https://www.blutv.com"
+        },
+        "description": "This API handles user authentication for BluTV, allowing users to log in with their credentials or via social media accounts like Facebook and Google. It also provides functionality for password recovery and user registration, enhancing security and user experience.",
+        "servers": [
+          {
+            "description": "Production server",
+            "url": "https://www.blutv.com/api"
+          }
+        ],
+        "termsOfService": "https://www.blutv.com",
+        "title": "BluTV Authentication API",
+        "version": "1.0.0"
+      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "blutv-authentication"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "blutv-authentication"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -530,19 +537,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "blutv-authentication"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -557,138 +564,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "blutv-authentication"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "blutv-authentication"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "blutv-authentication"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "blutv-authentication"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "blutv-authentication"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "blutv-authentication"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "blutv-authentication"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "blutv-authentication"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "blutv-authentication"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "blutv-authentication",
+  "origin": "voxgig-sdk"
 }
