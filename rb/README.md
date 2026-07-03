@@ -10,13 +10,13 @@ The Ruby SDK for the BlutvAuthentication API — an entity-oriented client using
 
 ## Install
 ```bash
-gem install blutv-authentication-sdk
+gem install voxgig-sdk-blutv-authentication
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "blutv-authentication-sdk"
+gem "voxgig-sdk-blutv-authentication"
 ```
 
 Then run:

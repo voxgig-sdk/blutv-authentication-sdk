@@ -10,7 +10,7 @@ The Lua SDK for the BlutvAuthentication API — an entity-oriented client using 
 
 ## Install
 ```bash
-luarocks install blutv-authentication-sdk
+luarocks install voxgig-sdk-blutv-authentication
 ```
 
 If the module is not yet published, add the source directory to

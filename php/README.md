@@ -10,7 +10,7 @@ The PHP SDK for the BlutvAuthentication API — an entity-oriented client using 
 
 ## Install
 ```bash
-composer require voxgig/blutv-authentication-sdk
+composer require voxgig-sdk/blutv-authentication
 ```
 
 

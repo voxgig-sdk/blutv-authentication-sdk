@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/blutv-authentication",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the BluTV Authentication public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "blutv-authentication"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/blutv-authentication-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/blutv-authentication-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/blutv-authentication-sdk/issues"
+  },
   "main": "dist/BlutvAuthenticationSDK.js",
   "type": "commonjs",
   "types": "dist/BlutvAuthenticationSDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "BlutvAuthentication",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

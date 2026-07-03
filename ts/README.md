@@ -10,7 +10,7 @@ The TypeScript SDK for the BlutvAuthentication API — a type-safe, entity-orien
 
 ## Install
 ```bash
-npm install blutv-authentication
+npm install @voxgig-sdk/blutv-authentication
 ```
 ## Tutorial: your first API call
 

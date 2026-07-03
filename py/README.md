@@ -10,7 +10,7 @@ The Python SDK for the BlutvAuthentication API — an entity-oriented client fol
 
 ## Install
 ```bash
-pip install blutv-authentication-sdk
+pip install voxgig-sdk-blutv-authentication
 ```
 
 Or install from source:
