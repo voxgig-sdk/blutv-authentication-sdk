@@ -93,7 +93,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## LoginEntity
 
 ```python
-login = client.login
+login = client.Login()
 ```
 
 ### Fields
@@ -116,9 +116,9 @@ login = client.login
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.login.create({
-    "email": # `$STRING`,
-    "password": # `$STRING`,
+result = client.Login().create({
+    "email": ...,  # `$STRING`
+    "password": ...,  # `$STRING`
 })
 ```
 
@@ -154,7 +154,7 @@ Return the entity name.
 ## PasswordRecoveryEntity
 
 ```python
-password_recovery = client.password_recovery
+password_recovery = client.PasswordRecovery()
 ```
 
 ### Fields
@@ -172,8 +172,8 @@ password_recovery = client.password_recovery
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.password_recovery.create({
-    "email": # `$STRING`,
+result = client.PasswordRecovery().create({
+    "email": ...,  # `$STRING`
 })
 ```
 
@@ -209,7 +209,7 @@ Return the entity name.
 ## RegisterEntity
 
 ```python
-register = client.register
+register = client.Register()
 ```
 
 ### Fields
@@ -229,10 +229,10 @@ register = client.register
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.register.create({
-    "email": # `$STRING`,
-    "name": # `$STRING`,
-    "password": # `$STRING`,
+result = client.Register().create({
+    "email": ...,  # `$STRING`
+    "name": ...,  # `$STRING`
+    "password": ...,  # `$STRING`
 })
 ```
 
@@ -268,7 +268,7 @@ Return the entity name.
 ## SocialLoginEntity
 
 ```python
-social_login = client.social_login
+social_login = client.SocialLogin()
 ```
 
 ### Fields
@@ -290,9 +290,9 @@ social_login = client.social_login
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.social_login.create({
-    "access_token": # `$STRING`,
-    "provider": # `$STRING`,
+result = client.SocialLogin().create({
+    "access_token": ...,  # `$STRING`
+    "provider": ...,  # `$STRING`
 })
 ```
 

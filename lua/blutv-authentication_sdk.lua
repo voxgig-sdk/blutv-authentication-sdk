@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:login():list() / client:login():load({ id = ... })
-function BlutvAuthenticationSDK:login(data)
+-- Idiomatic facade: client:Login():list() / client:Login():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function BlutvAuthenticationSDK:Login(data)
   local EntityMod = require("entity.login_entity")
   if data == nil then
     if self._login == nil then
@@ -256,15 +257,10 @@ function BlutvAuthenticationSDK:login(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:login() instead.
-function BlutvAuthenticationSDK:Login(data)
-  local EntityMod = require("entity.login_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:password_recovery():list() / client:password_recovery():load({ id = ... })
-function BlutvAuthenticationSDK:password_recovery(data)
+-- Idiomatic facade: client:PasswordRecovery():list() / client:PasswordRecovery():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function BlutvAuthenticationSDK:PasswordRecovery(data)
   local EntityMod = require("entity.password_recovery_entity")
   if data == nil then
     if self._password_recovery == nil then
@@ -275,15 +271,10 @@ function BlutvAuthenticationSDK:password_recovery(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:password_recovery() instead.
-function BlutvAuthenticationSDK:PasswordRecovery(data)
-  local EntityMod = require("entity.password_recovery_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:register():list() / client:register():load({ id = ... })
-function BlutvAuthenticationSDK:register(data)
+-- Idiomatic facade: client:Register():list() / client:Register():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function BlutvAuthenticationSDK:Register(data)
   local EntityMod = require("entity.register_entity")
   if data == nil then
     if self._register == nil then
@@ -294,15 +285,10 @@ function BlutvAuthenticationSDK:register(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:register() instead.
-function BlutvAuthenticationSDK:Register(data)
-  local EntityMod = require("entity.register_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:social_login():list() / client:social_login():load({ id = ... })
-function BlutvAuthenticationSDK:social_login(data)
+-- Idiomatic facade: client:SocialLogin():list() / client:SocialLogin():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function BlutvAuthenticationSDK:SocialLogin(data)
   local EntityMod = require("entity.social_login_entity")
   if data == nil then
     if self._social_login == nil then
@@ -310,12 +296,6 @@ function BlutvAuthenticationSDK:social_login(data)
     end
     return self._social_login
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:social_login() instead.
-function BlutvAuthenticationSDK:SocialLogin(data)
-  local EntityMod = require("entity.social_login_entity")
   return EntityMod.new(self, data)
 end
 

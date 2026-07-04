@@ -34,8 +34,8 @@ $client = new BlutvAuthenticationSDK([
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->login()->create(["name" => "Example"]);
+// create() returns the bare created Login record.
+$created = $client->Login()->create(["name" => "Example"]);
 
 ```
 
@@ -80,13 +80,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = BlutvAuthenticationSDK::test();
+$client = BlutvAuthenticationSDK::test([
+    "entity" => ["login" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->login()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$login = $client->Login()->load(["id" => "test01"]);
+print_r($login);
 ```
 
 ### Use a custom fetch function
@@ -276,7 +280,7 @@ API path: `/auth/social-login`
 
 ### Login
 
-Create an instance: `const login = client.login`
+Create an instance: `$login = $client->Login();`
 
 #### Operations
 
@@ -299,17 +303,17 @@ Create an instance: `const login = client.login`
 
 #### Example: Create
 
-```ts
-const login = await client.login.create({
-  email: /* `$STRING` */,
-  password: /* `$STRING` */,
-})
+```php
+$login = $client->Login()->create([
+    "email" => null, // `$STRING`
+    "password" => null, // `$STRING`
+]);
 ```
 
 
 ### PasswordRecovery
 
-Create an instance: `const password_recovery = client.password_recovery`
+Create an instance: `$password_recovery = $client->PasswordRecovery();`
 
 #### Operations
 
@@ -327,16 +331,16 @@ Create an instance: `const password_recovery = client.password_recovery`
 
 #### Example: Create
 
-```ts
-const password_recovery = await client.password_recovery.create({
-  email: /* `$STRING` */,
-})
+```php
+$password_recovery = $client->PasswordRecovery()->create([
+    "email" => null, // `$STRING`
+]);
 ```
 
 
 ### Register
 
-Create an instance: `const register = client.register`
+Create an instance: `$register = $client->Register();`
 
 #### Operations
 
@@ -356,18 +360,18 @@ Create an instance: `const register = client.register`
 
 #### Example: Create
 
-```ts
-const register = await client.register.create({
-  email: /* `$STRING` */,
-  name: /* `$STRING` */,
-  password: /* `$STRING` */,
-})
+```php
+$register = $client->Register()->create([
+    "email" => null, // `$STRING`
+    "name" => null, // `$STRING`
+    "password" => null, // `$STRING`
+]);
 ```
 
 
 ### SocialLogin
 
-Create an instance: `const social_login = client.social_login`
+Create an instance: `$social_login = $client->SocialLogin();`
 
 #### Operations
 
@@ -389,11 +393,11 @@ Create an instance: `const social_login = client.social_login`
 
 #### Example: Create
 
-```ts
-const social_login = await client.social_login.create({
-  access_token: /* `$STRING` */,
-  provider: /* `$STRING` */,
-})
+```php
+$social_login = $client->SocialLogin()->create([
+    "access_token" => null, // `$STRING`
+    "provider" => null, // `$STRING`
+]);
 ```
 
 
@@ -468,7 +472,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$login = $client->login();
+$login = $client->Login();
 $login->load(["id" => "example_id"]);
 
 // $login->dataGet() now returns the loaded login data

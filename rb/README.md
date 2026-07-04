@@ -33,8 +33,8 @@ client = BlutvAuthenticationSDK.new({
 ### 4. Create, update, and remove
 
 ```ruby
-# Create
-created = client.login.create({ "name" => "Example" })
+# create returns the bare created Login record.
+created = client.Login.create({ "name" => "Example" })
 
 ```
 
@@ -79,13 +79,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = BlutvAuthenticationSDK.test
+client = BlutvAuthenticationSDK.test({
+  "entity" => { "login" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.login.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+login = client.Login.load({ "id" => "test01" })
+puts login
 ```
 
 ### Use a custom fetch function
@@ -271,7 +275,7 @@ API path: `/auth/social-login`
 
 ### Login
 
-Create an instance: `const login = client.login`
+Create an instance: `login = client.Login`
 
 #### Operations
 
@@ -294,17 +298,17 @@ Create an instance: `const login = client.login`
 
 #### Example: Create
 
-```ts
-const login = await client.login.create({
-  email: /* `$STRING` */,
-  password: /* `$STRING` */,
+```ruby
+login = client.Login.create({
+  "email" => nil, # `$STRING`
+  "password" => nil, # `$STRING`
 })
 ```
 
 
 ### PasswordRecovery
 
-Create an instance: `const password_recovery = client.password_recovery`
+Create an instance: `password_recovery = client.PasswordRecovery`
 
 #### Operations
 
@@ -322,16 +326,16 @@ Create an instance: `const password_recovery = client.password_recovery`
 
 #### Example: Create
 
-```ts
-const password_recovery = await client.password_recovery.create({
-  email: /* `$STRING` */,
+```ruby
+password_recovery = client.PasswordRecovery.create({
+  "email" => nil, # `$STRING`
 })
 ```
 
 
 ### Register
 
-Create an instance: `const register = client.register`
+Create an instance: `register = client.Register`
 
 #### Operations
 
@@ -351,18 +355,18 @@ Create an instance: `const register = client.register`
 
 #### Example: Create
 
-```ts
-const register = await client.register.create({
-  email: /* `$STRING` */,
-  name: /* `$STRING` */,
-  password: /* `$STRING` */,
+```ruby
+register = client.Register.create({
+  "email" => nil, # `$STRING`
+  "name" => nil, # `$STRING`
+  "password" => nil, # `$STRING`
 })
 ```
 
 
 ### SocialLogin
 
-Create an instance: `const social_login = client.social_login`
+Create an instance: `social_login = client.SocialLogin`
 
 #### Operations
 
@@ -384,10 +388,10 @@ Create an instance: `const social_login = client.social_login`
 
 #### Example: Create
 
-```ts
-const social_login = await client.social_login.create({
-  access_token: /* `$STRING` */,
-  provider: /* `$STRING` */,
+```ruby
+social_login = client.SocialLogin.create({
+  "access_token" => nil, # `$STRING`
+  "provider" => nil, # `$STRING`
 })
 ```
 
@@ -463,7 +467,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-login = client.login
+login = client.Login
 login.load({ "id" => "example_id" })
 
 # login.data_get now returns the loaded login data

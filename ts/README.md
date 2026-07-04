@@ -33,8 +33,8 @@ const client = new BlutvAuthenticationSDK({
 ### 4. Create, update, and remove
 
 ```ts
-// Create
-const created = await client.login.create({
+// Create — returns the created Login
+const created = await client.Login().create({
   name: 'Example',
 })
 
@@ -54,6 +54,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -82,9 +85,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = BlutvAuthenticationSDK.test()
 
-const result = await client.login.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const login = await client.Login().load({ id: 'test01' })
+// login is a bare entity populated with mock response data
+console.log(login)
 ```
 
 You can also use the instance method:
@@ -99,7 +102,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.login
+const entity = client.Login()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -201,29 +204,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): BlutvAuthenticationSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -321,7 +325,7 @@ API path: `/auth/social-login`
 
 ### Login
 
-Create an instance: `const login = client.login`
+Create an instance: `const login = client.Login()`
 
 #### Operations
 
@@ -345,7 +349,7 @@ Create an instance: `const login = client.login`
 #### Example: Create
 
 ```ts
-const login = await client.login.create({
+const login = await client.Login().create({
   email: /* `$STRING` */,
   password: /* `$STRING` */,
 })
@@ -354,7 +358,7 @@ const login = await client.login.create({
 
 ### PasswordRecovery
 
-Create an instance: `const password_recovery = client.password_recovery`
+Create an instance: `const password_recovery = client.PasswordRecovery()`
 
 #### Operations
 
@@ -373,7 +377,7 @@ Create an instance: `const password_recovery = client.password_recovery`
 #### Example: Create
 
 ```ts
-const password_recovery = await client.password_recovery.create({
+const password_recovery = await client.PasswordRecovery().create({
   email: /* `$STRING` */,
 })
 ```
@@ -381,7 +385,7 @@ const password_recovery = await client.password_recovery.create({
 
 ### Register
 
-Create an instance: `const register = client.register`
+Create an instance: `const register = client.Register()`
 
 #### Operations
 
@@ -402,7 +406,7 @@ Create an instance: `const register = client.register`
 #### Example: Create
 
 ```ts
-const register = await client.register.create({
+const register = await client.Register().create({
   email: /* `$STRING` */,
   name: /* `$STRING` */,
   password: /* `$STRING` */,
@@ -412,7 +416,7 @@ const register = await client.register.create({
 
 ### SocialLogin
 
-Create an instance: `const social_login = client.social_login`
+Create an instance: `const social_login = client.SocialLogin()`
 
 #### Operations
 
@@ -435,7 +439,7 @@ Create an instance: `const social_login = client.social_login`
 #### Example: Create
 
 ```ts
-const social_login = await client.social_login.create({
+const social_login = await client.SocialLogin().create({
   access_token: /* `$STRING` */,
   provider: /* `$STRING` */,
 })
@@ -509,7 +513,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const login = client.login
+const login = client.Login()
 await login.load({ id: "example_id" })
 
 // login.data() now returns the loaded login data

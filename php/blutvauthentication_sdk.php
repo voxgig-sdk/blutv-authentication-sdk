@@ -233,10 +233,10 @@ class BlutvAuthenticationSDK
 
     private $_login = null;
 
-    // Idiomatic facade: $client->login()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Login() (PHP method
-    // names are case-insensitive).
-    public function login($data = null)
+    // Canonical facade: $client->Login()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->login()
+    // resolves here too.
+    public function Login($data = null)
     {
         require_once __DIR__ . '/entity/login_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class BlutvAuthenticationSDK
 
     private $_password_recovery = null;
 
-    // Idiomatic facade: $client->password_recovery()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias PasswordRecovery() (PHP method
-    // names are case-insensitive).
-    public function password_recovery($data = null)
+    // Canonical facade: $client->PasswordRecovery()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->password_recovery()
+    // resolves here too.
+    public function PasswordRecovery($data = null)
     {
         require_once __DIR__ . '/entity/password_recovery_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class BlutvAuthenticationSDK
 
     private $_register = null;
 
-    // Idiomatic facade: $client->register()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Register() (PHP method
-    // names are case-insensitive).
-    public function register($data = null)
+    // Canonical facade: $client->Register()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->register()
+    // resolves here too.
+    public function Register($data = null)
     {
         require_once __DIR__ . '/entity/register_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class BlutvAuthenticationSDK
 
     private $_social_login = null;
 
-    // Idiomatic facade: $client->social_login()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias SocialLogin() (PHP method
-    // names are case-insensitive).
-    public function social_login($data = null)
+    // Canonical facade: $client->SocialLogin()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->social_login()
+    // resolves here too.
+    public function SocialLogin($data = null)
     {
         require_once __DIR__ . '/entity/social_login_entity.php';
         if ($data === null) {

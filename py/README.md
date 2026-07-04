@@ -37,8 +37,8 @@ client = BlutvAuthenticationSDK({
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.login.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.Login().create({"name": "Example"})
 
 ```
 
@@ -85,8 +85,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = BlutvAuthenticationSDK.test()
 
-result = client.login.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+login = client.Login().load({"id": "test01"})
+# login contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -273,7 +274,7 @@ API path: `/auth/social-login`
 
 ### Login
 
-Create an instance: `const login = client.login`
+Create an instance: `login = client.Login()`
 
 #### Operations
 
@@ -296,17 +297,17 @@ Create an instance: `const login = client.login`
 
 #### Example: Create
 
-```ts
-const login = await client.login.create({
-  email: /* `$STRING` */,
-  password: /* `$STRING` */,
+```python
+login = client.Login().create({
+    "email": ...,  # `$STRING`
+    "password": ...,  # `$STRING`
 })
 ```
 
 
 ### PasswordRecovery
 
-Create an instance: `const password_recovery = client.password_recovery`
+Create an instance: `password_recovery = client.PasswordRecovery()`
 
 #### Operations
 
@@ -324,16 +325,16 @@ Create an instance: `const password_recovery = client.password_recovery`
 
 #### Example: Create
 
-```ts
-const password_recovery = await client.password_recovery.create({
-  email: /* `$STRING` */,
+```python
+password_recovery = client.PasswordRecovery().create({
+    "email": ...,  # `$STRING`
 })
 ```
 
 
 ### Register
 
-Create an instance: `const register = client.register`
+Create an instance: `register = client.Register()`
 
 #### Operations
 
@@ -353,18 +354,18 @@ Create an instance: `const register = client.register`
 
 #### Example: Create
 
-```ts
-const register = await client.register.create({
-  email: /* `$STRING` */,
-  name: /* `$STRING` */,
-  password: /* `$STRING` */,
+```python
+register = client.Register().create({
+    "email": ...,  # `$STRING`
+    "name": ...,  # `$STRING`
+    "password": ...,  # `$STRING`
 })
 ```
 
 
 ### SocialLogin
 
-Create an instance: `const social_login = client.social_login`
+Create an instance: `social_login = client.SocialLogin()`
 
 #### Operations
 
@@ -386,10 +387,10 @@ Create an instance: `const social_login = client.social_login`
 
 #### Example: Create
 
-```ts
-const social_login = await client.social_login.create({
-  access_token: /* `$STRING` */,
-  provider: /* `$STRING` */,
+```python
+social_login = client.SocialLogin().create({
+    "access_token": ...,  # `$STRING`
+    "provider": ...,  # `$STRING`
 })
 ```
 
@@ -464,7 +465,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-login = client.login
+login = client.Login()
 login.load({"id": "example_id"})
 
 # login.data_get() now returns the loaded login data

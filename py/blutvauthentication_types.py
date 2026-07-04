@@ -4,87 +4,95 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Login:
+class LoginRequired(TypedDict):
     email: str
     password: str
-    expires_in: Optional[int] = None
-    refresh_token: Optional[str] = None
-    remember_me: Optional[bool] = None
-    success: Optional[bool] = None
-    token: Optional[str] = None
-    user: Optional[dict] = None
 
 
-@dataclass
-class LoginCreateData:
-    email: Optional[str] = None
-    expires_in: Optional[int] = None
-    password: Optional[str] = None
-    refresh_token: Optional[str] = None
-    remember_me: Optional[bool] = None
-    success: Optional[bool] = None
-    token: Optional[str] = None
-    user: Optional[dict] = None
+class Login(LoginRequired, total=False):
+    expires_in: int
+    refresh_token: str
+    remember_me: bool
+    success: bool
+    token: str
+    user: dict
 
 
-@dataclass
-class PasswordRecovery:
+class LoginCreateData(TypedDict, total=False):
     email: str
-    message: Optional[str] = None
-    success: Optional[bool] = None
+    expires_in: int
+    password: str
+    refresh_token: str
+    remember_me: bool
+    success: bool
+    token: str
+    user: dict
 
 
-@dataclass
-class PasswordRecoveryCreateData:
-    email: Optional[str] = None
-    message: Optional[str] = None
-    success: Optional[bool] = None
+class PasswordRecoveryRequired(TypedDict):
+    email: str
 
 
-@dataclass
-class Register:
+class PasswordRecovery(PasswordRecoveryRequired, total=False):
+    message: str
+    success: bool
+
+
+class PasswordRecoveryCreateData(TypedDict, total=False):
+    email: str
+    message: str
+    success: bool
+
+
+class RegisterRequired(TypedDict):
     email: str
     name: str
     password: str
-    phone: Optional[str] = None
-    terms_accepted: Optional[bool] = None
 
 
-@dataclass
-class RegisterCreateData:
-    email: Optional[str] = None
-    name: Optional[str] = None
-    password: Optional[str] = None
-    phone: Optional[str] = None
-    terms_accepted: Optional[bool] = None
+class Register(RegisterRequired, total=False):
+    phone: str
+    terms_accepted: bool
 
 
-@dataclass
-class SocialLogin:
+class RegisterCreateData(TypedDict, total=False):
+    email: str
+    name: str
+    password: str
+    phone: str
+    terms_accepted: bool
+
+
+class SocialLoginRequired(TypedDict):
     access_token: str
     provider: str
-    expires_in: Optional[int] = None
-    refresh_token: Optional[str] = None
-    success: Optional[bool] = None
-    token: Optional[str] = None
-    user: Optional[dict] = None
 
 
-@dataclass
-class SocialLoginCreateData:
-    access_token: Optional[str] = None
-    expires_in: Optional[int] = None
-    provider: Optional[str] = None
-    refresh_token: Optional[str] = None
-    success: Optional[bool] = None
-    token: Optional[str] = None
-    user: Optional[dict] = None
+class SocialLogin(SocialLoginRequired, total=False):
+    expires_in: int
+    refresh_token: str
+    success: bool
+    token: str
+    user: dict
 
+
+class SocialLoginCreateData(TypedDict, total=False):
+    access_token: str
+    expires_in: int
+    provider: str
+    refresh_token: str
+    success: bool
+    token: str
+    user: dict

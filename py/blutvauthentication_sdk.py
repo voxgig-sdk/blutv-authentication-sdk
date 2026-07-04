@@ -220,73 +220,33 @@ class BlutvAuthenticationSDK:
         }
 
 
-    @property
-    def login(self):
-        """Idiomatic facade: client.login.list() / client.login.load({"id": ...})."""
-        from entity.login_entity import LoginEntity
-        cached = getattr(self, "_login", None)
-        if cached is None:
-            cached = LoginEntity(self, None)
-            self._login = cached
-        return cached
-
-    def Login(self, data=None):
-        # Deprecated: use client.login instead.
+    def Login(self, data=None) -> "LoginEntity":
+        """Entity factory: client.Login().list({}) / client.Login().load({"id": ...})."""
         from entity.login_entity import LoginEntity
         return LoginEntity(self, data)
 
 
-    @property
-    def password_recovery(self):
-        """Idiomatic facade: client.password_recovery.list() / client.password_recovery.load({"id": ...})."""
-        from entity.password_recovery_entity import PasswordRecoveryEntity
-        cached = getattr(self, "_password_recovery", None)
-        if cached is None:
-            cached = PasswordRecoveryEntity(self, None)
-            self._password_recovery = cached
-        return cached
-
-    def PasswordRecovery(self, data=None):
-        # Deprecated: use client.password_recovery instead.
+    def PasswordRecovery(self, data=None) -> "PasswordRecoveryEntity":
+        """Entity factory: client.PasswordRecovery().list({}) / client.PasswordRecovery().load({"id": ...})."""
         from entity.password_recovery_entity import PasswordRecoveryEntity
         return PasswordRecoveryEntity(self, data)
 
 
-    @property
-    def register(self):
-        """Idiomatic facade: client.register.list() / client.register.load({"id": ...})."""
-        from entity.register_entity import RegisterEntity
-        cached = getattr(self, "_register", None)
-        if cached is None:
-            cached = RegisterEntity(self, None)
-            self._register = cached
-        return cached
-
-    def Register(self, data=None):
-        # Deprecated: use client.register instead.
+    def Register(self, data=None) -> "RegisterEntity":
+        """Entity factory: client.Register().list({}) / client.Register().load({"id": ...})."""
         from entity.register_entity import RegisterEntity
         return RegisterEntity(self, data)
 
 
-    @property
-    def social_login(self):
-        """Idiomatic facade: client.social_login.list() / client.social_login.load({"id": ...})."""
-        from entity.social_login_entity import SocialLoginEntity
-        cached = getattr(self, "_social_login", None)
-        if cached is None:
-            cached = SocialLoginEntity(self, None)
-            self._social_login = cached
-        return cached
-
-    def SocialLogin(self, data=None):
-        # Deprecated: use client.social_login instead.
+    def SocialLogin(self, data=None) -> "SocialLoginEntity":
+        """Entity factory: client.SocialLogin().list({}) / client.SocialLogin().load({"id": ...})."""
         from entity.social_login_entity import SocialLoginEntity
         return SocialLoginEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "BlutvAuthenticationSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -306,3 +266,12 @@ class BlutvAuthenticationSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.login_entity import LoginEntity
+    from entity.password_recovery_entity import PasswordRecoveryEntity
+    from entity.register_entity import RegisterEntity
+    from entity.social_login_entity import SocialLoginEntity

@@ -207,56 +207,28 @@ class BlutvAuthenticationSDK {
 
 
 
-  _login?: LoginEntity
-
-  // Idiomatic facade: `client.login.list()` / `client.login.load({ id })`.
-  get login(): LoginEntity {
-    return (this._login ??= new LoginEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.login` instead. */
+  // Entity access: `client.Login().list()` / `client.Login().load({ id })`.
   Login(data?: any) {
     const self = this
     return new LoginEntity(self,data)
   }
 
 
-  _password_recovery?: PasswordRecoveryEntity
-
-  // Idiomatic facade: `client.password_recovery.list()` / `client.password_recovery.load({ id })`.
-  get password_recovery(): PasswordRecoveryEntity {
-    return (this._password_recovery ??= new PasswordRecoveryEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.password_recovery` instead. */
+  // Entity access: `client.PasswordRecovery().list()` / `client.PasswordRecovery().load({ id })`.
   PasswordRecovery(data?: any) {
     const self = this
     return new PasswordRecoveryEntity(self,data)
   }
 
 
-  _register?: RegisterEntity
-
-  // Idiomatic facade: `client.register.list()` / `client.register.load({ id })`.
-  get register(): RegisterEntity {
-    return (this._register ??= new RegisterEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.register` instead. */
+  // Entity access: `client.Register().list()` / `client.Register().load({ id })`.
   Register(data?: any) {
     const self = this
     return new RegisterEntity(self,data)
   }
 
 
-  _social_login?: SocialLoginEntity
-
-  // Idiomatic facade: `client.social_login.list()` / `client.social_login.load({ id })`.
-  get social_login(): SocialLoginEntity {
-    return (this._social_login ??= new SocialLoginEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.social_login` instead. */
+  // Entity access: `client.SocialLogin().list()` / `client.SocialLogin().load({ id })`.
   SocialLogin(data?: any) {
     const self = this
     return new SocialLoginEntity(self,data)

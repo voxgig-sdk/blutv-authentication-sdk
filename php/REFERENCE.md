@@ -98,7 +98,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## LoginEntity
 
 ```php
-$login = $client->login();
+$login = $client->Login();
 ```
 
 ### Fields
@@ -121,7 +121,7 @@ $login = $client->login();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->login()->create([
+$result = $client->Login()->create([
   "email" => /* `$STRING` */,
   "password" => /* `$STRING` */,
 ]);
@@ -160,7 +160,7 @@ Return the entity name.
 ## PasswordRecoveryEntity
 
 ```php
-$password_recovery = $client->password_recovery();
+$password_recovery = $client->PasswordRecovery();
 ```
 
 ### Fields
@@ -178,7 +178,7 @@ $password_recovery = $client->password_recovery();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->password_recovery()->create([
+$result = $client->PasswordRecovery()->create([
   "email" => /* `$STRING` */,
 ]);
 ```
@@ -216,7 +216,7 @@ Return the entity name.
 ## RegisterEntity
 
 ```php
-$register = $client->register();
+$register = $client->Register();
 ```
 
 ### Fields
@@ -236,7 +236,7 @@ $register = $client->register();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->register()->create([
+$result = $client->Register()->create([
   "email" => /* `$STRING` */,
   "name" => /* `$STRING` */,
   "password" => /* `$STRING` */,
@@ -276,7 +276,7 @@ Return the entity name.
 ## SocialLoginEntity
 
 ```php
-$social_login = $client->social_login();
+$social_login = $client->SocialLogin();
 ```
 
 ### Fields
@@ -298,7 +298,7 @@ $social_login = $client->social_login();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->social_login()->create([
+$result = $client->SocialLogin()->create([
   "access_token" => /* `$STRING` */,
   "provider" => /* `$STRING` */,
 ]);

@@ -146,7 +146,7 @@ Alias for `BlutvAuthenticationSDK.test()`.
 ## LoginEntity
 
 ```ts
-const login = client.login
+const login = client.Login()
 ```
 
 ### Fields
@@ -169,7 +169,7 @@ const login = client.login
 Create a new entity with the given data.
 
 ```ts
-const result = await client.login.create({
+const result = await client.Login().create({
   email: /* `$STRING` */,
   password: /* `$STRING` */,
 })
@@ -206,7 +206,7 @@ Return a copy of the entity options.
 ## PasswordRecoveryEntity
 
 ```ts
-const password_recovery = client.password_recovery
+const password_recovery = client.PasswordRecovery()
 ```
 
 ### Fields
@@ -224,7 +224,7 @@ const password_recovery = client.password_recovery
 Create a new entity with the given data.
 
 ```ts
-const result = await client.password_recovery.create({
+const result = await client.PasswordRecovery().create({
   email: /* `$STRING` */,
 })
 ```
@@ -260,7 +260,7 @@ Return a copy of the entity options.
 ## RegisterEntity
 
 ```ts
-const register = client.register
+const register = client.Register()
 ```
 
 ### Fields
@@ -280,7 +280,7 @@ const register = client.register
 Create a new entity with the given data.
 
 ```ts
-const result = await client.register.create({
+const result = await client.Register().create({
   email: /* `$STRING` */,
   name: /* `$STRING` */,
   password: /* `$STRING` */,
@@ -318,7 +318,7 @@ Return a copy of the entity options.
 ## SocialLoginEntity
 
 ```ts
-const social_login = client.social_login
+const social_login = client.SocialLogin()
 ```
 
 ### Fields
@@ -340,7 +340,7 @@ const social_login = client.social_login
 Create a new entity with the given data.
 
 ```ts
-const result = await client.social_login.create({
+const result = await client.SocialLogin().create({
   access_token: /* `$STRING` */,
   provider: /* `$STRING` */,
 })

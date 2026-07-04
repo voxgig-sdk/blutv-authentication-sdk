@@ -208,52 +208,28 @@ class BlutvAuthenticationSDK
   end
 
 
-  # Idiomatic facade: client.login.list / client.login.load({ "id" => ... })
-  def login
-    require_relative 'entity/login_entity'
-    @login ||= LoginEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.login instead.
+  # Canonical facade: client.Login.list / client.Login.load({ "id" => ... })
   def Login(data = nil)
     require_relative 'entity/login_entity'
     LoginEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.password_recovery.list / client.password_recovery.load({ "id" => ... })
-  def password_recovery
-    require_relative 'entity/password_recovery_entity'
-    @password_recovery ||= PasswordRecoveryEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.password_recovery instead.
+  # Canonical facade: client.PasswordRecovery.list / client.PasswordRecovery.load({ "id" => ... })
   def PasswordRecovery(data = nil)
     require_relative 'entity/password_recovery_entity'
     PasswordRecoveryEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.register.list / client.register.load({ "id" => ... })
-  def register
-    require_relative 'entity/register_entity'
-    @register ||= RegisterEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.register instead.
+  # Canonical facade: client.Register.list / client.Register.load({ "id" => ... })
   def Register(data = nil)
     require_relative 'entity/register_entity'
     RegisterEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.social_login.list / client.social_login.load({ "id" => ... })
-  def social_login
-    require_relative 'entity/social_login_entity'
-    @social_login ||= SocialLoginEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.social_login instead.
+  # Canonical facade: client.SocialLogin.list / client.SocialLogin.load({ "id" => ... })
   def SocialLogin(data = nil)
     require_relative 'entity/social_login_entity'
     SocialLoginEntity.new(self, data)

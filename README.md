@@ -144,22 +144,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = BlutvAuthenticationSDK.test()
-const result = await client.login.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const login = await client.Login().load({ id: 'test01' })
+// login is a bare Login populated with mock data
+console.log(login)
 ```
 
 ### Python
 
 ```python
 client = BlutvAuthenticationSDK.test()
-result = client.login.load({"id": "test01"})
+login = client.Login().load({"id": "test01"})
+print(login)
 ```
 
 ### PHP
 
 ```php
-$client = BlutvAuthenticationSDK::test();
-$result = $client->login()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = BlutvAuthenticationSDK::test([
+    "entity" => ["login" => ["test01" => ["id" => "test01"]]],
+]);
+$login = $client->Login()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -174,15 +179,18 @@ result, err := client.Login(nil).Load(
 ### Ruby
 
 ```ruby
-client = BlutvAuthenticationSDK.test
-result = client.login.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = BlutvAuthenticationSDK.test({
+  "entity" => { "login" => { "test01" => { "id" => "test01" } } },
+})
+login = client.Login.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:login():load({ id = "test01" })
+local result, err = client:Login():load({ id = "test01" })
 ```
 
 ## How it works
@@ -230,6 +238,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

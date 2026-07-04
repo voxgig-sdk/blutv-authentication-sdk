@@ -37,7 +37,8 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, _ = client:login():create({ name = "Example" })
+local created, err = client:Login():create({ name = "Example" })
+if err then error(err) end
 
 ```
 
@@ -84,8 +85,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:login():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Login():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -190,17 +191,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local login, err = client:Login():load({ id = "example_id" })
+    if err then error(err) end
+    -- login is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -270,7 +276,7 @@ API path: `/auth/social-login`
 
 ### Login
 
-Create an instance: `const login = client.login`
+Create an instance: `local login = client:Login(nil)`
 
 #### Operations
 
@@ -293,17 +299,17 @@ Create an instance: `const login = client.login`
 
 #### Example: Create
 
-```ts
-const login = await client.login.create({
-  email: /* `$STRING` */,
-  password: /* `$STRING` */,
+```lua
+local login, err = client:Login():create({
+  email = nil, -- `$STRING`
+  password = nil, -- `$STRING`
 })
 ```
 
 
 ### PasswordRecovery
 
-Create an instance: `const password_recovery = client.password_recovery`
+Create an instance: `local password_recovery = client:PasswordRecovery(nil)`
 
 #### Operations
 
@@ -321,16 +327,16 @@ Create an instance: `const password_recovery = client.password_recovery`
 
 #### Example: Create
 
-```ts
-const password_recovery = await client.password_recovery.create({
-  email: /* `$STRING` */,
+```lua
+local password_recovery, err = client:PasswordRecovery():create({
+  email = nil, -- `$STRING`
 })
 ```
 
 
 ### Register
 
-Create an instance: `const register = client.register`
+Create an instance: `local register = client:Register(nil)`
 
 #### Operations
 
@@ -350,18 +356,18 @@ Create an instance: `const register = client.register`
 
 #### Example: Create
 
-```ts
-const register = await client.register.create({
-  email: /* `$STRING` */,
-  name: /* `$STRING` */,
-  password: /* `$STRING` */,
+```lua
+local register, err = client:Register():create({
+  email = nil, -- `$STRING`
+  name = nil, -- `$STRING`
+  password = nil, -- `$STRING`
 })
 ```
 
 
 ### SocialLogin
 
-Create an instance: `const social_login = client.social_login`
+Create an instance: `local social_login = client:SocialLogin(nil)`
 
 #### Operations
 
@@ -383,10 +389,10 @@ Create an instance: `const social_login = client.social_login`
 
 #### Example: Create
 
-```ts
-const social_login = await client.social_login.create({
-  access_token: /* `$STRING` */,
-  provider: /* `$STRING` */,
+```lua
+local social_login, err = client:SocialLogin():create({
+  access_token = nil, -- `$STRING`
+  provider = nil, -- `$STRING`
 })
 ```
 
@@ -462,7 +468,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local login = client:login()
+local login = client:Login()
 login:load({ id = "example_id" })
 
 -- login:data_get() now returns the loaded login data
