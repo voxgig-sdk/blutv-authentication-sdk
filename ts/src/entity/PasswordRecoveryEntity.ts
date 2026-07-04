@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  PasswordRecovery,
+  PasswordRecoveryCreateData,
+} from '../BlutvAuthenticationTypes'
 
 // TODO: needs Entity superclass
-class PasswordRecoveryEntity extends BlutvAuthenticationEntityBase {
+class PasswordRecoveryEntity extends BlutvAuthenticationEntityBase<PasswordRecovery> {
 
   constructor(client: BlutvAuthenticationSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class PasswordRecoveryEntity extends BlutvAuthenticationEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: PasswordRecoveryCreateData, ctrl?: Control): Promise<PasswordRecovery> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class PasswordRecoveryEntity extends BlutvAuthenticationEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<PasswordRecovery> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

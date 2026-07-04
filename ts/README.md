@@ -9,9 +9,12 @@ The TypeScript SDK for the BlutvAuthentication API — a type-safe, entity-orien
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/blutv-authentication
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/blutv-authentication-sdk/releases](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,10 +23,10 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { BlutvAuthenticationSDK } from 'blutv-authentication'
+import { BlutvAuthenticationSDK } from '@voxgig-sdk/blutv-authentication'
 
 const client = new BlutvAuthenticationSDK({
-  apikey: process.env.BLUTV-AUTHENTICATION_APIKEY,
+  apikey: process.env.BLUTV_AUTHENTICATION_APIKEY,
 })
 ```
 
@@ -31,7 +34,7 @@ const client = new BlutvAuthenticationSDK({
 
 ```ts
 // Create
-const created = await client.Login().create({
+const created = await client.login.create({
   name: 'Example',
 })
 
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = BlutvAuthenticationSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.login.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.login
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -133,8 +136,8 @@ const client = new BlutvAuthenticationSDK({
 Create a `.env.local` file at the project root:
 
 ```
-BLUTV-AUTHENTICATION_TEST_LIVE=TRUE
-BLUTV-AUTHENTICATION_APIKEY=<your-key>
+BLUTV_AUTHENTICATION_TEST_LIVE=TRUE
+BLUTV_AUTHENTICATION_APIKEY=<your-key>
 ```
 
 Then run:
@@ -318,7 +321,7 @@ API path: `/auth/social-login`
 
 ### Login
 
-Create an instance: `const login = client.Login()`
+Create an instance: `const login = client.login`
 
 #### Operations
 
@@ -342,7 +345,7 @@ Create an instance: `const login = client.Login()`
 #### Example: Create
 
 ```ts
-const login = await client.Login().create({
+const login = await client.login.create({
   email: /* `$STRING` */,
   password: /* `$STRING` */,
 })
@@ -351,7 +354,7 @@ const login = await client.Login().create({
 
 ### PasswordRecovery
 
-Create an instance: `const password_recovery = client.PasswordRecovery()`
+Create an instance: `const password_recovery = client.password_recovery`
 
 #### Operations
 
@@ -370,7 +373,7 @@ Create an instance: `const password_recovery = client.PasswordRecovery()`
 #### Example: Create
 
 ```ts
-const password_recovery = await client.PasswordRecovery().create({
+const password_recovery = await client.password_recovery.create({
   email: /* `$STRING` */,
 })
 ```
@@ -378,7 +381,7 @@ const password_recovery = await client.PasswordRecovery().create({
 
 ### Register
 
-Create an instance: `const register = client.Register()`
+Create an instance: `const register = client.register`
 
 #### Operations
 
@@ -399,7 +402,7 @@ Create an instance: `const register = client.Register()`
 #### Example: Create
 
 ```ts
-const register = await client.Register().create({
+const register = await client.register.create({
   email: /* `$STRING` */,
   name: /* `$STRING` */,
   password: /* `$STRING` */,
@@ -409,7 +412,7 @@ const register = await client.Register().create({
 
 ### SocialLogin
 
-Create an instance: `const social_login = client.SocialLogin()`
+Create an instance: `const social_login = client.social_login`
 
 #### Operations
 
@@ -432,7 +435,7 @@ Create an instance: `const social_login = client.SocialLogin()`
 #### Example: Create
 
 ```ts
-const social_login = await client.SocialLogin().create({
+const social_login = await client.social_login.create({
   access_token: /* `$STRING` */,
   provider: /* `$STRING` */,
 })
@@ -496,7 +499,7 @@ blutv-authentication/
 Import the SDK from the package root:
 
 ```ts
-import { BlutvAuthenticationSDK } from 'blutv-authentication'
+import { BlutvAuthenticationSDK } from '@voxgig-sdk/blutv-authentication'
 ```
 
 ### Entity state
@@ -506,11 +509,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const login = client.login
+await login.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// login.data() now returns the loaded login data
+// login.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

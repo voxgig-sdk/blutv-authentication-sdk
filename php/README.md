@@ -9,9 +9,10 @@ The PHP SDK for the BlutvAuthentication API — an entity-oriented client using 
 
 
 ## Install
-```bash
-composer require voxgig-sdk/blutv-authentication
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/blutv-authentication-sdk/releases](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -26,7 +27,7 @@ loading a specific record.
 require_once 'blutvauthentication_sdk.php';
 
 $client = new BlutvAuthenticationSDK([
-    "apikey" => getenv("BLUTV-AUTHENTICATION_APIKEY"),
+    "apikey" => getenv("BLUTV_AUTHENTICATION_APIKEY"),
 ]);
 ```
 
@@ -34,7 +35,7 @@ $client = new BlutvAuthenticationSDK([
 
 ```php
 // Create
-[$created, $_] = $client->Login()->create(["name" => "Example"]);
+$created = $client->login()->create(["name" => "Example"]);
 
 ```
 
@@ -46,28 +47,31 @@ $client = new BlutvAuthenticationSDK([
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +85,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = BlutvAuthenticationSDK::test();
 
-[$result, $err] = $client->BlutvAuthentication()->load(["id" => "test01"]);
+$result = $client->login()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +119,8 @@ $client = new BlutvAuthenticationSDK([
 Create a `.env.local` file at the project root:
 
 ```
-BLUTV-AUTHENTICATION_TEST_LIVE=TRUE
-BLUTV-AUTHENTICATION_APIKEY=<your-key>
+BLUTV_AUTHENTICATION_TEST_LIVE=TRUE
+BLUTV_AUTHENTICATION_APIKEY=<your-key>
 ```
 
 Then run:
@@ -188,8 +192,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -268,7 +276,7 @@ API path: `/auth/social-login`
 
 ### Login
 
-Create an instance: `const login = client.Login()`
+Create an instance: `const login = client.login`
 
 #### Operations
 
@@ -292,7 +300,7 @@ Create an instance: `const login = client.Login()`
 #### Example: Create
 
 ```ts
-const login = await client.Login().create({
+const login = await client.login.create({
   email: /* `$STRING` */,
   password: /* `$STRING` */,
 })
@@ -301,7 +309,7 @@ const login = await client.Login().create({
 
 ### PasswordRecovery
 
-Create an instance: `const password_recovery = client.PasswordRecovery()`
+Create an instance: `const password_recovery = client.password_recovery`
 
 #### Operations
 
@@ -320,7 +328,7 @@ Create an instance: `const password_recovery = client.PasswordRecovery()`
 #### Example: Create
 
 ```ts
-const password_recovery = await client.PasswordRecovery().create({
+const password_recovery = await client.password_recovery.create({
   email: /* `$STRING` */,
 })
 ```
@@ -328,7 +336,7 @@ const password_recovery = await client.PasswordRecovery().create({
 
 ### Register
 
-Create an instance: `const register = client.Register()`
+Create an instance: `const register = client.register`
 
 #### Operations
 
@@ -349,7 +357,7 @@ Create an instance: `const register = client.Register()`
 #### Example: Create
 
 ```ts
-const register = await client.Register().create({
+const register = await client.register.create({
   email: /* `$STRING` */,
   name: /* `$STRING` */,
   password: /* `$STRING` */,
@@ -359,7 +367,7 @@ const register = await client.Register().create({
 
 ### SocialLogin
 
-Create an instance: `const social_login = client.SocialLogin()`
+Create an instance: `const social_login = client.social_login`
 
 #### Operations
 
@@ -382,7 +390,7 @@ Create an instance: `const social_login = client.SocialLogin()`
 #### Example: Create
 
 ```ts
-const social_login = await client.SocialLogin().create({
+const social_login = await client.social_login.create({
   access_token: /* `$STRING` */,
   provider: /* `$STRING` */,
 })
@@ -460,11 +468,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$login = $client->login();
+$login->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $login->dataGet() now returns the loaded login data
+// $login->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

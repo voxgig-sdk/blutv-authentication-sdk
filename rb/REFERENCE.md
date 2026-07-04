@@ -66,9 +66,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -82,14 +84,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -97,7 +99,7 @@ same parameters as `direct()`.
 ## LoginEntity
 
 ```ruby
-login = client.Login
+login = client.login
 ```
 
 ### Fields
@@ -115,12 +117,12 @@ login = client.Login
 
 ### Operations
 
-#### `create(reqdata, ctrl = nil) -> result, err`
+#### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Raises on error.
 
 ```ruby
-result, err = client.Login.create({
+result = client.login.create({
   "email" => # `$STRING`,
   "password" => # `$STRING`,
 })
@@ -159,7 +161,7 @@ Return the entity name.
 ## PasswordRecoveryEntity
 
 ```ruby
-password_recovery = client.PasswordRecovery
+password_recovery = client.password_recovery
 ```
 
 ### Fields
@@ -172,12 +174,12 @@ password_recovery = client.PasswordRecovery
 
 ### Operations
 
-#### `create(reqdata, ctrl = nil) -> result, err`
+#### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Raises on error.
 
 ```ruby
-result, err = client.PasswordRecovery.create({
+result = client.password_recovery.create({
   "email" => # `$STRING`,
 })
 ```
@@ -215,7 +217,7 @@ Return the entity name.
 ## RegisterEntity
 
 ```ruby
-register = client.Register
+register = client.register
 ```
 
 ### Fields
@@ -230,12 +232,12 @@ register = client.Register
 
 ### Operations
 
-#### `create(reqdata, ctrl = nil) -> result, err`
+#### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Raises on error.
 
 ```ruby
-result, err = client.Register.create({
+result = client.register.create({
   "email" => # `$STRING`,
   "name" => # `$STRING`,
   "password" => # `$STRING`,
@@ -275,7 +277,7 @@ Return the entity name.
 ## SocialLoginEntity
 
 ```ruby
-social_login = client.SocialLogin
+social_login = client.social_login
 ```
 
 ### Fields
@@ -292,12 +294,12 @@ social_login = client.SocialLogin
 
 ### Operations
 
-#### `create(reqdata, ctrl = nil) -> result, err`
+#### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Raises on error.
 
 ```ruby
-result, err = client.SocialLogin.create({
+result = client.social_login.create({
   "access_token" => # `$STRING`,
   "provider" => # `$STRING`,
 })

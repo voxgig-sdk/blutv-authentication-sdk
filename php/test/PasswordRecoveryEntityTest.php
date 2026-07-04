@@ -43,8 +43,7 @@ class PasswordRecoveryEntityTest extends TestCase
         $password_recovery_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.password_recovery"), "password_recovery_ref01"));
 
-        [$password_recovery_ref01_data_result, $err] = $password_recovery_ref01_ent->create($password_recovery_ref01_data, null);
-        $this->assertNull($err);
+        $password_recovery_ref01_data_result = $password_recovery_ref01_ent->create($password_recovery_ref01_data, null);
         $password_recovery_ref01_data = Helpers::to_map($password_recovery_ref01_data_result);
         $this->assertNotNull($password_recovery_ref01_data);
 

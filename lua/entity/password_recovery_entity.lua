@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata PasswordRecoveryCreateData
+---@param ctrl? table
+---@return PasswordRecovery
+---@return string? err
 function PasswordRecoveryEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

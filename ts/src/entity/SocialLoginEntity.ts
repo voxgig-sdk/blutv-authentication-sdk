@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  SocialLogin,
+  SocialLoginCreateData,
+} from '../BlutvAuthenticationTypes'
 
 // TODO: needs Entity superclass
-class SocialLoginEntity extends BlutvAuthenticationEntityBase {
+class SocialLoginEntity extends BlutvAuthenticationEntityBase<SocialLogin> {
 
   constructor(client: BlutvAuthenticationSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class SocialLoginEntity extends BlutvAuthenticationEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: SocialLoginCreateData, ctrl?: Control): Promise<SocialLogin> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class SocialLoginEntity extends BlutvAuthenticationEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<SocialLogin> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

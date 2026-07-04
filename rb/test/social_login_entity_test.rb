@@ -36,8 +36,7 @@ class SocialLoginEntityTest < Minitest::Test
     social_login_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.social_login"), "social_login_ref01"))
 
-    social_login_ref01_data_result, err = social_login_ref01_ent.create(social_login_ref01_data, nil)
-    assert_nil err
+    social_login_ref01_data_result = social_login_ref01_ent.create(social_login_ref01_data, nil)
     social_login_ref01_data = Helpers.to_map(social_login_ref01_data_result)
     assert !social_login_ref01_data.nil?
 

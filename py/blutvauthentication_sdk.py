@@ -144,16 +144,23 @@ class BlutvAuthenticationSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class BlutvAuthenticationSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,30 +212,74 @@ class BlutvAuthenticationSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def login(self):
+        """Idiomatic facade: client.login.list() / client.login.load({"id": ...})."""
+        from entity.login_entity import LoginEntity
+        cached = getattr(self, "_login", None)
+        if cached is None:
+            cached = LoginEntity(self, None)
+            self._login = cached
+        return cached
 
     def Login(self, data=None):
+        # Deprecated: use client.login instead.
         from entity.login_entity import LoginEntity
         return LoginEntity(self, data)
 
 
+    @property
+    def password_recovery(self):
+        """Idiomatic facade: client.password_recovery.list() / client.password_recovery.load({"id": ...})."""
+        from entity.password_recovery_entity import PasswordRecoveryEntity
+        cached = getattr(self, "_password_recovery", None)
+        if cached is None:
+            cached = PasswordRecoveryEntity(self, None)
+            self._password_recovery = cached
+        return cached
+
     def PasswordRecovery(self, data=None):
+        # Deprecated: use client.password_recovery instead.
         from entity.password_recovery_entity import PasswordRecoveryEntity
         return PasswordRecoveryEntity(self, data)
 
 
+    @property
+    def register(self):
+        """Idiomatic facade: client.register.list() / client.register.load({"id": ...})."""
+        from entity.register_entity import RegisterEntity
+        cached = getattr(self, "_register", None)
+        if cached is None:
+            cached = RegisterEntity(self, None)
+            self._register = cached
+        return cached
+
     def Register(self, data=None):
+        # Deprecated: use client.register instead.
         from entity.register_entity import RegisterEntity
         return RegisterEntity(self, data)
 
 
+    @property
+    def social_login(self):
+        """Idiomatic facade: client.social_login.list() / client.social_login.load({"id": ...})."""
+        from entity.social_login_entity import SocialLoginEntity
+        cached = getattr(self, "_social_login", None)
+        if cached is None:
+            cached = SocialLoginEntity(self, None)
+            self._social_login = cached
+        return cached
+
     def SocialLogin(self, data=None):
+        # Deprecated: use client.social_login instead.
         from entity.social_login_entity import SocialLoginEntity
         return SocialLoginEntity(self, data)
 

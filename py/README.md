@@ -9,11 +9,9 @@ The Python SDK for the BlutvAuthentication API — an entity-oriented client fol
 
 
 ## Install
-```bash
-pip install voxgig-sdk-blutv-authentication
-```
-
-Or install from source:
+This package is not yet published to PyPI. Install it from the GitHub
+release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases)) or
+from a source checkout:
 
 ```bash
 pip install -e .
@@ -32,7 +30,7 @@ import os
 from blutvauthentication_sdk import BlutvAuthenticationSDK
 
 client = BlutvAuthenticationSDK({
-    "apikey": os.environ.get("BLUTV-AUTHENTICATION_APIKEY"),
+    "apikey": os.environ.get("BLUTV_AUTHENTICATION_APIKEY"),
 })
 ```
 
@@ -40,7 +38,7 @@ client = BlutvAuthenticationSDK({
 
 ```python
 # Create
-created, _ = client.Login().create({"name": "Example"})
+created = client.login.create({"name": "Example"})
 
 ```
 
@@ -52,29 +50,28 @@ created, _ = client.Login().create({"name": "Example"})
 For endpoints not covered by entity methods:
 
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
+else:
+    print(result["err"])     # error value
 ```
 
 ### Prepare a request without sending it
 
 ```python
-fetchdef, err = client.prepare({
+# prepare() returns the fetch definition and raises on error.
+fetchdef = client.prepare({
     "path": "/api/resource/{id}",
     "method": "DELETE",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 print(fetchdef["url"])
 print(fetchdef["method"])
@@ -88,7 +85,7 @@ Create a mock client for unit testing — no server required:
 ```python
 client = BlutvAuthenticationSDK.test()
 
-result, err = client.BlutvAuthentication().load({"id": "test01"})
+result = client.login.load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -118,8 +115,8 @@ client = BlutvAuthenticationSDK({
 Create a `.env.local` file at the project root:
 
 ```
-BLUTV-AUTHENTICATION_TEST_LIVE=TRUE
-BLUTV-AUTHENTICATION_APIKEY=<your-key>
+BLUTV_AUTHENTICATION_TEST_LIVE=TRUE
+BLUTV_AUTHENTICATION_APIKEY=<your-key>
 ```
 
 Then run:
@@ -165,8 +162,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | --- | --- | --- |
 | `options_map` | `() -> dict` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Login` | `(data) -> LoginEntity` | Create a Login entity instance. |
 | `PasswordRecovery` | `(data) -> PasswordRecoveryEntity` | Create a PasswordRecovery entity instance. |
 | `Register` | `(data) -> RegisterEntity` | Create a Register entity instance. |
@@ -178,11 +175,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> (any, err)` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> (any, err)` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> (any, err)` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> (any, err)` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> (any, err)` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -192,8 +189,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`dict` with these keys:
+Entity operations return the bare result data (a `dict` for single-entity
+ops, a `list` for `list`) and raise on error. Wrap calls in
+`try`/`except` to handle failures.
+
+The `direct()` escape hatch never raises — it returns a result `dict`
+you branch on via `result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -272,7 +273,7 @@ API path: `/auth/social-login`
 
 ### Login
 
-Create an instance: `const login = client.Login()`
+Create an instance: `const login = client.login`
 
 #### Operations
 
@@ -296,7 +297,7 @@ Create an instance: `const login = client.Login()`
 #### Example: Create
 
 ```ts
-const login = await client.Login().create({
+const login = await client.login.create({
   email: /* `$STRING` */,
   password: /* `$STRING` */,
 })
@@ -305,7 +306,7 @@ const login = await client.Login().create({
 
 ### PasswordRecovery
 
-Create an instance: `const password_recovery = client.PasswordRecovery()`
+Create an instance: `const password_recovery = client.password_recovery`
 
 #### Operations
 
@@ -324,7 +325,7 @@ Create an instance: `const password_recovery = client.PasswordRecovery()`
 #### Example: Create
 
 ```ts
-const password_recovery = await client.PasswordRecovery().create({
+const password_recovery = await client.password_recovery.create({
   email: /* `$STRING` */,
 })
 ```
@@ -332,7 +333,7 @@ const password_recovery = await client.PasswordRecovery().create({
 
 ### Register
 
-Create an instance: `const register = client.Register()`
+Create an instance: `const register = client.register`
 
 #### Operations
 
@@ -353,7 +354,7 @@ Create an instance: `const register = client.Register()`
 #### Example: Create
 
 ```ts
-const register = await client.Register().create({
+const register = await client.register.create({
   email: /* `$STRING` */,
   name: /* `$STRING` */,
   password: /* `$STRING` */,
@@ -363,7 +364,7 @@ const register = await client.Register().create({
 
 ### SocialLogin
 
-Create an instance: `const social_login = client.SocialLogin()`
+Create an instance: `const social_login = client.social_login`
 
 #### Operations
 
@@ -386,7 +387,7 @@ Create an instance: `const social_login = client.SocialLogin()`
 #### Example: Create
 
 ```ts
-const social_login = await client.SocialLogin().create({
+const social_login = await client.social_login.create({
   access_token: /* `$STRING` */,
   provider: /* `$STRING` */,
 })
@@ -463,11 +464,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-moon = client.Moon()
-moon.load({"planet_id": "earth", "id": "luna"})
+login = client.login
+login.load({"id": "example_id"})
 
-# moon.data_get() now returns the loaded moon data
-# moon.match_get() returns the last match criteria
+# login.data_get() now returns the loaded login data
+# login.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

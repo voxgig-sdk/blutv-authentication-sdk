@@ -245,21 +245,33 @@ func (sdk *BlutvAuthenticationSDK) Direct(fetchargs map[string]any) (map[string]
 }
 
 
+// Login returns a Login entity bound to this client.
+// Idiomatic usage: client.Login(nil).List(nil, nil) or
+// client.Login(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *BlutvAuthenticationSDK) Login(data map[string]any) BlutvAuthenticationEntity {
 	return NewLoginEntityFunc(sdk, data)
 }
 
 
+// PasswordRecovery returns a PasswordRecovery entity bound to this client.
+// Idiomatic usage: client.PasswordRecovery(nil).List(nil, nil) or
+// client.PasswordRecovery(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *BlutvAuthenticationSDK) PasswordRecovery(data map[string]any) BlutvAuthenticationEntity {
 	return NewPasswordRecoveryEntityFunc(sdk, data)
 }
 
 
+// Register returns a Register entity bound to this client.
+// Idiomatic usage: client.Register(nil).List(nil, nil) or
+// client.Register(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *BlutvAuthenticationSDK) Register(data map[string]any) BlutvAuthenticationEntity {
 	return NewRegisterEntityFunc(sdk, data)
 }
 
 
+// SocialLogin returns a SocialLogin entity bound to this client.
+// Idiomatic usage: client.SocialLogin(nil).List(nil, nil) or
+// client.SocialLogin(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *BlutvAuthenticationSDK) SocialLogin(data map[string]any) BlutvAuthenticationEntity {
 	return NewSocialLoginEntityFunc(sdk, data)
 }

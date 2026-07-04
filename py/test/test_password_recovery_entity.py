@@ -44,9 +44,7 @@ class TestPasswordRecoveryEntity:
         password_recovery_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.password_recovery"), "password_recovery_ref01"))
 
-        password_recovery_ref01_data_result, err = password_recovery_ref01_ent.create(password_recovery_ref01_data, None)
-        assert err is None
-        password_recovery_ref01_data = helpers.to_map(password_recovery_ref01_data_result)
+        password_recovery_ref01_data = helpers.to_map(password_recovery_ref01_ent.create(password_recovery_ref01_data, None))
         assert password_recovery_ref01_data is not None
 
 

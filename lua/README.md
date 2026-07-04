@@ -9,12 +9,9 @@ The Lua SDK for the BlutvAuthentication API — an entity-oriented client using 
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-blutv-authentication
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,7 +29,7 @@ loading a specific record.
 local sdk = require("blutv-authentication_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("BLUTV-AUTHENTICATION_APIKEY"),
+  apikey = os.getenv("BLUTV_AUTHENTICATION_APIKEY"),
 })
 ```
 
@@ -40,7 +37,7 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, _ = client:Login():create({ name = "Example" })
+local created, _ = client:login():create({ name = "Example" })
 
 ```
 
@@ -87,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:BlutvAuthentication():load({ id = "test01" })
+local result, err = client:login():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +117,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-BLUTV-AUTHENTICATION_TEST_LIVE=TRUE
-BLUTV-AUTHENTICATION_APIKEY=<your-key>
+BLUTV_AUTHENTICATION_TEST_LIVE=TRUE
+BLUTV_AUTHENTICATION_APIKEY=<your-key>
 ```
 
 Then run:
@@ -273,7 +270,7 @@ API path: `/auth/social-login`
 
 ### Login
 
-Create an instance: `const login = client.Login()`
+Create an instance: `const login = client.login`
 
 #### Operations
 
@@ -297,7 +294,7 @@ Create an instance: `const login = client.Login()`
 #### Example: Create
 
 ```ts
-const login = await client.Login().create({
+const login = await client.login.create({
   email: /* `$STRING` */,
   password: /* `$STRING` */,
 })
@@ -306,7 +303,7 @@ const login = await client.Login().create({
 
 ### PasswordRecovery
 
-Create an instance: `const password_recovery = client.PasswordRecovery()`
+Create an instance: `const password_recovery = client.password_recovery`
 
 #### Operations
 
@@ -325,7 +322,7 @@ Create an instance: `const password_recovery = client.PasswordRecovery()`
 #### Example: Create
 
 ```ts
-const password_recovery = await client.PasswordRecovery().create({
+const password_recovery = await client.password_recovery.create({
   email: /* `$STRING` */,
 })
 ```
@@ -333,7 +330,7 @@ const password_recovery = await client.PasswordRecovery().create({
 
 ### Register
 
-Create an instance: `const register = client.Register()`
+Create an instance: `const register = client.register`
 
 #### Operations
 
@@ -354,7 +351,7 @@ Create an instance: `const register = client.Register()`
 #### Example: Create
 
 ```ts
-const register = await client.Register().create({
+const register = await client.register.create({
   email: /* `$STRING` */,
   name: /* `$STRING` */,
   password: /* `$STRING` */,
@@ -364,7 +361,7 @@ const register = await client.Register().create({
 
 ### SocialLogin
 
-Create an instance: `const social_login = client.SocialLogin()`
+Create an instance: `const social_login = client.social_login`
 
 #### Operations
 
@@ -387,7 +384,7 @@ Create an instance: `const social_login = client.SocialLogin()`
 #### Example: Create
 
 ```ts
-const social_login = await client.SocialLogin().create({
+const social_login = await client.social_login.create({
   access_token: /* `$STRING` */,
   provider: /* `$STRING` */,
 })
@@ -465,11 +462,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local login = client:login()
+login:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- login:data_get() now returns the loaded login data
+-- login:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

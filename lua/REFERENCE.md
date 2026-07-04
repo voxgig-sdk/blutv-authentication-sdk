@@ -96,7 +96,7 @@ same parameters as `direct()`.
 ## LoginEntity
 
 ```lua
-local login = client:Login(nil)
+local login = client:login(nil)
 ```
 
 ### Fields
@@ -119,7 +119,7 @@ local login = client:Login(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Login():create({
+local result, err = client:login():create({
   email = --[[ `$STRING` ]],
   password = --[[ `$STRING` ]],
 })
@@ -158,7 +158,7 @@ Return the entity name.
 ## PasswordRecoveryEntity
 
 ```lua
-local password_recovery = client:PasswordRecovery(nil)
+local password_recovery = client:password_recovery(nil)
 ```
 
 ### Fields
@@ -176,7 +176,7 @@ local password_recovery = client:PasswordRecovery(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:PasswordRecovery():create({
+local result, err = client:password_recovery():create({
   email = --[[ `$STRING` ]],
 })
 ```
@@ -214,7 +214,7 @@ Return the entity name.
 ## RegisterEntity
 
 ```lua
-local register = client:Register(nil)
+local register = client:register(nil)
 ```
 
 ### Fields
@@ -234,7 +234,7 @@ local register = client:Register(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Register():create({
+local result, err = client:register():create({
   email = --[[ `$STRING` ]],
   name = --[[ `$STRING` ]],
   password = --[[ `$STRING` ]],
@@ -274,7 +274,7 @@ Return the entity name.
 ## SocialLoginEntity
 
 ```lua
-local social_login = client:SocialLogin(nil)
+local social_login = client:social_login(nil)
 ```
 
 ### Fields
@@ -296,7 +296,7 @@ local social_login = client:SocialLogin(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:SocialLogin():create({
+local result, err = client:social_login():create({
   access_token = --[[ `$STRING` ]],
   provider = --[[ `$STRING` ]],
 })

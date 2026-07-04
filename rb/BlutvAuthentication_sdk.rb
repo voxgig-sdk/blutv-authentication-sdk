@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'BlutvAuthentication_types'
+
 
 class BlutvAuthenticationSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class BlutvAuthenticationSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class BlutvAuthenticationSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue BlutvAuthenticationError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = BlutvAuthenticationHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class BlutvAuthenticationSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,34 +198,62 @@ class BlutvAuthenticationSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.login.list / client.login.load({ "id" => ... })
+  def login
+    require_relative 'entity/login_entity'
+    @login ||= LoginEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.login instead.
   def Login(data = nil)
     require_relative 'entity/login_entity'
     LoginEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.password_recovery.list / client.password_recovery.load({ "id" => ... })
+  def password_recovery
+    require_relative 'entity/password_recovery_entity'
+    @password_recovery ||= PasswordRecoveryEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.password_recovery instead.
   def PasswordRecovery(data = nil)
     require_relative 'entity/password_recovery_entity'
     PasswordRecoveryEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.register.list / client.register.load({ "id" => ... })
+  def register
+    require_relative 'entity/register_entity'
+    @register ||= RegisterEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.register instead.
   def Register(data = nil)
     require_relative 'entity/register_entity'
     RegisterEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.social_login.list / client.social_login.load({ "id" => ... })
+  def social_login
+    require_relative 'entity/social_login_entity'
+    @social_login ||= SocialLoginEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.social_login instead.
   def SocialLogin(data = nil)
     require_relative 'entity/social_login_entity'
     SocialLoginEntity.new(self, data)

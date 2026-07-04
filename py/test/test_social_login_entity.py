@@ -44,9 +44,7 @@ class TestSocialLoginEntity:
         social_login_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.social_login"), "social_login_ref01"))
 
-        social_login_ref01_data_result, err = social_login_ref01_ent.create(social_login_ref01_data, None)
-        assert err is None
-        social_login_ref01_data = helpers.to_map(social_login_ref01_data_result)
+        social_login_ref01_data = helpers.to_map(social_login_ref01_ent.create(social_login_ref01_data, None))
         assert social_login_ref01_data is not None
 
 

@@ -66,9 +66,9 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs=None) -> tuple`
+#### `direct(fetchargs=None) -> dict`
 
-Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
+Make a direct HTTP request to any API endpoint. Returns a result `dict` with `ok`, `status`, `headers`, and `data` (or `err` on failure). This escape hatch never raises — branch on `result["ok"]`.
 
 **Parameters:**
 
@@ -81,11 +81,11 @@ Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
 | `fetchargs["headers"]` | `dict` | Request headers (merged with defaults). |
 | `fetchargs["body"]` | `any` | Request body (dicts are JSON-serialized). |
 
-**Returns:** `(result_dict, err)`
+**Returns:** `result_dict`
 
-#### `prepare(fetchargs=None) -> tuple`
+#### `prepare(fetchargs=None) -> dict`
 
-Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
+Prepare a fetch definition without sending. Returns the `fetchdef` and raises on error.
 
 
 ---
@@ -93,7 +93,7 @@ Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
 ## LoginEntity
 
 ```python
-login = client.Login()
+login = client.login
 ```
 
 ### Fields
@@ -111,12 +111,12 @@ login = client.Login()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> tuple`
+#### `create(reqdata, ctrl=None) -> dict`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result, err = client.Login().create({
+result = client.login.create({
     "email": # `$STRING`,
     "password": # `$STRING`,
 })
@@ -154,7 +154,7 @@ Return the entity name.
 ## PasswordRecoveryEntity
 
 ```python
-password_recovery = client.PasswordRecovery()
+password_recovery = client.password_recovery
 ```
 
 ### Fields
@@ -167,12 +167,12 @@ password_recovery = client.PasswordRecovery()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> tuple`
+#### `create(reqdata, ctrl=None) -> dict`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result, err = client.PasswordRecovery().create({
+result = client.password_recovery.create({
     "email": # `$STRING`,
 })
 ```
@@ -209,7 +209,7 @@ Return the entity name.
 ## RegisterEntity
 
 ```python
-register = client.Register()
+register = client.register
 ```
 
 ### Fields
@@ -224,12 +224,12 @@ register = client.Register()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> tuple`
+#### `create(reqdata, ctrl=None) -> dict`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result, err = client.Register().create({
+result = client.register.create({
     "email": # `$STRING`,
     "name": # `$STRING`,
     "password": # `$STRING`,
@@ -268,7 +268,7 @@ Return the entity name.
 ## SocialLoginEntity
 
 ```python
-social_login = client.SocialLogin()
+social_login = client.social_login
 ```
 
 ### Fields
@@ -285,12 +285,12 @@ social_login = client.SocialLogin()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> tuple`
+#### `create(reqdata, ctrl=None) -> dict`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result, err = client.SocialLogin().create({
+result = client.social_login.create({
     "access_token": # `$STRING`,
     "provider": # `$STRING`,
 })

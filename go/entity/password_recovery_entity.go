@@ -85,6 +85,27 @@ func (e *PasswordRecoveryEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an PasswordRecovery; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *PasswordRecoveryEntity) DataTyped(data ...PasswordRecovery) PasswordRecovery {
+	if len(data) > 0 {
+		return typedFrom[PasswordRecovery](e.Data(asMap(data[0])))
+	}
+	return typedFrom[PasswordRecovery](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through PasswordRecovery (all fields
+// optional at the wire level).
+func (e *PasswordRecoveryEntity) MatchTyped(match ...PasswordRecovery) PasswordRecovery {
+	if len(match) > 0 {
+		return typedFrom[PasswordRecovery](e.Match(asMap(match[0])))
+	}
+	return typedFrom[PasswordRecovery](e.Match())
+}
+
 func (e *PasswordRecoveryEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -116,6 +137,17 @@ func (e *PasswordRecoveryEntity) Create(reqdata map[string]any, ctrl map[string]
 			}
 		}
 	})
+}
+
+// CreateTyped is the statically-typed variant of Create: it takes an
+// PasswordRecoveryCreateData and returns an PasswordRecovery. It delegates to the untyped
+// Create (identical runtime) and converts at the typed boundary.
+func (e *PasswordRecoveryEntity) CreateTyped(reqdata PasswordRecoveryCreateData, ctrl map[string]any) (PasswordRecovery, error) {
+	res, err := e.Create(asMap(reqdata), ctrl)
+	if err != nil {
+		return PasswordRecovery{}, err
+	}
+	return typedFrom[PasswordRecovery](res), nil
 }
 
 

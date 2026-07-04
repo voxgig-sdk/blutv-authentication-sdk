@@ -43,8 +43,7 @@ class SocialLoginEntityTest extends TestCase
         $social_login_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.social_login"), "social_login_ref01"));
 
-        [$social_login_ref01_data_result, $err] = $social_login_ref01_ent->create($social_login_ref01_data, null);
-        $this->assertNull($err);
+        $social_login_ref01_data_result = $social_login_ref01_ent->create($social_login_ref01_data, null);
         $social_login_ref01_data = Helpers::to_map($social_login_ref01_data_result);
         $this->assertNotNull($social_login_ref01_data);
 

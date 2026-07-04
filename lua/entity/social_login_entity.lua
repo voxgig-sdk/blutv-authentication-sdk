@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata SocialLoginCreateData
+---@param ctrl? table
+---@return SocialLogin
+---@return string? err
 function SocialLoginEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
