@@ -20,12 +20,11 @@ type Login struct {
 	User *map[string]any `json:"user,omitempty"`
 }
 
-// LoginCreateData mirrors the login fields as an all-optional match
-// filter (Go analog of Partial<Login>).
+// LoginCreateData is the typed request payload for Login.CreateTyped.
 type LoginCreateData struct {
-	Email *string `json:"email,omitempty"`
+	Email string `json:"email"`
 	ExpiresIn *int `json:"expires_in,omitempty"`
-	Password *string `json:"password,omitempty"`
+	Password string `json:"password"`
 	RefreshToken *string `json:"refresh_token,omitempty"`
 	RememberMe *bool `json:"remember_me,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -40,10 +39,9 @@ type PasswordRecovery struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-// PasswordRecoveryCreateData mirrors the password_recovery fields as an all-optional match
-// filter (Go analog of Partial<PasswordRecovery>).
+// PasswordRecoveryCreateData is the typed request payload for PasswordRecovery.CreateTyped.
 type PasswordRecoveryCreateData struct {
-	Email *string `json:"email,omitempty"`
+	Email string `json:"email"`
 	Message *string `json:"message,omitempty"`
 	Success *bool `json:"success,omitempty"`
 }
@@ -57,12 +55,11 @@ type Register struct {
 	TermsAccepted *bool `json:"terms_accepted,omitempty"`
 }
 
-// RegisterCreateData mirrors the register fields as an all-optional match
-// filter (Go analog of Partial<Register>).
+// RegisterCreateData is the typed request payload for Register.CreateTyped.
 type RegisterCreateData struct {
-	Email *string `json:"email,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Password *string `json:"password,omitempty"`
+	Email string `json:"email"`
+	Name string `json:"name"`
+	Password string `json:"password"`
 	Phone *string `json:"phone,omitempty"`
 	TermsAccepted *bool `json:"terms_accepted,omitempty"`
 }
@@ -78,12 +75,11 @@ type SocialLogin struct {
 	User *map[string]any `json:"user,omitempty"`
 }
 
-// SocialLoginCreateData mirrors the social_login fields as an all-optional match
-// filter (Go analog of Partial<SocialLogin>).
+// SocialLoginCreateData is the typed request payload for SocialLogin.CreateTyped.
 type SocialLoginCreateData struct {
-	AccessToken *string `json:"access_token,omitempty"`
+	AccessToken string `json:"access_token"`
 	ExpiresIn *int `json:"expires_in,omitempty"`
-	Provider *string `json:"provider,omitempty"`
+	Provider string `json:"provider"`
 	RefreshToken *string `json:"refresh_token,omitempty"`
 	Success *bool `json:"success,omitempty"`
 	Token *string `json:"token,omitempty"`

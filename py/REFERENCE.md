@@ -8,7 +8,7 @@ Complete API reference for the BlutvAuthentication Python SDK.
 ### Constructor
 
 ```python
-from blutv-authentication_sdk import BlutvAuthenticationSDK
+from blutvauthentication_sdk import BlutvAuthenticationSDK
 
 client = BlutvAuthenticationSDK(options)
 ```
@@ -100,14 +100,14 @@ login = client.Login()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | No |  |
-| `password` | ``$STRING`` | Yes |  |
-| `refresh_token` | ``$STRING`` | No |  |
-| `remember_me` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
+| `email` | `str` | Yes |  |
+| `expires_in` | `int` | No |  |
+| `password` | `str` | Yes |  |
+| `refresh_token` | `str` | No |  |
+| `remember_me` | `bool` | No |  |
+| `success` | `bool` | No |  |
+| `token` | `str` | No |  |
+| `user` | `dict` | No |  |
 
 ### Operations
 
@@ -117,8 +117,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Login().create({
-    "email": ...,  # `$STRING`
-    "password": ...,  # `$STRING`
+    "email": "example",  # str
+    "password": "example",  # str
 })
 ```
 
@@ -161,9 +161,9 @@ password_recovery = client.PasswordRecovery()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `message` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `email` | `str` | Yes |  |
+| `message` | `str` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -173,7 +173,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.PasswordRecovery().create({
-    "email": ...,  # `$STRING`
+    "email": "example",  # str
 })
 ```
 
@@ -216,11 +216,11 @@ register = client.Register()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | Yes |  |
-| `phone` | ``$STRING`` | No |  |
-| `terms_accepted` | ``$BOOLEAN`` | No |  |
+| `email` | `str` | Yes |  |
+| `name` | `str` | Yes |  |
+| `password` | `str` | Yes |  |
+| `phone` | `str` | No |  |
+| `terms_accepted` | `bool` | No |  |
 
 ### Operations
 
@@ -230,9 +230,9 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Register().create({
-    "email": ...,  # `$STRING`
-    "name": ...,  # `$STRING`
-    "password": ...,  # `$STRING`
+    "email": "example",  # str
+    "name": "example",  # str
+    "password": "example",  # str
 })
 ```
 
@@ -275,13 +275,13 @@ social_login = client.SocialLogin()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | No |  |
-| `provider` | ``$STRING`` | Yes |  |
-| `refresh_token` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
+| `access_token` | `str` | Yes |  |
+| `expires_in` | `int` | No |  |
+| `provider` | `str` | Yes |  |
+| `refresh_token` | `str` | No |  |
+| `success` | `bool` | No |  |
+| `token` | `str` | No |  |
+| `user` | `dict` | No |  |
 
 ### Operations
 
@@ -291,8 +291,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.SocialLogin().create({
-    "access_token": ...,  # `$STRING`
-    "provider": ...,  # `$STRING`
+    "access_token": "example",  # str
+    "provider": "example",  # str
 })
 ```
 

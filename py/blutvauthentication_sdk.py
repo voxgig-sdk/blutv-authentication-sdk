@@ -221,25 +221,25 @@ class BlutvAuthenticationSDK:
 
 
     def Login(self, data=None) -> "LoginEntity":
-        """Entity factory: client.Login().list({}) / client.Login().load({"id": ...})."""
+        """Entity factory: client.Login().list() / client.Login().load({"id": ...})."""
         from entity.login_entity import LoginEntity
         return LoginEntity(self, data)
 
 
     def PasswordRecovery(self, data=None) -> "PasswordRecoveryEntity":
-        """Entity factory: client.PasswordRecovery().list({}) / client.PasswordRecovery().load({"id": ...})."""
+        """Entity factory: client.PasswordRecovery().list() / client.PasswordRecovery().load({"id": ...})."""
         from entity.password_recovery_entity import PasswordRecoveryEntity
         return PasswordRecoveryEntity(self, data)
 
 
     def Register(self, data=None) -> "RegisterEntity":
-        """Entity factory: client.Register().list({}) / client.Register().load({"id": ...})."""
+        """Entity factory: client.Register().list() / client.Register().load({"id": ...})."""
         from entity.register_entity import RegisterEntity
         return RegisterEntity(self, data)
 
 
     def SocialLogin(self, data=None) -> "SocialLoginEntity":
-        """Entity factory: client.SocialLogin().list({}) / client.SocialLogin().load({"id": ...})."""
+        """Entity factory: client.SocialLogin().list() / client.SocialLogin().load({"id": ...})."""
         from entity.social_login_entity import SocialLoginEntity
         return SocialLoginEntity(self, data)
 

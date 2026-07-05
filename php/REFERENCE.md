@@ -8,7 +8,7 @@ Complete API reference for the BlutvAuthentication PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/blutv-authentication_sdk.php';
+require_once __DIR__ . '/blutvauthentication_sdk.php';
 
 $client = new BlutvAuthenticationSDK($options);
 ```
@@ -58,11 +58,11 @@ Create a new `RegisterEntity` instance. Pass `null` for no initial data.
 
 Create a new `SocialLoginEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): BlutvAuthenticationUtility`
 
 Return a copy of the SDK utility object.
 
@@ -105,14 +105,14 @@ $login = $client->Login();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | No |  |
-| `password` | ``$STRING`` | Yes |  |
-| `refresh_token` | ``$STRING`` | No |  |
-| `remember_me` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
+| `email` | `string` | Yes |  |
+| `expires_in` | `int` | No |  |
+| `password` | `string` | Yes |  |
+| `refresh_token` | `string` | No |  |
+| `remember_me` | `bool` | No |  |
+| `success` | `bool` | No |  |
+| `token` | `string` | No |  |
+| `user` | `array` | No |  |
 
 ### Operations
 
@@ -122,26 +122,26 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Login()->create([
-  "email" => /* `$STRING` */,
-  "password" => /* `$STRING` */,
+  "email" => null, // string
+  "password" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -150,7 +150,7 @@ Set the entity match criteria.
 Create a new `LoginEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -167,9 +167,9 @@ $password_recovery = $client->PasswordRecovery();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `message` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `email` | `string` | Yes |  |
+| `message` | `string` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -179,25 +179,25 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->PasswordRecovery()->create([
-  "email" => /* `$STRING` */,
+  "email" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -206,7 +206,7 @@ Set the entity match criteria.
 Create a new `PasswordRecoveryEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -223,11 +223,11 @@ $register = $client->Register();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | Yes |  |
-| `phone` | ``$STRING`` | No |  |
-| `terms_accepted` | ``$BOOLEAN`` | No |  |
+| `email` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
+| `password` | `string` | Yes |  |
+| `phone` | `string` | No |  |
+| `terms_accepted` | `bool` | No |  |
 
 ### Operations
 
@@ -237,27 +237,27 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Register()->create([
-  "email" => /* `$STRING` */,
-  "name" => /* `$STRING` */,
-  "password" => /* `$STRING` */,
+  "email" => null, // string
+  "name" => null, // string
+  "password" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -266,7 +266,7 @@ Set the entity match criteria.
 Create a new `RegisterEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -283,13 +283,13 @@ $social_login = $client->SocialLogin();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | No |  |
-| `provider` | ``$STRING`` | Yes |  |
-| `refresh_token` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
+| `access_token` | `string` | Yes |  |
+| `expires_in` | `int` | No |  |
+| `provider` | `string` | Yes |  |
+| `refresh_token` | `string` | No |  |
+| `success` | `bool` | No |  |
+| `token` | `string` | No |  |
+| `user` | `array` | No |  |
 
 ### Operations
 
@@ -299,26 +299,26 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->SocialLogin()->create([
-  "access_token" => /* `$STRING` */,
-  "provider" => /* `$STRING` */,
+  "access_token" => null, // string
+  "provider" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -327,7 +327,7 @@ Set the entity match criteria.
 Create a new `SocialLoginEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

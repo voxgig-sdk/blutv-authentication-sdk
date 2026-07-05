@@ -25,12 +25,12 @@ class Login
     public ?array $user = null;
 }
 
-/** Match filter for Login#create (any subset of Login fields). */
+/** Request payload for Login#create. */
 class LoginCreateData
 {
-    public ?string $email = null;
+    public string $email;
     public ?int $expires_in = null;
-    public ?string $password = null;
+    public string $password;
     public ?string $refresh_token = null;
     public ?bool $remember_me = null;
     public ?bool $success = null;
@@ -46,10 +46,10 @@ class PasswordRecovery
     public ?bool $success = null;
 }
 
-/** Match filter for PasswordRecovery#create (any subset of PasswordRecovery fields). */
+/** Request payload for PasswordRecovery#create. */
 class PasswordRecoveryCreateData
 {
-    public ?string $email = null;
+    public string $email;
     public ?string $message = null;
     public ?bool $success = null;
 }
@@ -64,12 +64,12 @@ class Register
     public ?bool $terms_accepted = null;
 }
 
-/** Match filter for Register#create (any subset of Register fields). */
+/** Request payload for Register#create. */
 class RegisterCreateData
 {
-    public ?string $email = null;
-    public ?string $name = null;
-    public ?string $password = null;
+    public string $email;
+    public string $name;
+    public string $password;
     public ?string $phone = null;
     public ?bool $terms_accepted = null;
 }
@@ -86,12 +86,12 @@ class SocialLogin
     public ?array $user = null;
 }
 
-/** Match filter for SocialLogin#create (any subset of SocialLogin fields). */
+/** Request payload for SocialLogin#create. */
 class SocialLoginCreateData
 {
-    public ?string $access_token = null;
+    public string $access_token;
     public ?int $expires_in = null;
-    public ?string $provider = null;
+    public string $provider;
     public ?string $refresh_token = null;
     public ?bool $success = null;
     public ?string $token = null;

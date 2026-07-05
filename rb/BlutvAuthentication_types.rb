@@ -45,16 +45,16 @@ Login = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Login#create (any subset of Login fields).
+# Request payload for Login#create.
 #
 # @!attribute [rw] email
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] expires_in
 #   @return [Integer, nil]
 #
 # @!attribute [rw] password
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] refresh_token
 #   @return [String, nil]
@@ -99,10 +99,10 @@ PasswordRecovery = Struct.new(
   keyword_init: true
 )
 
-# Match filter for PasswordRecovery#create (any subset of PasswordRecovery fields).
+# Request payload for PasswordRecovery#create.
 #
 # @!attribute [rw] email
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] message
 #   @return [String, nil]
@@ -141,16 +141,16 @@ Register = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Register#create (any subset of Register fields).
+# Request payload for Register#create.
 #
 # @!attribute [rw] email
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] name
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] password
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] phone
 #   @return [String, nil]
@@ -199,16 +199,16 @@ SocialLogin = Struct.new(
   keyword_init: true
 )
 
-# Match filter for SocialLogin#create (any subset of SocialLogin fields).
+# Request payload for SocialLogin#create.
 #
 # @!attribute [rw] access_token
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] expires_in
 #   @return [Integer, nil]
 #
 # @!attribute [rw] provider
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] refresh_token
 #   @return [String, nil]

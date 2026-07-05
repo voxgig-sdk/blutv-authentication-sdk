@@ -30,10 +30,13 @@ class Login(LoginRequired, total=False):
     user: dict
 
 
-class LoginCreateData(TypedDict, total=False):
+class LoginCreateDataRequired(TypedDict):
     email: str
-    expires_in: int
     password: str
+
+
+class LoginCreateData(LoginCreateDataRequired, total=False):
+    expires_in: int
     refresh_token: str
     remember_me: bool
     success: bool
@@ -50,8 +53,11 @@ class PasswordRecovery(PasswordRecoveryRequired, total=False):
     success: bool
 
 
-class PasswordRecoveryCreateData(TypedDict, total=False):
+class PasswordRecoveryCreateDataRequired(TypedDict):
     email: str
+
+
+class PasswordRecoveryCreateData(PasswordRecoveryCreateDataRequired, total=False):
     message: str
     success: bool
 
@@ -67,10 +73,13 @@ class Register(RegisterRequired, total=False):
     terms_accepted: bool
 
 
-class RegisterCreateData(TypedDict, total=False):
+class RegisterCreateDataRequired(TypedDict):
     email: str
     name: str
     password: str
+
+
+class RegisterCreateData(RegisterCreateDataRequired, total=False):
     phone: str
     terms_accepted: bool
 
@@ -88,10 +97,13 @@ class SocialLogin(SocialLoginRequired, total=False):
     user: dict
 
 
-class SocialLoginCreateData(TypedDict, total=False):
+class SocialLoginCreateDataRequired(TypedDict):
     access_token: str
-    expires_in: int
     provider: str
+
+
+class SocialLoginCreateData(SocialLoginCreateDataRequired, total=False):
+    expires_in: int
     refresh_token: str
     success: bool
     token: str

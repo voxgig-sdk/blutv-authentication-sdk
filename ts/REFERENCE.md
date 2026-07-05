@@ -153,14 +153,14 @@ const login = client.Login()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | No |  |
-| `password` | ``$STRING`` | Yes |  |
-| `refresh_token` | ``$STRING`` | No |  |
-| `remember_me` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
+| `email` | `string` | Yes |  |
+| `expires_in` | `number` | No |  |
+| `password` | `string` | Yes |  |
+| `refresh_token` | `string` | No |  |
+| `remember_me` | `boolean` | No |  |
+| `success` | `boolean` | No |  |
+| `token` | `string` | No |  |
+| `user` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -170,8 +170,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Login().create({
-  email: /* `$STRING` */,
-  password: /* `$STRING` */,
+  email: /* string */,
+  password: /* string */,
 })
 ```
 
@@ -213,9 +213,9 @@ const password_recovery = client.PasswordRecovery()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `message` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `email` | `string` | Yes |  |
+| `message` | `string` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -225,7 +225,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.PasswordRecovery().create({
-  email: /* `$STRING` */,
+  email: /* string */,
 })
 ```
 
@@ -267,11 +267,11 @@ const register = client.Register()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | Yes |  |
-| `phone` | ``$STRING`` | No |  |
-| `terms_accepted` | ``$BOOLEAN`` | No |  |
+| `email` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
+| `password` | `string` | Yes |  |
+| `phone` | `string` | No |  |
+| `terms_accepted` | `boolean` | No |  |
 
 ### Operations
 
@@ -281,9 +281,9 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Register().create({
-  email: /* `$STRING` */,
-  name: /* `$STRING` */,
-  password: /* `$STRING` */,
+  email: /* string */,
+  name: /* string */,
+  password: /* string */,
 })
 ```
 
@@ -325,13 +325,13 @@ const social_login = client.SocialLogin()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | No |  |
-| `provider` | ``$STRING`` | Yes |  |
-| `refresh_token` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
+| `access_token` | `string` | Yes |  |
+| `expires_in` | `number` | No |  |
+| `provider` | `string` | Yes |  |
+| `refresh_token` | `string` | No |  |
+| `success` | `boolean` | No |  |
+| `token` | `string` | No |  |
+| `user` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -341,8 +341,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.SocialLogin().create({
-  access_token: /* `$STRING` */,
-  provider: /* `$STRING` */,
+  access_token: /* string */,
+  provider: /* string */,
 })
 ```
 

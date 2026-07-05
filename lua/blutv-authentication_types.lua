@@ -17,6 +17,14 @@
 ---@field user? table
 
 ---@class LoginCreateData
+---@field email string
+---@field expires_in? number
+---@field password string
+---@field refresh_token? string
+---@field remember_me? boolean
+---@field success? boolean
+---@field token? string
+---@field user? table
 
 ---@class PasswordRecovery
 ---@field email string
@@ -24,6 +32,9 @@
 ---@field success? boolean
 
 ---@class PasswordRecoveryCreateData
+---@field email string
+---@field message? string
+---@field success? boolean
 
 ---@class Register
 ---@field email string
@@ -33,6 +44,11 @@
 ---@field terms_accepted? boolean
 
 ---@class RegisterCreateData
+---@field email string
+---@field name string
+---@field password string
+---@field phone? string
+---@field terms_accepted? boolean
 
 ---@class SocialLogin
 ---@field access_token string
@@ -44,6 +60,13 @@
 ---@field user? table
 
 ---@class SocialLoginCreateData
+---@field access_token string
+---@field expires_in? number
+---@field provider string
+---@field refresh_token? string
+---@field success? boolean
+---@field token? string
+---@field user? table
 
 local M = {}
 

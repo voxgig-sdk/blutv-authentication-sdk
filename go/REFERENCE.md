@@ -110,14 +110,14 @@ login := client.Login(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | No |  |
-| `password` | ``$STRING`` | Yes |  |
-| `refresh_token` | ``$STRING`` | No |  |
-| `remember_me` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
+| `email` | `string` | Yes |  |
+| `expires_in` | `int` | No |  |
+| `password` | `string` | Yes |  |
+| `refresh_token` | `string` | No |  |
+| `remember_me` | `bool` | No |  |
+| `success` | `bool` | No |  |
+| `token` | `string` | No |  |
+| `user` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -127,8 +127,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Login(nil).Create(map[string]any{
-    "email": /* `$STRING` */,
-    "password": /* `$STRING` */,
+    "email": /* string */,
+    "password": /* string */,
 }, nil)
 ```
 
@@ -166,9 +166,9 @@ password_recovery := client.PasswordRecovery(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `message` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `email` | `string` | Yes |  |
+| `message` | `string` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -178,7 +178,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.PasswordRecovery(nil).Create(map[string]any{
-    "email": /* `$STRING` */,
+    "email": /* string */,
 }, nil)
 ```
 
@@ -216,11 +216,11 @@ register := client.Register(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | Yes |  |
-| `phone` | ``$STRING`` | No |  |
-| `terms_accepted` | ``$BOOLEAN`` | No |  |
+| `email` | `string` | Yes |  |
+| `name` | `string` | Yes |  |
+| `password` | `string` | Yes |  |
+| `phone` | `string` | No |  |
+| `terms_accepted` | `bool` | No |  |
 
 ### Operations
 
@@ -230,9 +230,9 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Register(nil).Create(map[string]any{
-    "email": /* `$STRING` */,
-    "name": /* `$STRING` */,
-    "password": /* `$STRING` */,
+    "email": /* string */,
+    "name": /* string */,
+    "password": /* string */,
 }, nil)
 ```
 
@@ -270,13 +270,13 @@ social_login := client.SocialLogin(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | No |  |
-| `provider` | ``$STRING`` | Yes |  |
-| `refresh_token` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
+| `access_token` | `string` | Yes |  |
+| `expires_in` | `int` | No |  |
+| `provider` | `string` | Yes |  |
+| `refresh_token` | `string` | No |  |
+| `success` | `bool` | No |  |
+| `token` | `string` | No |  |
+| `user` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -286,8 +286,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.SocialLogin(nil).Create(map[string]any{
-    "access_token": /* `$STRING` */,
-    "provider": /* `$STRING` */,
+    "access_token": /* string */,
+    "provider": /* string */,
 }, nil)
 ```
 

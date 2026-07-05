@@ -16,7 +16,16 @@ export interface Login {
   user?: Record<string, any>
 }
 
-export type LoginCreateData = Partial<Login>
+export interface LoginCreateData {
+  email: string
+  expires_in?: number
+  password: string
+  refresh_token?: string
+  remember_me?: boolean
+  success?: boolean
+  token?: string
+  user?: Record<string, any>
+}
 
 export interface PasswordRecovery {
   email: string
@@ -24,7 +33,11 @@ export interface PasswordRecovery {
   success?: boolean
 }
 
-export type PasswordRecoveryCreateData = Partial<PasswordRecovery>
+export interface PasswordRecoveryCreateData {
+  email: string
+  message?: string
+  success?: boolean
+}
 
 export interface Register {
   email: string
@@ -34,7 +47,13 @@ export interface Register {
   terms_accepted?: boolean
 }
 
-export type RegisterCreateData = Partial<Register>
+export interface RegisterCreateData {
+  email: string
+  name: string
+  password: string
+  phone?: string
+  terms_accepted?: boolean
+}
 
 export interface SocialLogin {
   access_token: string
@@ -46,5 +65,13 @@ export interface SocialLogin {
   user?: Record<string, any>
 }
 
-export type SocialLoginCreateData = Partial<SocialLogin>
+export interface SocialLoginCreateData {
+  access_token: string
+  expires_in?: number
+  provider: string
+  refresh_token?: string
+  success?: boolean
+  token?: string
+  user?: Record<string, any>
+}
 

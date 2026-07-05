@@ -8,7 +8,7 @@ Complete API reference for the BlutvAuthentication Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'blutv-authentication_sdk'
+require_relative 'BlutvAuthentication_sdk'
 
 client = BlutvAuthenticationSDK.new(options)
 ```
@@ -106,14 +106,14 @@ login = client.Login
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | No |  |
-| `password` | ``$STRING`` | Yes |  |
-| `refresh_token` | ``$STRING`` | No |  |
-| `remember_me` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
+| `email` | `String` | Yes |  |
+| `expires_in` | `Integer` | No |  |
+| `password` | `String` | Yes |  |
+| `refresh_token` | `String` | No |  |
+| `remember_me` | `Boolean` | No |  |
+| `success` | `Boolean` | No |  |
+| `token` | `String` | No |  |
+| `user` | `Hash` | No |  |
 
 ### Operations
 
@@ -123,8 +123,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Login.create({
-  "email" => # `$STRING`,
-  "password" => # `$STRING`,
+  "email" => "example", # String
+  "password" => "example", # String
 })
 ```
 
@@ -168,9 +168,9 @@ password_recovery = client.PasswordRecovery
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `message` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `email` | `String` | Yes |  |
+| `message` | `String` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -180,7 +180,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.PasswordRecovery.create({
-  "email" => # `$STRING`,
+  "email" => "example", # String
 })
 ```
 
@@ -224,11 +224,11 @@ register = client.Register
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | ``$STRING`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | Yes |  |
-| `phone` | ``$STRING`` | No |  |
-| `terms_accepted` | ``$BOOLEAN`` | No |  |
+| `email` | `String` | Yes |  |
+| `name` | `String` | Yes |  |
+| `password` | `String` | Yes |  |
+| `phone` | `String` | No |  |
+| `terms_accepted` | `Boolean` | No |  |
 
 ### Operations
 
@@ -238,9 +238,9 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Register.create({
-  "email" => # `$STRING`,
-  "name" => # `$STRING`,
-  "password" => # `$STRING`,
+  "email" => "example", # String
+  "name" => "example", # String
+  "password" => "example", # String
 })
 ```
 
@@ -284,13 +284,13 @@ social_login = client.SocialLogin
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | ``$STRING`` | Yes |  |
-| `expires_in` | ``$INTEGER`` | No |  |
-| `provider` | ``$STRING`` | Yes |  |
-| `refresh_token` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `token` | ``$STRING`` | No |  |
-| `user` | ``$OBJECT`` | No |  |
+| `access_token` | `String` | Yes |  |
+| `expires_in` | `Integer` | No |  |
+| `provider` | `String` | Yes |  |
+| `refresh_token` | `String` | No |  |
+| `success` | `Boolean` | No |  |
+| `token` | `String` | No |  |
+| `user` | `Hash` | No |  |
 
 ### Operations
 
@@ -300,8 +300,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.SocialLogin.create({
-  "access_token" => # `$STRING`,
-  "provider" => # `$STRING`,
+  "access_token" => "example", # String
+  "provider" => "example", # String
 })
 ```
 
