@@ -43,7 +43,7 @@ client = BlutvAuthenticationSDK({
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Login().create({"email": "example", "password": "example"})
+created = client.Login().create({"email": "example_email", "password": "example_password"})
 
 ```
 
@@ -331,8 +331,8 @@ Create an instance: `login = client.Login()`
 
 ```python
 login = client.Login().create({
-    "email": "example",  # str
-    "password": "example",  # str
+    "email": "example_email",  # str
+    "password": "example_password",  # str
 })
 ```
 
@@ -359,7 +359,7 @@ Create an instance: `password_recovery = client.PasswordRecovery()`
 
 ```python
 password_recovery = client.PasswordRecovery().create({
-    "email": "example",  # str
+    "email": "example_email",  # str
 })
 ```
 
@@ -388,9 +388,9 @@ Create an instance: `register = client.Register()`
 
 ```python
 register = client.Register().create({
-    "email": "example",  # str
-    "name": "example",  # str
-    "password": "example",  # str
+    "email": "example_email",  # str
+    "name": "example_name",  # str
+    "password": "example_password",  # str
 })
 ```
 
@@ -421,8 +421,8 @@ Create an instance: `social_login = client.SocialLogin()`
 
 ```python
 social_login = client.SocialLogin().create({
-    "access_token": "example",  # str
-    "provider": "example",  # str
+    "access_token": "example_access_token",  # str
+    "provider": "example_provider",  # str
 })
 ```
 

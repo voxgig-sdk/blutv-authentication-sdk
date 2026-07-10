@@ -1,6 +1,0 @@
-# Flows
-
-@"BasicLoginFlow.jsonic"
-@"BasicPasswordRecoveryFlow.jsonic"
-@"BasicRegisterFlow.jsonic"
-@"BasicSocialLoginFlow.jsonic"

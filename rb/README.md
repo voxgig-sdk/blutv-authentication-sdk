@@ -36,7 +36,7 @@ client = BlutvAuthenticationSDK.new({
 
 ```ruby
 # create returns the bare created Login record.
-created = client.Login.create({ "email" => "example", "password" => "example" })
+created = client.Login.create({ "email" => "example_email", "password" => "example_password" })
 
 ```
 
@@ -324,8 +324,8 @@ Create an instance: `login = client.Login`
 
 ```ruby
 login = client.Login.create({
-  "email" => "example", # String
-  "password" => "example", # String
+  "email" => "example_email", # String
+  "password" => "example_password", # String
 })
 ```
 
@@ -352,7 +352,7 @@ Create an instance: `password_recovery = client.PasswordRecovery`
 
 ```ruby
 password_recovery = client.PasswordRecovery.create({
-  "email" => "example", # String
+  "email" => "example_email", # String
 })
 ```
 
@@ -381,9 +381,9 @@ Create an instance: `register = client.Register`
 
 ```ruby
 register = client.Register.create({
-  "email" => "example", # String
-  "name" => "example", # String
-  "password" => "example", # String
+  "email" => "example_email", # String
+  "name" => "example_name", # String
+  "password" => "example_password", # String
 })
 ```
 
@@ -414,8 +414,8 @@ Create an instance: `social_login = client.SocialLogin`
 
 ```ruby
 social_login = client.SocialLogin.create({
-  "access_token" => "example", # String
-  "provider" => "example", # String
+  "access_token" => "example_access_token", # String
+  "provider" => "example_provider", # String
 })
 ```
 

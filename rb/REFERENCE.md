@@ -123,8 +123,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Login.create({
-  "email" => "example", # String
-  "password" => "example", # String
+  "email" => "example_email", # String
+  "password" => "example_password", # String
 })
 ```
 
@@ -180,7 +180,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.PasswordRecovery.create({
-  "email" => "example", # String
+  "email" => "example_email", # String
 })
 ```
 
@@ -238,9 +238,9 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Register.create({
-  "email" => "example", # String
-  "name" => "example", # String
-  "password" => "example", # String
+  "email" => "example_email", # String
+  "name" => "example_name", # String
+  "password" => "example_password", # String
 })
 ```
 
@@ -300,8 +300,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.SocialLogin.create({
-  "access_token" => "example", # String
-  "provider" => "example", # String
+  "access_token" => "example_access_token", # String
+  "provider" => "example_provider", # String
 })
 ```
 

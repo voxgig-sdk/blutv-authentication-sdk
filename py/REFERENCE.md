@@ -117,8 +117,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Login().create({
-    "email": "example",  # str
-    "password": "example",  # str
+    "email": "example_email",  # str
+    "password": "example_password",  # str
 })
 ```
 
@@ -173,7 +173,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.PasswordRecovery().create({
-    "email": "example",  # str
+    "email": "example_email",  # str
 })
 ```
 
@@ -230,9 +230,9 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Register().create({
-    "email": "example",  # str
-    "name": "example",  # str
-    "password": "example",  # str
+    "email": "example_email",  # str
+    "name": "example_name",  # str
+    "password": "example_password",  # str
 })
 ```
 
@@ -291,8 +291,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.SocialLogin().create({
-    "access_token": "example",  # str
-    "provider": "example",  # str
+    "access_token": "example_access_token",  # str
+    "provider": "example_provider",  # str
 })
 ```
 

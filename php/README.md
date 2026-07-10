@@ -37,7 +37,7 @@ $client = new BlutvAuthenticationSDK([
 
 ```php
 // create() returns the bare created Login record.
-$created = $client->Login()->create(["email" => "example", "password" => "example"]);
+$created = $client->Login()->create(["email" => "example_email", "password" => "example_password"]);
 
 ```
 

@@ -54,7 +54,7 @@ func main() {
     })
 
     // Create a login.
-    created, err := client.Login(nil).Create(map[string]any{"email": "example", "password": "example"}, nil)
+    created, err := client.Login(nil).Create(map[string]any{"email": "example_email", "password": "example_password"}, nil)
     if err != nil {
         panic(err)
     }
@@ -353,15 +353,19 @@ Create an instance: `login := client.Login(nil)`
 
 ```go
 result, err := client.Login(nil).Create(map[string]any{
-    "email": /* string */,
-    "password": /* string */,
+    "email": "example_email",
+    "password": "example_password",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### PasswordRecovery
 
-Create an instance: `password_recovery := client.PasswordRecovery(nil)`
+Create an instance: `passwordRecovery := client.PasswordRecovery(nil)`
 
 #### Operations
 
@@ -381,8 +385,12 @@ Create an instance: `password_recovery := client.PasswordRecovery(nil)`
 
 ```go
 result, err := client.PasswordRecovery(nil).Create(map[string]any{
-    "email": /* string */,
+    "email": "example_email",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
@@ -410,16 +418,20 @@ Create an instance: `register := client.Register(nil)`
 
 ```go
 result, err := client.Register(nil).Create(map[string]any{
-    "email": /* string */,
-    "name": /* string */,
-    "password": /* string */,
+    "email": "example_email",
+    "name": "example_name",
+    "password": "example_password",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### SocialLogin
 
-Create an instance: `social_login := client.SocialLogin(nil)`
+Create an instance: `socialLogin := client.SocialLogin(nil)`
 
 #### Operations
 
@@ -443,9 +455,13 @@ Create an instance: `social_login := client.SocialLogin(nil)`
 
 ```go
 result, err := client.SocialLogin(nil).Create(map[string]any{
-    "access_token": /* string */,
-    "provider": /* string */,
+    "access_token": "example_access_token",
+    "provider": "example_provider",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

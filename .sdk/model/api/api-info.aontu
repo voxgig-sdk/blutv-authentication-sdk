@@ -9,16 +9,23 @@ main: {
         url: "https://www.blutv.com"
       }
       description: "This API handles user authentication for BluTV, allowing users to log in with their credentials or via social media accounts like Facebook and Google. It also provides functionality for password recovery and user registration, enhancing security and user experience."
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: "Bearer"
+        scheme: "bearerAuth"
+        type: "http"
+      }
       servers: [
         {
           description: "Production server"
           url: "https://www.blutv.com/api"
         }
       ]
+      summary: "This API handles user authentication for BluTV, allowing users to log in with their credentials or via social media accounts like Facebook and Google."
       termsOfService: "https://www.blutv.com"
       title: "BluTV Authentication API"
       version: "1.0.0"
+      website: "https://blutv.com"
     }
   }
-}
-

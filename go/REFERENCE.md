@@ -104,6 +104,7 @@ same parameters as `Direct()`.
 
 ```go
 login := client.Login(nil)
+fmt.Println(login.GetName()) // "login"
 ```
 
 ### Fields
@@ -127,9 +128,13 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Login(nil).Create(map[string]any{
-    "email": /* string */,
-    "password": /* string */,
+    "email": "example_email",
+    "password": "example_password",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -159,7 +164,8 @@ Return the entity name.
 ## PasswordRecoveryEntity
 
 ```go
-password_recovery := client.PasswordRecovery(nil)
+passwordRecovery := client.PasswordRecovery(nil)
+fmt.Println(passwordRecovery.GetName()) // "password_recovery"
 ```
 
 ### Fields
@@ -178,8 +184,12 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.PasswordRecovery(nil).Create(map[string]any{
-    "email": /* string */,
+    "email": "example_email",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -210,6 +220,7 @@ Return the entity name.
 
 ```go
 register := client.Register(nil)
+fmt.Println(register.GetName()) // "register"
 ```
 
 ### Fields
@@ -230,10 +241,14 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Register(nil).Create(map[string]any{
-    "email": /* string */,
-    "name": /* string */,
-    "password": /* string */,
+    "email": "example_email",
+    "name": "example_name",
+    "password": "example_password",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -263,7 +278,8 @@ Return the entity name.
 ## SocialLoginEntity
 
 ```go
-social_login := client.SocialLogin(nil)
+socialLogin := client.SocialLogin(nil)
+fmt.Println(socialLogin.GetName()) // "social_login"
 ```
 
 ### Fields
@@ -286,9 +302,13 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.SocialLogin(nil).Create(map[string]any{
-    "access_token": /* string */,
-    "provider": /* string */,
+    "access_token": "example_access_token",
+    "provider": "example_provider",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

@@ -378,8 +378,8 @@ Create an instance: `const login = client.Login()`
 
 ```ts
 const login = await client.Login().create({
-  email: /* string */,
-  password: /* string */,
+  email: 'example_email',
+  password: 'example_password',
 })
 ```
 
@@ -406,7 +406,7 @@ Create an instance: `const password_recovery = client.PasswordRecovery()`
 
 ```ts
 const password_recovery = await client.PasswordRecovery().create({
-  email: /* string */,
+  email: 'example_email',
 })
 ```
 
@@ -435,9 +435,9 @@ Create an instance: `const register = client.Register()`
 
 ```ts
 const register = await client.Register().create({
-  email: /* string */,
-  name: /* string */,
-  password: /* string */,
+  email: 'example_email',
+  name: 'example_name',
+  password: 'example_password',
 })
 ```
 
@@ -468,8 +468,8 @@ Create an instance: `const social_login = client.SocialLogin()`
 
 ```ts
 const social_login = await client.SocialLogin().create({
-  access_token: /* string */,
-  provider: /* string */,
+  access_token: 'example_access_token',
+  provider: 'example_provider',
 })
 ```
 

@@ -39,7 +39,7 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, err = client:Login():create({ email = "example", password = "example" })
+local created, err = client:Login():create({ email = "example_email", password = "example_password" })
 if err then error(err) end
 
 ```
@@ -320,8 +320,8 @@ Create an instance: `local login = client:Login(nil)`
 
 ```lua
 local login, err = client:Login():create({
-  email = nil, -- string
-  password = nil, -- string
+  email = "example_email", -- string
+  password = "example_password", -- string
 })
 ```
 
@@ -348,7 +348,7 @@ Create an instance: `local password_recovery = client:PasswordRecovery(nil)`
 
 ```lua
 local password_recovery, err = client:PasswordRecovery():create({
-  email = nil, -- string
+  email = "example_email", -- string
 })
 ```
 
@@ -377,9 +377,9 @@ Create an instance: `local register = client:Register(nil)`
 
 ```lua
 local register, err = client:Register():create({
-  email = nil, -- string
-  name = nil, -- string
-  password = nil, -- string
+  email = "example_email", -- string
+  name = "example_name", -- string
+  password = "example_password", -- string
 })
 ```
 
@@ -410,8 +410,8 @@ Create an instance: `local social_login = client:SocialLogin(nil)`
 
 ```lua
 local social_login, err = client:SocialLogin():create({
-  access_token = nil, -- string
-  provider = nil, -- string
+  access_token = "example_access_token", -- string
+  provider = "example_provider", -- string
 })
 ```
 

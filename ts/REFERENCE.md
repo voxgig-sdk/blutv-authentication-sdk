@@ -170,8 +170,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Login().create({
-  email: /* string */,
-  password: /* string */,
+  email: 'example_email',
+  password: 'example_password',
 })
 ```
 
@@ -225,7 +225,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.PasswordRecovery().create({
-  email: /* string */,
+  email: 'example_email',
 })
 ```
 
@@ -281,9 +281,9 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Register().create({
-  email: /* string */,
-  name: /* string */,
-  password: /* string */,
+  email: 'example_email',
+  name: 'example_name',
+  password: 'example_password',
 })
 ```
 
@@ -341,8 +341,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.SocialLogin().create({
-  access_token: /* string */,
-  provider: /* string */,
+  access_token: 'example_access_token',
+  provider: 'example_provider',
 })
 ```
 

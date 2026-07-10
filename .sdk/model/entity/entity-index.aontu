@@ -1,0 +1,6 @@
+# Entity Models
+
+@"login.aontu"
+@"password_recovery.aontu"
+@"register.aontu"
+@"social_login.aontu"
