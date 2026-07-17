@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- BlutvAuthentication SDK exists test
 
 local sdk = require("blutv-authentication_sdk")
 
