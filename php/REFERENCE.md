@@ -105,14 +105,27 @@ $login = $client->Login();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `expires_in` | `int` | No |  |
+| `createdAt` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
 | `password` | `string` | Yes |  |
-| `refresh_token` | `string` | No |  |
-| `remember_me` | `bool` | No |  |
-| `success` | `bool` | No |  |
-| `token` | `string` | No |  |
-| `user` | `array` | No |  |
+| `phone` | `string` | No |  |
+| `rememberMe` | `bool` | No |  |
+| `subscriptionStatus` | `string` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `createdAt` | - |
+| `email` | Yes |
+| `id` | - |
+| `name` | - |
+| `password` | - |
+| `phone` | - |
+| `rememberMe` | - |
+| `subscriptionStatus` | - |
 
 ### Operations
 
@@ -122,7 +135,6 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Login()->create([
-  "email" => null, // string
   "password" => null, // string
 ]);
 ```
@@ -227,7 +239,7 @@ $register = $client->Register();
 | `name` | `string` | Yes |  |
 | `password` | `string` | Yes |  |
 | `phone` | `string` | No |  |
-| `terms_accepted` | `bool` | No |  |
+| `termsAccepted` | `bool` | No |  |
 
 ### Operations
 
@@ -283,13 +295,14 @@ $social_login = $client->SocialLogin();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | `string` | Yes |  |
-| `expires_in` | `int` | No |  |
+| `accessToken` | `string` | Yes |  |
+| `createdAt` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `phone` | `string` | No |  |
 | `provider` | `string` | Yes |  |
-| `refresh_token` | `string` | No |  |
-| `success` | `bool` | No |  |
-| `token` | `string` | No |  |
-| `user` | `array` | No |  |
+| `subscriptionStatus` | `string` | No |  |
 
 ### Operations
 
@@ -299,7 +312,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->SocialLogin()->create([
-  "access_token" => null, // string
+  "accessToken" => null, // string
   "provider" => null, // string
 ]);
 ```

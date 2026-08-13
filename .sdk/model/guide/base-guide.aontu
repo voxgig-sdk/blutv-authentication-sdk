@@ -8,6 +8,7 @@ guide: {
   entity: login: {
     path: "/auth/login": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.user`")|top
     }
   }
 
@@ -20,12 +21,14 @@ guide: {
   entity: register: {
     path: "/auth/register": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.user`")|top
     }
   }
 
   entity: social_login: {
     path: "/auth/social-login": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.user`")|top
     }
   }
 

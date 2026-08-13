@@ -26,8 +26,8 @@ import {
 describe('RegisterEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when BLUTVAUTHENTICATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('BLUTVAUTHENTICATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when BLUTV_AUTHENTICATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('BLUTV_AUTHENTICATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = BlutvAuthenticationSDK.test()
@@ -62,7 +62,7 @@ describe('RegisterEntity', async () => {
     const register_ref01_ent = client.Register()
     let register_ref01_data = setup.data.new.register['register_ref01']
 
-    register_ref01_data = await register_ref01_ent.create(register_ref01_data)
+    register_ref01_data = (await register_ref01_ent.create(register_ref01_data)).data()
     assert(null != register_ref01_data)
 
 

@@ -26,8 +26,8 @@ import {
 describe('PasswordRecoveryEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when BLUTVAUTHENTICATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('BLUTVAUTHENTICATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when BLUTV_AUTHENTICATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('BLUTV_AUTHENTICATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = BlutvAuthenticationSDK.test()
@@ -62,7 +62,7 @@ describe('PasswordRecoveryEntity', async () => {
     const password_recovery_ref01_ent = client.PasswordRecovery()
     let password_recovery_ref01_data = setup.data.new.password_recovery['password_recovery_ref01']
 
-    password_recovery_ref01_data = await password_recovery_ref01_ent.create(password_recovery_ref01_data)
+    password_recovery_ref01_data = (await password_recovery_ref01_ent.create(password_recovery_ref01_data)).data()
     assert(null != password_recovery_ref01_data)
 
 

@@ -153,14 +153,27 @@ const login = client.Login()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `expires_in` | `number` | No |  |
+| `createdAt` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
 | `password` | `string` | Yes |  |
-| `refresh_token` | `string` | No |  |
-| `remember_me` | `boolean` | No |  |
-| `success` | `boolean` | No |  |
-| `token` | `string` | No |  |
-| `user` | `Record<string, any>` | No |  |
+| `phone` | `string` | No |  |
+| `rememberMe` | `boolean` | No |  |
+| `subscriptionStatus` | `string` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `createdAt` | - |
+| `email` | Yes |
+| `id` | - |
+| `name` | - |
+| `password` | - |
+| `phone` | - |
+| `rememberMe` | - |
+| `subscriptionStatus` | - |
 
 ### Operations
 
@@ -170,7 +183,6 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Login().create({
-  email: 'example_email',
   password: 'example_password',
 })
 ```
@@ -271,7 +283,7 @@ const register = client.Register()
 | `name` | `string` | Yes |  |
 | `password` | `string` | Yes |  |
 | `phone` | `string` | No |  |
-| `terms_accepted` | `boolean` | No |  |
+| `termsAccepted` | `boolean` | No |  |
 
 ### Operations
 
@@ -325,13 +337,14 @@ const social_login = client.SocialLogin()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | `string` | Yes |  |
-| `expires_in` | `number` | No |  |
+| `accessToken` | `string` | Yes |  |
+| `createdAt` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `phone` | `string` | No |  |
 | `provider` | `string` | Yes |  |
-| `refresh_token` | `string` | No |  |
-| `success` | `boolean` | No |  |
-| `token` | `string` | No |  |
-| `user` | `Record<string, any>` | No |  |
+| `subscriptionStatus` | `string` | No |  |
 
 ### Operations
 
@@ -341,7 +354,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.SocialLogin().create({
-  access_token: 'example_access_token',
+  accessToken: 'example_accessToken',
   provider: 'example_provider',
 })
 ```

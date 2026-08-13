@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'BlutvAuthentication',
   }
 
 
@@ -69,58 +69,64 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "email",
-          "req": true,
+          "name": "createdAt",
+          "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "expires_in",
+          "name": "email",
+          "op": {
+            "create": {
+              "req": true,
+              "type": "`$STRING`"
+            }
+          },
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "password",
-          "req": true,
+          "name": "id",
+          "req": false,
           "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "refresh_token",
+          "name": "name",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "remember_me",
-          "req": false,
-          "type": "`$BOOLEAN`",
+          "name": "password",
+          "req": true,
+          "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "success",
+          "name": "phone",
           "req": false,
-          "type": "`$BOOLEAN`",
+          "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "token",
+          "name": "rememberMe",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$BOOLEAN`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "user",
+          "name": "subscriptionStatus",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 7
         }
       ],
@@ -133,6 +139,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/auth/login",
               "parts": [
@@ -142,7 +149,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.user`"
               },
               "index$": 0
             }
@@ -187,6 +194,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/auth/password-recovery",
               "parts": [
@@ -240,7 +248,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "terms_accepted",
+          "name": "termsAccepted",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 4
@@ -255,6 +263,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/auth/register",
               "parts": [
@@ -264,7 +273,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.user`"
               },
               "index$": 0
             }
@@ -280,52 +289,59 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "access_token",
+          "name": "accessToken",
           "req": true,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "expires_in",
+          "name": "createdAt",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "provider",
-          "req": true,
+          "name": "email",
+          "req": false,
           "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "refresh_token",
+          "name": "id",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "success",
+          "name": "name",
           "req": false,
-          "type": "`$BOOLEAN`",
+          "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "token",
+          "name": "phone",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "user",
-          "req": false,
-          "type": "`$OBJECT`",
+          "name": "provider",
+          "req": true,
+          "type": "`$STRING`",
           "index$": 6
+        },
+        {
+          "active": true,
+          "name": "subscriptionStatus",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 7
         }
       ],
       "name": "social_login",
@@ -337,6 +353,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/auth/social-login",
               "parts": [
@@ -346,7 +363,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.user`"
               },
               "index$": 0
             }

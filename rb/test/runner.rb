@@ -23,8 +23,8 @@ module BlutvAuthenticationTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("BLUTVAUTHENTICATION_TEST_LIVE")
-    override = getenv("BLUTVAUTHENTICATION_TEST_OVERRIDE")
+    live = getenv("BLUTV_AUTHENTICATION_TEST_LIVE")
+    override = getenv("BLUTV_AUTHENTICATION_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module BlutvAuthenticationTestRunner
       end
     end
 
-    explain = getenv("BLUTVAUTHENTICATION_TEST_EXPLAIN")
-    m["BLUTVAUTHENTICATION_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("BLUTV_AUTHENTICATION_TEST_EXPLAIN")
+    m["BLUTV_AUTHENTICATION_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

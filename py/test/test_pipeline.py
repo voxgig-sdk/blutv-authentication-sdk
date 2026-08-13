@@ -16,11 +16,11 @@
 import pytest
 
 from blutvauthentication_sdk import BlutvAuthenticationSDK
-from core.error import BlutvAuthenticationError
-from core.result import BlutvAuthenticationResult
-from core.response import BlutvAuthenticationResponse
-from core.spec import BlutvAuthenticationSpec
-from feature.base_feature import BlutvAuthenticationBaseFeature
+from blutvauthentication_sdk.core.error import BlutvAuthenticationError
+from blutvauthentication_sdk.core.result import BlutvAuthenticationResult
+from blutvauthentication_sdk.core.response import BlutvAuthenticationResponse
+from blutvauthentication_sdk.core.spec import BlutvAuthenticationSpec
+from blutvauthentication_sdk.feature.base_feature import BlutvAuthenticationBaseFeature
 
 
 def _client():

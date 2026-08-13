@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from blutvauthentication_sdk.utility.voxgig_struct import voxgig_struct as vs
 from blutvauthentication_sdk import BlutvAuthenticationSDK
-from core import helpers
+from blutvauthentication_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -36,7 +36,7 @@ class TestPasswordRecoveryEntity:
         # without an *_ENTID env override, those IDs hit the live API and 4xx.
         if setup.get("synthetic_only"):
             pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set BLUTVAUTHENTICATION_TEST_PASSWORD_RECOVERY_ENTID JSON to run live")
+                        "set BLUTV_AUTHENTICATION_TEST_PASSWORD_RECOVERY_ENTID JSON to run live")
         client = setup["client"]
 
         # CREATE
@@ -44,7 +44,7 @@ class TestPasswordRecoveryEntity:
         password_recovery_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.password_recovery"), "password_recovery_ref01"))
 
-        password_recovery_ref01_data = helpers.to_map(password_recovery_ref01_ent.create(password_recovery_ref01_data, None))
+        password_recovery_ref01_data = helpers.to_map(runner.entity_data(password_recovery_ref01_ent.create(password_recovery_ref01_data, None)))
         assert password_recovery_ref01_data is not None
 
 
@@ -78,37 +78,37 @@ def _password_recovery_basic_setup(extra):
     # mode is on without a real override, the basic test runs against synthetic
     # IDs from the fixture and 4xx's. We surface this so the test can skip.
     _entid_env_raw = os.environ.get(
-        "BLUTVAUTHENTICATION_TEST_PASSWORD_RECOVERY_ENTID")
+        "BLUTV_AUTHENTICATION_TEST_PASSWORD_RECOVERY_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")
 
     env = runner.env_override({
-        "BLUTVAUTHENTICATION_TEST_PASSWORD_RECOVERY_ENTID": idmap,
-        "BLUTVAUTHENTICATION_TEST_LIVE": "FALSE",
-        "BLUTVAUTHENTICATION_TEST_EXPLAIN": "FALSE",
-        "BLUTVAUTHENTICATION_APIKEY": "NONE",
+        "BLUTV_AUTHENTICATION_TEST_PASSWORD_RECOVERY_ENTID": idmap,
+        "BLUTV_AUTHENTICATION_TEST_LIVE": "FALSE",
+        "BLUTV_AUTHENTICATION_TEST_EXPLAIN": "FALSE",
+        "BLUTV_AUTHENTICATION_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
-        env.get("BLUTVAUTHENTICATION_TEST_PASSWORD_RECOVERY_ENTID"))
+        env.get("BLUTV_AUTHENTICATION_TEST_PASSWORD_RECOVERY_ENTID"))
     if idmap_resolved is None:
         idmap_resolved = helpers.to_map(idmap)
 
-    if env.get("BLUTVAUTHENTICATION_TEST_LIVE") == "TRUE":
+    if env.get("BLUTV_AUTHENTICATION_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("BLUTVAUTHENTICATION_APIKEY"),
+                "apikey": env.get("BLUTV_AUTHENTICATION_APIKEY"),
             },
             extra or {},
         ])
         client = BlutvAuthenticationSDK(helpers.to_map(merged_opts))
 
-    _live = env.get("BLUTVAUTHENTICATION_TEST_LIVE") == "TRUE"
+    _live = env.get("BLUTV_AUTHENTICATION_TEST_LIVE") == "TRUE"
     return {
         "client": client,
         "data": entity_data,
         "idmap": idmap_resolved,
         "env": env,
-        "explain": env.get("BLUTVAUTHENTICATION_TEST_EXPLAIN") == "TRUE",
+        "explain": env.get("BLUTV_AUTHENTICATION_TEST_EXPLAIN") == "TRUE",
         "live": _live,
         "synthetic_only": _live and not _idmap_overridden,
         "now": int(time.time() * 1000),

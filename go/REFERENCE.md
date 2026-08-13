@@ -111,14 +111,27 @@ fmt.Println(login.GetName()) // "login"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `expires_in` | `int` | No |  |
+| `createdAt` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
 | `password` | `string` | Yes |  |
-| `refresh_token` | `string` | No |  |
-| `remember_me` | `bool` | No |  |
-| `success` | `bool` | No |  |
-| `token` | `string` | No |  |
-| `user` | `map[string]any` | No |  |
+| `phone` | `string` | No |  |
+| `rememberMe` | `bool` | No |  |
+| `subscriptionStatus` | `string` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `createdAt` | - |
+| `email` | Yes |
+| `id` | - |
+| `name` | - |
+| `password` | - |
+| `phone` | - |
+| `rememberMe` | - |
+| `subscriptionStatus` | - |
 
 ### Operations
 
@@ -128,7 +141,6 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Login(nil).Create(map[string]any{
-    "email": "example_email",
     "password": "example_password",
 }, nil)
 if err != nil {
@@ -231,7 +243,7 @@ fmt.Println(register.GetName()) // "register"
 | `name` | `string` | Yes |  |
 | `password` | `string` | Yes |  |
 | `phone` | `string` | No |  |
-| `terms_accepted` | `bool` | No |  |
+| `termsAccepted` | `bool` | No |  |
 
 ### Operations
 
@@ -286,13 +298,14 @@ fmt.Println(socialLogin.GetName()) // "social_login"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | `string` | Yes |  |
-| `expires_in` | `int` | No |  |
+| `accessToken` | `string` | Yes |  |
+| `createdAt` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `phone` | `string` | No |  |
 | `provider` | `string` | Yes |  |
-| `refresh_token` | `string` | No |  |
-| `success` | `bool` | No |  |
-| `token` | `string` | No |  |
-| `user` | `map[string]any` | No |  |
+| `subscriptionStatus` | `string` | No |  |
 
 ### Operations
 
@@ -302,7 +315,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.SocialLogin(nil).Create(map[string]any{
-    "access_token": "example_access_token",
+    "accessToken": "example_accessToken",
     "provider": "example_provider",
 }, nil)
 if err != nil {

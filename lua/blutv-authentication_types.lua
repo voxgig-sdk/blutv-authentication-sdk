@@ -7,24 +7,24 @@
 -- edit by hand.
 
 ---@class Login
----@field email string
----@field expires_in? number
+---@field createdAt? string
+---@field email? string
+---@field id? string
+---@field name? string
 ---@field password string
----@field refresh_token? string
----@field remember_me? boolean
----@field success? boolean
----@field token? string
----@field user? table
+---@field phone? string
+---@field rememberMe? boolean
+---@field subscriptionStatus? string
 
 ---@class LoginCreateData
----@field email string
----@field expires_in? number
+---@field createdAt? string
+---@field email? string
+---@field id? string
+---@field name? string
 ---@field password string
----@field refresh_token? string
----@field remember_me? boolean
----@field success? boolean
----@field token? string
----@field user? table
+---@field phone? string
+---@field rememberMe? boolean
+---@field subscriptionStatus? string
 
 ---@class PasswordRecovery
 ---@field email string
@@ -41,32 +41,34 @@
 ---@field name string
 ---@field password string
 ---@field phone? string
----@field terms_accepted? boolean
+---@field termsAccepted? boolean
 
 ---@class RegisterCreateData
 ---@field email string
 ---@field name string
 ---@field password string
 ---@field phone? string
----@field terms_accepted? boolean
+---@field termsAccepted? boolean
 
 ---@class SocialLogin
----@field access_token string
----@field expires_in? number
+---@field accessToken string
+---@field createdAt? string
+---@field email? string
+---@field id? string
+---@field name? string
+---@field phone? string
 ---@field provider string
----@field refresh_token? string
----@field success? boolean
----@field token? string
----@field user? table
+---@field subscriptionStatus? string
 
 ---@class SocialLoginCreateData
----@field access_token string
----@field expires_in? number
+---@field accessToken string
+---@field createdAt? string
+---@field email? string
+---@field id? string
+---@field name? string
+---@field phone? string
 ---@field provider string
----@field refresh_token? string
----@field success? boolean
----@field token? string
----@field user? table
+---@field subscriptionStatus? string
 
 local M = {}
 

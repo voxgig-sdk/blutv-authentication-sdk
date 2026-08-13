@@ -24,7 +24,6 @@ support (`create`):
 ```ts
 const client = new BlutvAuthenticationSDK()
 const login = await client.Login().create({
-  email: 'example',
   password: 'example',
 })
 ```
@@ -41,18 +40,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = BlutvAuthenticationSDK.test()
-const login = await client.Login().create({ email: 'example_email', password: 'example_password' })
-// login is a bare Login populated with mock data
-console.log(login)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = BlutvAuthenticationSDK.test({
+  entity: {
+    register: {
+      test01: { id: 'test01', email: 'example_email', name: 'example_name', password: 'example_password' },
+    },
+  },
+})
+const register = await client.Register().create({ email: 'example_email', name: 'example_name', password: 'example_password' })
+// register is the Register entity, populated with mock data
+// — call register.data() for the record itself
+console.log(register)
 ```
 
 ### Python
 
 ```python
 client = BlutvAuthenticationSDK.test()
-login = client.Login().create({"email": "example", "password": "example"})
-print(login)
+register = client.Register().create({"email": "example", "name": "example", "password": "example"})
+print(register)
 ```
 
 ### PHP
@@ -60,17 +68,17 @@ print(login)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = BlutvAuthenticationSDK::test([
-    "entity" => ["login" => ["test01" => []]],
+    "entity" => ["register" => ["test01" => []]],
 ]);
-$login = $client->Login()->create(["email" => "example", "password" => "example"]);
+$register = $client->Register()->create(["email" => "example", "name" => "example", "password" => "example"]);
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Login(nil).Create(
-    map[string]any{"email": "example", "password": "example"}, nil,
+result, err := client.Register(nil).Create(
+    map[string]any{"email": "example", "name": "example", "password": "example"}, nil,
 )
 ```
 
@@ -79,16 +87,16 @@ result, err := client.Login(nil).Create(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = BlutvAuthenticationSDK.test({
-  "entity" => { "login" => { "test01" => {} } },
+  "entity" => { "register" => { "test01" => {} } },
 })
-login = client.Login.create({ "email" => "example", "password" => "example" })
+register = client.Register.create({ "email" => "example", "name" => "example", "password" => "example" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Login():create({ email = "example", password = "example" })
+local result, err = client:Register():create({ email = "example", name = "example", password = "example" })
 ```
 
 ## Packages
@@ -338,6 +346,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.blutv.com](https://www.blutv.com)
 

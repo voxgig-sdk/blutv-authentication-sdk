@@ -39,7 +39,7 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, err = client:Login():create({ email = "example_email", password = "example_password" })
+local created, err = client:Login():create({ password = "example_password" })
 if err then error(err) end
 
 ```
@@ -51,7 +51,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local login, err = client:Login():create({ email = "example", password = "example" })
+local register, err = client:Register():create({ email = "example", name = "example", password = "example" })
 if err then error(err) end
 ```
 
@@ -109,7 +109,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Login():create({ email = "example", password = "example" })
+local result, err = client:Register():create({ email = "example", name = "example", password = "example" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -220,9 +220,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local login, err = client:Login():load()
+    local login, err = client:Login():list()
     if err then error(err) end
-    -- login is the loaded record
+    -- login is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -233,14 +233,14 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
+| `createdAt` |  |
 | `email` |  |
-| `expires_in` |  |
+| `id` |  |
+| `name` |  |
 | `password` |  |
-| `refresh_token` |  |
-| `remember_me` |  |
-| `success` |  |
-| `token` |  |
-| `user` |  |
+| `phone` |  |
+| `rememberMe` |  |
+| `subscriptionStatus` |  |
 
 Operations: Create.
 
@@ -266,7 +266,7 @@ API path: `/auth/password-recovery`
 | `name` |  |
 | `password` |  |
 | `phone` |  |
-| `terms_accepted` |  |
+| `termsAccepted` |  |
 
 Operations: Create.
 
@@ -276,13 +276,14 @@ API path: `/auth/register`
 
 | Field | Description |
 | --- | --- |
-| `access_token` |  |
-| `expires_in` |  |
+| `accessToken` |  |
+| `createdAt` |  |
+| `email` |  |
+| `id` |  |
+| `name` |  |
+| `phone` |  |
 | `provider` |  |
-| `refresh_token` |  |
-| `success` |  |
-| `token` |  |
-| `user` |  |
+| `subscriptionStatus` |  |
 
 Operations: Create.
 
@@ -307,20 +308,19 @@ Create an instance: `local login = client:Login(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `createdAt` | `string` |  |
 | `email` | `string` |  |
-| `expires_in` | `number` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
 | `password` | `string` |  |
-| `refresh_token` | `string` |  |
-| `remember_me` | `boolean` |  |
-| `success` | `boolean` |  |
-| `token` | `string` |  |
-| `user` | `table` |  |
+| `phone` | `string` |  |
+| `rememberMe` | `boolean` |  |
+| `subscriptionStatus` | `string` |  |
 
 #### Example: Create
 
 ```lua
 local login, err = client:Login():create({
-  email = "example_email", -- string
   password = "example_password", -- string
 })
 ```
@@ -371,7 +371,7 @@ Create an instance: `local register = client:Register(nil)`
 | `name` | `string` |  |
 | `password` | `string` |  |
 | `phone` | `string` |  |
-| `terms_accepted` | `boolean` |  |
+| `termsAccepted` | `boolean` |  |
 
 #### Example: Create
 
@@ -398,19 +398,20 @@ Create an instance: `local social_login = client:SocialLogin(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `access_token` | `string` |  |
-| `expires_in` | `number` |  |
+| `accessToken` | `string` |  |
+| `createdAt` | `string` |  |
+| `email` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
 | `provider` | `string` |  |
-| `refresh_token` | `string` |  |
-| `success` | `boolean` |  |
-| `token` | `string` |  |
-| `user` | `table` |  |
+| `subscriptionStatus` | `string` |  |
 
 #### Example: Create
 
 ```lua
 local social_login, err = client:SocialLogin():create({
-  access_token = "example_access_token", -- string
+  accessToken = "example_accessToken", -- string
   provider = "example_provider", -- string
 })
 ```
@@ -492,11 +493,11 @@ Entity instances are stateful. After a successful `create`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local login = client:Login()
-login:create({ email = "example", password = "example" })
+local register = client:Register()
+register:create({ email = "example", name = "example", password = "example" })
 
--- login:data_get() now returns the login data from the last create
--- login:match_get() returns the last match criteria
+-- register:data_get() now returns the register data from the last create
+-- register:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

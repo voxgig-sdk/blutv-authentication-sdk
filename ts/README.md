@@ -38,9 +38,8 @@ const client = new BlutvAuthenticationSDK({
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Login
+// Create — returns the created Login ENTITY (.data() for the record)
 const created = await client.Login().create({
-  email: 'example_email',
   password: 'example_password',
 })
 
@@ -53,8 +52,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const login = await client.Login().create({ email: "example", password: "example" })
-  console.log(login)
+  const register = await client.Register().create({ email: "example", name: "example", password: "example" })
+  console.log(register)
 } catch (err) {
   console.error('create failed:', err)
 }
@@ -120,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = BlutvAuthenticationSDK.test()
 
-const login = await client.Login().create({ email: 'example_email', password: 'example_password' })
-// login is a bare entity populated with mock response data
-console.log(login)
+const register = await client.Register().create({ email: 'example_email', name: 'example_name', password: 'example_password' })
+// register is the entity, populated with mock response data
+// — call register.data() for the record itself
+console.log(register)
 ```
 
 You can also use the instance method:
@@ -137,10 +137,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Login()
+const entity = client.Register()
 
 // First call runs the operation and stores its result
-await entity.create({ email: 'example_email', password: 'example_password' })
+await entity.create({ email: 'example_email', name: 'example_name', password: 'example_password' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -291,14 +291,14 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
+| `createdAt` |  |
 | `email` |  |
-| `expires_in` |  |
+| `id` |  |
+| `name` |  |
 | `password` |  |
-| `refresh_token` |  |
-| `remember_me` |  |
-| `success` |  |
-| `token` |  |
-| `user` |  |
+| `phone` |  |
+| `rememberMe` |  |
+| `subscriptionStatus` |  |
 
 Operations: create.
 
@@ -324,7 +324,7 @@ API path: `/auth/password-recovery`
 | `name` |  |
 | `password` |  |
 | `phone` |  |
-| `terms_accepted` |  |
+| `termsAccepted` |  |
 
 Operations: create.
 
@@ -334,13 +334,14 @@ API path: `/auth/register`
 
 | Field | Description |
 | --- | --- |
-| `access_token` |  |
-| `expires_in` |  |
+| `accessToken` |  |
+| `createdAt` |  |
+| `email` |  |
+| `id` |  |
+| `name` |  |
+| `phone` |  |
 | `provider` |  |
-| `refresh_token` |  |
-| `success` |  |
-| `token` |  |
-| `user` |  |
+| `subscriptionStatus` |  |
 
 Operations: create.
 
@@ -365,20 +366,19 @@ Create an instance: `const login = client.Login()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `createdAt` | `string` |  |
 | `email` | `string` |  |
-| `expires_in` | `number` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
 | `password` | `string` |  |
-| `refresh_token` | `string` |  |
-| `remember_me` | `boolean` |  |
-| `success` | `boolean` |  |
-| `token` | `string` |  |
-| `user` | `Record<string, any>` |  |
+| `phone` | `string` |  |
+| `rememberMe` | `boolean` |  |
+| `subscriptionStatus` | `string` |  |
 
 #### Example: Create
 
 ```ts
 const login = await client.Login().create({
-  email: 'example_email',
   password: 'example_password',
 })
 ```
@@ -429,7 +429,7 @@ Create an instance: `const register = client.Register()`
 | `name` | `string` |  |
 | `password` | `string` |  |
 | `phone` | `string` |  |
-| `terms_accepted` | `boolean` |  |
+| `termsAccepted` | `boolean` |  |
 
 #### Example: Create
 
@@ -456,19 +456,20 @@ Create an instance: `const social_login = client.SocialLogin()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `access_token` | `string` |  |
-| `expires_in` | `number` |  |
+| `accessToken` | `string` |  |
+| `createdAt` | `string` |  |
+| `email` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
 | `provider` | `string` |  |
-| `refresh_token` | `string` |  |
-| `success` | `boolean` |  |
-| `token` | `string` |  |
-| `user` | `Record<string, any>` |  |
+| `subscriptionStatus` | `string` |  |
 
 #### Example: Create
 
 ```ts
 const social_login = await client.SocialLogin().create({
-  access_token: 'example_access_token',
+  accessToken: 'example_accessToken',
   provider: 'example_provider',
 })
 ```
@@ -543,11 +544,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const login = client.Login()
-await login.create({ email: "example", password: "example" })
+const register = client.Register()
+await register.create({ email: "example", name: "example", password: "example" })
 
-// login.data() now returns the login data from the last `create`
-// login.match() returns the last match criteria
+// register.data() now returns the register data from the last `create`
+// register.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

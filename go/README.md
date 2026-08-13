@@ -54,7 +54,7 @@ func main() {
     })
 
     // Create a login.
-    created, err := client.Login(nil).Create(map[string]any{"email": "example_email", "password": "example_password"}, nil)
+    created, err := client.Login(nil).Create(map[string]any{"password": "example_password"}, nil)
     if err != nil {
         panic(err)
     }
@@ -69,12 +69,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-login, err := client.Login(nil).Create(map[string]any{"email": "example", "password": "example"}, nil)
+register, err := client.Register(nil).Create(map[string]any{"email": "example", "name": "example", "password": "example"}, nil)
 if err != nil {
     // handle err
     return
 }
-_ = login
+_ = register
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-login, err := client.Login(nil).Create(
-    map[string]any{"email": "example", "password": "example"}, nil,
+register, err := client.Register(nil).Create(
+    map[string]any{"email": "example", "name": "example", "password": "example"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(login) // the returned mock data
+fmt.Println(register) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -266,14 +266,14 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
+| `"createdAt"` |  |
 | `"email"` |  |
-| `"expires_in"` |  |
+| `"id"` |  |
+| `"name"` |  |
 | `"password"` |  |
-| `"refresh_token"` |  |
-| `"remember_me"` |  |
-| `"success"` |  |
-| `"token"` |  |
-| `"user"` |  |
+| `"phone"` |  |
+| `"rememberMe"` |  |
+| `"subscriptionStatus"` |  |
 
 Operations: Create.
 
@@ -299,7 +299,7 @@ API path: `/auth/password-recovery`
 | `"name"` |  |
 | `"password"` |  |
 | `"phone"` |  |
-| `"terms_accepted"` |  |
+| `"termsAccepted"` |  |
 
 Operations: Create.
 
@@ -309,13 +309,14 @@ API path: `/auth/register`
 
 | Field | Description |
 | --- | --- |
-| `"access_token"` |  |
-| `"expires_in"` |  |
+| `"accessToken"` |  |
+| `"createdAt"` |  |
+| `"email"` |  |
+| `"id"` |  |
+| `"name"` |  |
+| `"phone"` |  |
 | `"provider"` |  |
-| `"refresh_token"` |  |
-| `"success"` |  |
-| `"token"` |  |
-| `"user"` |  |
+| `"subscriptionStatus"` |  |
 
 Operations: Create.
 
@@ -340,20 +341,19 @@ Create an instance: `login := client.Login(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `createdAt` | `string` |  |
 | `email` | `string` |  |
-| `expires_in` | `int` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
 | `password` | `string` |  |
-| `refresh_token` | `string` |  |
-| `remember_me` | `bool` |  |
-| `success` | `bool` |  |
-| `token` | `string` |  |
-| `user` | `map[string]any` |  |
+| `phone` | `string` |  |
+| `rememberMe` | `bool` |  |
+| `subscriptionStatus` | `string` |  |
 
 #### Example: Create
 
 ```go
 result, err := client.Login(nil).Create(map[string]any{
-    "email": "example_email",
     "password": "example_password",
 }, nil)
 if err != nil {
@@ -412,7 +412,7 @@ Create an instance: `register := client.Register(nil)`
 | `name` | `string` |  |
 | `password` | `string` |  |
 | `phone` | `string` |  |
-| `terms_accepted` | `bool` |  |
+| `termsAccepted` | `bool` |  |
 
 #### Example: Create
 
@@ -443,19 +443,20 @@ Create an instance: `socialLogin := client.SocialLogin(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `access_token` | `string` |  |
-| `expires_in` | `int` |  |
+| `accessToken` | `string` |  |
+| `createdAt` | `string` |  |
+| `email` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
 | `provider` | `string` |  |
-| `refresh_token` | `string` |  |
-| `success` | `bool` |  |
-| `token` | `string` |  |
-| `user` | `map[string]any` |  |
+| `subscriptionStatus` | `string` |  |
 
 #### Example: Create
 
 ```go
 result, err := client.SocialLogin(nil).Create(map[string]any{
-    "access_token": "example_access_token",
+    "accessToken": "example_accessToken",
     "provider": "example_provider",
 }, nil)
 if err != nil {
@@ -538,11 +539,11 @@ Entity instances are stateful. After a successful `Create`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-login := client.Login(nil)
-login.Create(map[string]any{"email": "example", "password": "example"}, nil)
+register := client.Register(nil)
+register.Create(map[string]any{"email": "example", "name": "example", "password": "example"}, nil)
 
-// login.Data() now returns the login data from the last create
-// login.Match() returns the last match criteria
+// register.Data() now returns the register data from the last create
+// register.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

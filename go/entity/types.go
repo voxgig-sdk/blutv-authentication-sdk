@@ -6,30 +6,34 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/blutv-authentication-sdk/go/core"
+)
 
 // Login is the typed data model for the login entity.
 type Login struct {
-	Email string `json:"email"`
-	ExpiresIn *int `json:"expires_in,omitempty"`
+	CreatedAt *string `json:"createdAt,omitempty"`
+	Email *string `json:"email,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
 	Password string `json:"password"`
-	RefreshToken *string `json:"refresh_token,omitempty"`
-	RememberMe *bool `json:"remember_me,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Token *string `json:"token,omitempty"`
-	User *map[string]any `json:"user,omitempty"`
+	Phone *string `json:"phone,omitempty"`
+	RememberMe *bool `json:"rememberMe,omitempty"`
+	SubscriptionStatus *string `json:"subscriptionStatus,omitempty"`
 }
 
 // LoginCreateData is the typed request payload for Login.CreateTyped.
 type LoginCreateData struct {
-	Email string `json:"email"`
-	ExpiresIn *int `json:"expires_in,omitempty"`
+	CreatedAt *string `json:"createdAt,omitempty"`
+	Email *string `json:"email,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
 	Password string `json:"password"`
-	RefreshToken *string `json:"refresh_token,omitempty"`
-	RememberMe *bool `json:"remember_me,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Token *string `json:"token,omitempty"`
-	User *map[string]any `json:"user,omitempty"`
+	Phone *string `json:"phone,omitempty"`
+	RememberMe *bool `json:"rememberMe,omitempty"`
+	SubscriptionStatus *string `json:"subscriptionStatus,omitempty"`
 }
 
 // PasswordRecovery is the typed data model for the password_recovery entity.
@@ -52,7 +56,7 @@ type Register struct {
 	Name string `json:"name"`
 	Password string `json:"password"`
 	Phone *string `json:"phone,omitempty"`
-	TermsAccepted *bool `json:"terms_accepted,omitempty"`
+	TermsAccepted *bool `json:"termsAccepted,omitempty"`
 }
 
 // RegisterCreateData is the typed request payload for Register.CreateTyped.
@@ -61,29 +65,31 @@ type RegisterCreateData struct {
 	Name string `json:"name"`
 	Password string `json:"password"`
 	Phone *string `json:"phone,omitempty"`
-	TermsAccepted *bool `json:"terms_accepted,omitempty"`
+	TermsAccepted *bool `json:"termsAccepted,omitempty"`
 }
 
 // SocialLogin is the typed data model for the social_login entity.
 type SocialLogin struct {
-	AccessToken string `json:"access_token"`
-	ExpiresIn *int `json:"expires_in,omitempty"`
+	AccessToken string `json:"accessToken"`
+	CreatedAt *string `json:"createdAt,omitempty"`
+	Email *string `json:"email,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Phone *string `json:"phone,omitempty"`
 	Provider string `json:"provider"`
-	RefreshToken *string `json:"refresh_token,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Token *string `json:"token,omitempty"`
-	User *map[string]any `json:"user,omitempty"`
+	SubscriptionStatus *string `json:"subscriptionStatus,omitempty"`
 }
 
 // SocialLoginCreateData is the typed request payload for SocialLogin.CreateTyped.
 type SocialLoginCreateData struct {
-	AccessToken string `json:"access_token"`
-	ExpiresIn *int `json:"expires_in,omitempty"`
+	AccessToken string `json:"accessToken"`
+	CreatedAt *string `json:"createdAt,omitempty"`
+	Email *string `json:"email,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Phone *string `json:"phone,omitempty"`
 	Provider string `json:"provider"`
-	RefreshToken *string `json:"refresh_token,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Token *string `json:"token,omitempty"`
-	User *map[string]any `json:"user,omitempty"`
+	SubscriptionStatus *string `json:"subscriptionStatus,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
@@ -98,12 +104,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -115,12 +135,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

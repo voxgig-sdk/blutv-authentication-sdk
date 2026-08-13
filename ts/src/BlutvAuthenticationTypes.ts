@@ -6,25 +6,25 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Login {
-  email: string
-  expires_in?: number
+  createdAt?: string
+  email?: string
+  id?: string
+  name?: string
   password: string
-  refresh_token?: string
-  remember_me?: boolean
-  success?: boolean
-  token?: string
-  user?: Record<string, any>
+  phone?: string
+  rememberMe?: boolean
+  subscriptionStatus?: string
 }
 
 export interface LoginCreateData {
-  email: string
-  expires_in?: number
+  createdAt?: string
+  email?: string
+  id?: string
+  name?: string
   password: string
-  refresh_token?: string
-  remember_me?: boolean
-  success?: boolean
-  token?: string
-  user?: Record<string, any>
+  phone?: string
+  rememberMe?: boolean
+  subscriptionStatus?: string
 }
 
 export interface PasswordRecovery {
@@ -44,7 +44,7 @@ export interface Register {
   name: string
   password: string
   phone?: string
-  terms_accepted?: boolean
+  termsAccepted?: boolean
 }
 
 export interface RegisterCreateData {
@@ -52,26 +52,28 @@ export interface RegisterCreateData {
   name: string
   password: string
   phone?: string
-  terms_accepted?: boolean
+  termsAccepted?: boolean
 }
 
 export interface SocialLogin {
-  access_token: string
-  expires_in?: number
+  accessToken: string
+  createdAt?: string
+  email?: string
+  id?: string
+  name?: string
+  phone?: string
   provider: string
-  refresh_token?: string
-  success?: boolean
-  token?: string
-  user?: Record<string, any>
+  subscriptionStatus?: string
 }
 
 export interface SocialLoginCreateData {
-  access_token: string
-  expires_in?: number
+  accessToken: string
+  createdAt?: string
+  email?: string
+  id?: string
+  name?: string
+  phone?: string
   provider: string
-  refresh_token?: string
-  success?: boolean
-  token?: string
-  user?: Record<string, any>
+  subscriptionStatus?: string
 }
 

@@ -10,75 +10,75 @@
 
 # Login entity data model.
 #
-# @!attribute [rw] email
-#   @return [String]
+# @!attribute [rw] createdAt
+#   @return [String, nil]
 #
-# @!attribute [rw] expires_in
-#   @return [Integer, nil]
+# @!attribute [rw] email
+#   @return [String, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
 #
 # @!attribute [rw] password
 #   @return [String]
 #
-# @!attribute [rw] refresh_token
+# @!attribute [rw] phone
 #   @return [String, nil]
 #
-# @!attribute [rw] remember_me
+# @!attribute [rw] rememberMe
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] token
+# @!attribute [rw] subscriptionStatus
 #   @return [String, nil]
-#
-# @!attribute [rw] user
-#   @return [Hash, nil]
 Login = Struct.new(
+  :createdAt,
   :email,
-  :expires_in,
+  :id,
+  :name,
   :password,
-  :refresh_token,
-  :remember_me,
-  :success,
-  :token,
-  :user,
+  :phone,
+  :rememberMe,
+  :subscriptionStatus,
   keyword_init: true
 )
 
 # Request payload for Login#create.
 #
-# @!attribute [rw] email
-#   @return [String]
+# @!attribute [rw] createdAt
+#   @return [String, nil]
 #
-# @!attribute [rw] expires_in
-#   @return [Integer, nil]
+# @!attribute [rw] email
+#   @return [String, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
 #
 # @!attribute [rw] password
 #   @return [String]
 #
-# @!attribute [rw] refresh_token
+# @!attribute [rw] phone
 #   @return [String, nil]
 #
-# @!attribute [rw] remember_me
+# @!attribute [rw] rememberMe
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] token
+# @!attribute [rw] subscriptionStatus
 #   @return [String, nil]
-#
-# @!attribute [rw] user
-#   @return [Hash, nil]
 LoginCreateData = Struct.new(
+  :createdAt,
   :email,
-  :expires_in,
+  :id,
+  :name,
   :password,
-  :refresh_token,
-  :remember_me,
-  :success,
-  :token,
-  :user,
+  :phone,
+  :rememberMe,
+  :subscriptionStatus,
   keyword_init: true
 )
 
@@ -130,14 +130,14 @@ PasswordRecoveryCreateData = Struct.new(
 # @!attribute [rw] phone
 #   @return [String, nil]
 #
-# @!attribute [rw] terms_accepted
+# @!attribute [rw] termsAccepted
 #   @return [Boolean, nil]
 Register = Struct.new(
   :email,
   :name,
   :password,
   :phone,
-  :terms_accepted,
+  :termsAccepted,
   keyword_init: true
 )
 
@@ -155,80 +155,88 @@ Register = Struct.new(
 # @!attribute [rw] phone
 #   @return [String, nil]
 #
-# @!attribute [rw] terms_accepted
+# @!attribute [rw] termsAccepted
 #   @return [Boolean, nil]
 RegisterCreateData = Struct.new(
   :email,
   :name,
   :password,
   :phone,
-  :terms_accepted,
+  :termsAccepted,
   keyword_init: true
 )
 
 # SocialLogin entity data model.
 #
-# @!attribute [rw] access_token
+# @!attribute [rw] accessToken
 #   @return [String]
 #
-# @!attribute [rw] expires_in
-#   @return [Integer, nil]
+# @!attribute [rw] createdAt
+#   @return [String, nil]
+#
+# @!attribute [rw] email
+#   @return [String, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] phone
+#   @return [String, nil]
 #
 # @!attribute [rw] provider
 #   @return [String]
 #
-# @!attribute [rw] refresh_token
+# @!attribute [rw] subscriptionStatus
 #   @return [String, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] token
-#   @return [String, nil]
-#
-# @!attribute [rw] user
-#   @return [Hash, nil]
 SocialLogin = Struct.new(
-  :access_token,
-  :expires_in,
+  :accessToken,
+  :createdAt,
+  :email,
+  :id,
+  :name,
+  :phone,
   :provider,
-  :refresh_token,
-  :success,
-  :token,
-  :user,
+  :subscriptionStatus,
   keyword_init: true
 )
 
 # Request payload for SocialLogin#create.
 #
-# @!attribute [rw] access_token
+# @!attribute [rw] accessToken
 #   @return [String]
 #
-# @!attribute [rw] expires_in
-#   @return [Integer, nil]
+# @!attribute [rw] createdAt
+#   @return [String, nil]
+#
+# @!attribute [rw] email
+#   @return [String, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+#
+# @!attribute [rw] name
+#   @return [String, nil]
+#
+# @!attribute [rw] phone
+#   @return [String, nil]
 #
 # @!attribute [rw] provider
 #   @return [String]
 #
-# @!attribute [rw] refresh_token
+# @!attribute [rw] subscriptionStatus
 #   @return [String, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] token
-#   @return [String, nil]
-#
-# @!attribute [rw] user
-#   @return [Hash, nil]
 SocialLoginCreateData = Struct.new(
-  :access_token,
-  :expires_in,
+  :accessToken,
+  :createdAt,
+  :email,
+  :id,
+  :name,
+  :phone,
   :provider,
-  :refresh_token,
-  :success,
-  :token,
-  :user,
+  :subscriptionStatus,
   keyword_init: true
 )
 

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import BlutvAuthenticationControl
-from core.error import BlutvAuthenticationError
-from core.result import BlutvAuthenticationResult
-from core.spec import BlutvAuthenticationSpec
+from blutvauthentication_sdk.config import make_config
+from blutvauthentication_sdk.features import _make_feature
+from blutvauthentication_sdk.core.control import BlutvAuthenticationControl
+from blutvauthentication_sdk.core.error import BlutvAuthenticationError
+from blutvauthentication_sdk.core.result import BlutvAuthenticationResult
+from blutvauthentication_sdk.core.spec import BlutvAuthenticationSpec
 
 
 # True when this SDK was generated with the named feature.

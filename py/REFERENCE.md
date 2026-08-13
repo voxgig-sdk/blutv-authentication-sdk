@@ -100,14 +100,27 @@ login = client.Login()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `str` | Yes |  |
-| `expires_in` | `int` | No |  |
+| `createdAt` | `str` | No |  |
+| `email` | `str` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
 | `password` | `str` | Yes |  |
-| `refresh_token` | `str` | No |  |
-| `remember_me` | `bool` | No |  |
-| `success` | `bool` | No |  |
-| `token` | `str` | No |  |
-| `user` | `dict` | No |  |
+| `phone` | `str` | No |  |
+| `rememberMe` | `bool` | No |  |
+| `subscriptionStatus` | `str` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `createdAt` | - |
+| `email` | Yes |
+| `id` | - |
+| `name` | - |
+| `password` | - |
+| `phone` | - |
+| `rememberMe` | - |
+| `subscriptionStatus` | - |
 
 ### Operations
 
@@ -117,7 +130,6 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Login().create({
-    "email": "example_email",  # str
     "password": "example_password",  # str
 })
 ```
@@ -220,7 +232,7 @@ register = client.Register()
 | `name` | `str` | Yes |  |
 | `password` | `str` | Yes |  |
 | `phone` | `str` | No |  |
-| `terms_accepted` | `bool` | No |  |
+| `termsAccepted` | `bool` | No |  |
 
 ### Operations
 
@@ -275,13 +287,14 @@ social_login = client.SocialLogin()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | `str` | Yes |  |
-| `expires_in` | `int` | No |  |
+| `accessToken` | `str` | Yes |  |
+| `createdAt` | `str` | No |  |
+| `email` | `str` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `phone` | `str` | No |  |
 | `provider` | `str` | Yes |  |
-| `refresh_token` | `str` | No |  |
-| `success` | `bool` | No |  |
-| `token` | `str` | No |  |
-| `user` | `dict` | No |  |
+| `subscriptionStatus` | `str` | No |  |
 
 ### Operations
 
@@ -291,7 +304,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.SocialLogin().create({
-    "access_token": "example_access_token",  # str
+    "accessToken": "example_accessToken",  # str
     "provider": "example_provider",  # str
 })
 ```

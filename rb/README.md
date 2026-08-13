@@ -35,8 +35,8 @@ client = BlutvAuthenticationSDK.new({
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Login record.
-created = client.Login.create({ "email" => "example_email", "password" => "example_password" })
+# create returns the ENTITY — call data_get for the created Login record.
+created = client.Login.create({ "password" => "example_password" })
 
 ```
 
@@ -47,7 +47,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  login = client.Login.create({ "email" => "example", "password" => "example" })
+  register = client.Register.create({ "email" => "example", "name" => "example", "password" => "example" })
 rescue => err
   warn "create failed: #{err}"
 end
@@ -115,9 +115,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = BlutvAuthenticationSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-login = client.Login.create({ "email" => "example", "password" => "example" })
-puts login
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+register = client.Register.create({ "email" => "example", "name" => "example", "password" => "example" })
+puts register
 ```
 
 ### Use a custom fetch function
@@ -237,14 +238,14 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
+| `createdAt` |  |
 | `email` |  |
-| `expires_in` |  |
+| `id` |  |
+| `name` |  |
 | `password` |  |
-| `refresh_token` |  |
-| `remember_me` |  |
-| `success` |  |
-| `token` |  |
-| `user` |  |
+| `phone` |  |
+| `rememberMe` |  |
+| `subscriptionStatus` |  |
 
 Operations: Create.
 
@@ -270,7 +271,7 @@ API path: `/auth/password-recovery`
 | `name` |  |
 | `password` |  |
 | `phone` |  |
-| `terms_accepted` |  |
+| `termsAccepted` |  |
 
 Operations: Create.
 
@@ -280,13 +281,14 @@ API path: `/auth/register`
 
 | Field | Description |
 | --- | --- |
-| `access_token` |  |
-| `expires_in` |  |
+| `accessToken` |  |
+| `createdAt` |  |
+| `email` |  |
+| `id` |  |
+| `name` |  |
+| `phone` |  |
 | `provider` |  |
-| `refresh_token` |  |
-| `success` |  |
-| `token` |  |
-| `user` |  |
+| `subscriptionStatus` |  |
 
 Operations: Create.
 
@@ -311,20 +313,19 @@ Create an instance: `login = client.Login`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `createdAt` | `String` |  |
 | `email` | `String` |  |
-| `expires_in` | `Integer` |  |
+| `id` | `String` |  |
+| `name` | `String` |  |
 | `password` | `String` |  |
-| `refresh_token` | `String` |  |
-| `remember_me` | `Boolean` |  |
-| `success` | `Boolean` |  |
-| `token` | `String` |  |
-| `user` | `Hash` |  |
+| `phone` | `String` |  |
+| `rememberMe` | `Boolean` |  |
+| `subscriptionStatus` | `String` |  |
 
 #### Example: Create
 
 ```ruby
 login = client.Login.create({
-  "email" => "example_email", # String
   "password" => "example_password", # String
 })
 ```
@@ -375,7 +376,7 @@ Create an instance: `register = client.Register`
 | `name` | `String` |  |
 | `password` | `String` |  |
 | `phone` | `String` |  |
-| `terms_accepted` | `Boolean` |  |
+| `termsAccepted` | `Boolean` |  |
 
 #### Example: Create
 
@@ -402,19 +403,20 @@ Create an instance: `social_login = client.SocialLogin`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `access_token` | `String` |  |
-| `expires_in` | `Integer` |  |
+| `accessToken` | `String` |  |
+| `createdAt` | `String` |  |
+| `email` | `String` |  |
+| `id` | `String` |  |
+| `name` | `String` |  |
+| `phone` | `String` |  |
 | `provider` | `String` |  |
-| `refresh_token` | `String` |  |
-| `success` | `Boolean` |  |
-| `token` | `String` |  |
-| `user` | `Hash` |  |
+| `subscriptionStatus` | `String` |  |
 
 #### Example: Create
 
 ```ruby
 social_login = client.SocialLogin.create({
-  "access_token" => "example_access_token", # String
+  "accessToken" => "example_accessToken", # String
   "provider" => "example_provider", # String
 })
 ```
@@ -496,11 +498,11 @@ Entity instances are stateful. After a successful `create`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-login = client.Login
-login.create({ "email" => "example", "password" => "example" })
+register = client.Register
+register.create({ "email" => "example", "name" => "example", "password" => "example" })
 
-# login.data_get now returns the login data from the last create
-# login.match_get returns the last match criteria
+# register.data_get now returns the register data from the last create
+# register.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

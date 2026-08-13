@@ -42,8 +42,8 @@ client = BlutvAuthenticationSDK({
 ### 4. Create, update, and remove
 
 ```python
-# Create — returns the bare created record (a dict)
-created = client.Login().create({"email": "example_email", "password": "example_password"})
+# Create — returns the ENTITY (call data_get() for the record)
+created = client.Login().create({"password": "example_password"})
 
 ```
 
@@ -54,8 +54,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    login = client.Login().create({ "email": "example", "password": "example" })
-    print(login)
+    register = client.Register().create({ "email": "example", "name": "example", "password": "example" })
+    print(register)
 except Exception as err:
     print(f"create failed: {err}")
 ```
@@ -121,9 +121,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = BlutvAuthenticationSDK.test()
 
-# Entity ops return the bare record and raise on error.
-login = client.Login().create({"email": "example", "password": "example"})
-# login contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+register = client.Register().create({"email": "example", "name": "example", "password": "example"})
+# register contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -222,7 +223,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -244,14 +245,14 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
+| `createdAt` |  |
 | `email` |  |
-| `expires_in` |  |
+| `id` |  |
+| `name` |  |
 | `password` |  |
-| `refresh_token` |  |
-| `remember_me` |  |
-| `success` |  |
-| `token` |  |
-| `user` |  |
+| `phone` |  |
+| `rememberMe` |  |
+| `subscriptionStatus` |  |
 
 Operations: Create.
 
@@ -277,7 +278,7 @@ API path: `/auth/password-recovery`
 | `name` |  |
 | `password` |  |
 | `phone` |  |
-| `terms_accepted` |  |
+| `termsAccepted` |  |
 
 Operations: Create.
 
@@ -287,13 +288,14 @@ API path: `/auth/register`
 
 | Field | Description |
 | --- | --- |
-| `access_token` |  |
-| `expires_in` |  |
+| `accessToken` |  |
+| `createdAt` |  |
+| `email` |  |
+| `id` |  |
+| `name` |  |
+| `phone` |  |
 | `provider` |  |
-| `refresh_token` |  |
-| `success` |  |
-| `token` |  |
-| `user` |  |
+| `subscriptionStatus` |  |
 
 Operations: Create.
 
@@ -318,20 +320,19 @@ Create an instance: `login = client.Login()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `createdAt` | `str` |  |
 | `email` | `str` |  |
-| `expires_in` | `int` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
 | `password` | `str` |  |
-| `refresh_token` | `str` |  |
-| `remember_me` | `bool` |  |
-| `success` | `bool` |  |
-| `token` | `str` |  |
-| `user` | `dict` |  |
+| `phone` | `str` |  |
+| `rememberMe` | `bool` |  |
+| `subscriptionStatus` | `str` |  |
 
 #### Example: Create
 
 ```python
 login = client.Login().create({
-    "email": "example_email",  # str
     "password": "example_password",  # str
 })
 ```
@@ -382,7 +383,7 @@ Create an instance: `register = client.Register()`
 | `name` | `str` |  |
 | `password` | `str` |  |
 | `phone` | `str` |  |
-| `terms_accepted` | `bool` |  |
+| `termsAccepted` | `bool` |  |
 
 #### Example: Create
 
@@ -409,19 +410,20 @@ Create an instance: `social_login = client.SocialLogin()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `access_token` | `str` |  |
-| `expires_in` | `int` |  |
+| `accessToken` | `str` |  |
+| `createdAt` | `str` |  |
+| `email` | `str` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
+| `phone` | `str` |  |
 | `provider` | `str` |  |
-| `refresh_token` | `str` |  |
-| `success` | `bool` |  |
-| `token` | `str` |  |
-| `user` | `dict` |  |
+| `subscriptionStatus` | `str` |  |
 
 #### Example: Create
 
 ```python
 social_login = client.SocialLogin().create({
-    "access_token": "example_access_token",  # str
+    "accessToken": "example_accessToken",  # str
     "provider": "example_provider",  # str
 })
 ```
@@ -502,11 +504,11 @@ Entity instances are stateful. After a successful `create`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-login = client.Login()
-login.create({ "email": "example", "password": "example" })
+register = client.Register()
+register.create({ "email": "example", "name": "example", "password": "example" })
 
-# login.data_get() now returns the login data from the last create
-# login.match_get() returns the last match criteria
+# register.data_get() now returns the register data from the last create
+# register.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

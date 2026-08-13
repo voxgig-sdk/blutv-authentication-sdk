@@ -26,8 +26,8 @@ import {
 describe('LoginEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when BLUTVAUTHENTICATION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('BLUTVAUTHENTICATION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when BLUTV_AUTHENTICATION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('BLUTV_AUTHENTICATION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = BlutvAuthenticationSDK.test()
@@ -62,8 +62,8 @@ describe('LoginEntity', async () => {
     const login_ref01_ent = client.Login()
     let login_ref01_data = setup.data.new.login['login_ref01']
 
-    login_ref01_data = await login_ref01_ent.create(login_ref01_data)
-    assert(null != login_ref01_data)
+    login_ref01_data = (await login_ref01_ent.create(login_ref01_data)).data()
+    assert(null != login_ref01_data.id)
 
 
   })

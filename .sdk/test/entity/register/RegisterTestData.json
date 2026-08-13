@@ -6,7 +6,7 @@
         "name": "s33",
         "password": "s34",
         "phone": "s35",
-        "terms_accepted": true,
+        "termsAccepted": true,
         "id": "REGISTER00"
       },
       "REGISTER01": {
@@ -14,7 +14,7 @@
         "name": "s65",
         "password": "s66",
         "phone": "s67",
-        "terms_accepted": true,
+        "termsAccepted": true,
         "id": "REGISTER01"
       },
       "REGISTER02": {
@@ -22,7 +22,7 @@
         "name": "s97",
         "password": "s98",
         "phone": "s99",
-        "terms_accepted": true,
+        "termsAccepted": true,
         "id": "REGISTER02"
       }
     }
@@ -34,7 +34,7 @@
         "name": "sc9",
         "password": "sca",
         "phone": "scb",
-        "terms_accepted": true
+        "termsAccepted": true
       }
     }
   }

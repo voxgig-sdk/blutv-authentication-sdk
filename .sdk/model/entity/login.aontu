@@ -6,14 +6,30 @@ main: kit: entity: login: {
 
   fields: [
     {
-      name: "email"
-      req: true
+      name: "createdAt"
+      req: false
       type: "`$STRING`"
     }
     {
-      name: "expires_in"
+      name: "email"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
       req: false
-      type: "`$INTEGER`"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
     }
     {
       name: "password"
@@ -21,31 +37,26 @@ main: kit: entity: login: {
       type: "`$STRING`"
     }
     {
-      name: "refresh_token"
+      name: "phone"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "remember_me"
+      name: "rememberMe"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
-    }
-    {
-      name: "token"
+      name: "subscriptionStatus"
       req: false
       type: "`$STRING`"
-    }
-    {
-      name: "user"
-      req: false
-      type: "`$OBJECT`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "login"
   op: {
@@ -61,7 +72,7 @@ main: kit: entity: login: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.user`"
           }
         }
       ]

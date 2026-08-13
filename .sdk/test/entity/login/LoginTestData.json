@@ -2,51 +2,47 @@
   "existing": {
     "login": {
       "LOGIN00": {
-        "email": "s50",
-        "expires_in": "s51",
-        "password": "s52",
-        "refresh_token": "s53",
-        "remember_me": true,
-        "success": false,
-        "token": "s56",
-        "user": {},
-        "id": "LOGIN00"
+        "createdAt": "s50",
+        "email": "s51",
+        "id": "LOGIN00",
+        "name": "s53",
+        "password": "s54",
+        "phone": "s55",
+        "rememberMe": true,
+        "subscriptionStatus": "s57"
       },
       "LOGIN01": {
-        "email": "sa0",
-        "expires_in": "sa1",
-        "password": "sa2",
-        "refresh_token": "sa3",
-        "remember_me": true,
-        "success": false,
-        "token": "sa6",
-        "user": {},
-        "id": "LOGIN01"
+        "createdAt": "sa0",
+        "email": "sa1",
+        "id": "LOGIN01",
+        "name": "sa3",
+        "password": "sa4",
+        "phone": "sa5",
+        "rememberMe": true,
+        "subscriptionStatus": "sa7"
       },
       "LOGIN02": {
-        "email": "sf0",
-        "expires_in": "sf1",
-        "password": "sf2",
-        "refresh_token": "sf3",
-        "remember_me": true,
-        "success": false,
-        "token": "sf6",
-        "user": {},
-        "id": "LOGIN02"
+        "createdAt": "sf0",
+        "email": "sf1",
+        "id": "LOGIN02",
+        "name": "sf3",
+        "password": "sf4",
+        "phone": "sf5",
+        "rememberMe": true,
+        "subscriptionStatus": "sf7"
       }
     }
   },
   "new": {
     "login": {
       "login_ref01": {
-        "email": "s140",
-        "expires_in": "s141",
-        "password": "s142",
-        "refresh_token": "s143",
-        "remember_me": true,
-        "success": false,
-        "token": "s146",
-        "user": {}
+        "createdAt": "s140",
+        "email": "s141",
+        "name": "s143",
+        "password": "s144",
+        "phone": "s145",
+        "rememberMe": true,
+        "subscriptionStatus": "s147"
       }
     }
   }

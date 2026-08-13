@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# BlutvAuthentication SDK exists test
 
 import pytest
 from blutvauthentication_sdk import BlutvAuthenticationSDK

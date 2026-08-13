@@ -106,14 +106,27 @@ login = client.Login
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `String` | Yes |  |
-| `expires_in` | `Integer` | No |  |
+| `createdAt` | `String` | No |  |
+| `email` | `String` | No |  |
+| `id` | `String` | No |  |
+| `name` | `String` | No |  |
 | `password` | `String` | Yes |  |
-| `refresh_token` | `String` | No |  |
-| `remember_me` | `Boolean` | No |  |
-| `success` | `Boolean` | No |  |
-| `token` | `String` | No |  |
-| `user` | `Hash` | No |  |
+| `phone` | `String` | No |  |
+| `rememberMe` | `Boolean` | No |  |
+| `subscriptionStatus` | `String` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `createdAt` | - |
+| `email` | Yes |
+| `id` | - |
+| `name` | - |
+| `password` | - |
+| `phone` | - |
+| `rememberMe` | - |
+| `subscriptionStatus` | - |
 
 ### Operations
 
@@ -123,7 +136,6 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Login.create({
-  "email" => "example_email", # String
   "password" => "example_password", # String
 })
 ```
@@ -228,7 +240,7 @@ register = client.Register
 | `name` | `String` | Yes |  |
 | `password` | `String` | Yes |  |
 | `phone` | `String` | No |  |
-| `terms_accepted` | `Boolean` | No |  |
+| `termsAccepted` | `Boolean` | No |  |
 
 ### Operations
 
@@ -284,13 +296,14 @@ social_login = client.SocialLogin
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `access_token` | `String` | Yes |  |
-| `expires_in` | `Integer` | No |  |
+| `accessToken` | `String` | Yes |  |
+| `createdAt` | `String` | No |  |
+| `email` | `String` | No |  |
+| `id` | `String` | No |  |
+| `name` | `String` | No |  |
+| `phone` | `String` | No |  |
 | `provider` | `String` | Yes |  |
-| `refresh_token` | `String` | No |  |
-| `success` | `Boolean` | No |  |
-| `token` | `String` | No |  |
-| `user` | `Hash` | No |  |
+| `subscriptionStatus` | `String` | No |  |
 
 ### Operations
 
@@ -300,7 +313,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.SocialLogin.create({
-  "access_token" => "example_access_token", # String
+  "accessToken" => "example_accessToken", # String
   "provider" => "example_provider", # String
 })
 ```

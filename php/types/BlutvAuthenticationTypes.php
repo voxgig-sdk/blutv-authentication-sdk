@@ -15,27 +15,27 @@ declare(strict_types=1);
 /** Login entity data model. */
 class Login
 {
-    public string $email;
-    public ?int $expires_in = null;
+    public ?string $createdAt = null;
+    public ?string $email = null;
+    public ?string $id = null;
+    public ?string $name = null;
     public string $password;
-    public ?string $refresh_token = null;
-    public ?bool $remember_me = null;
-    public ?bool $success = null;
-    public ?string $token = null;
-    public ?array $user = null;
+    public ?string $phone = null;
+    public ?bool $rememberMe = null;
+    public ?string $subscriptionStatus = null;
 }
 
 /** Request payload for Login#create. */
 class LoginCreateData
 {
-    public string $email;
-    public ?int $expires_in = null;
+    public ?string $createdAt = null;
+    public ?string $email = null;
+    public ?string $id = null;
+    public ?string $name = null;
     public string $password;
-    public ?string $refresh_token = null;
-    public ?bool $remember_me = null;
-    public ?bool $success = null;
-    public ?string $token = null;
-    public ?array $user = null;
+    public ?string $phone = null;
+    public ?bool $rememberMe = null;
+    public ?string $subscriptionStatus = null;
 }
 
 /** PasswordRecovery entity data model. */
@@ -61,7 +61,7 @@ class Register
     public string $name;
     public string $password;
     public ?string $phone = null;
-    public ?bool $terms_accepted = null;
+    public ?bool $termsAccepted = null;
 }
 
 /** Request payload for Register#create. */
@@ -71,30 +71,32 @@ class RegisterCreateData
     public string $name;
     public string $password;
     public ?string $phone = null;
-    public ?bool $terms_accepted = null;
+    public ?bool $termsAccepted = null;
 }
 
 /** SocialLogin entity data model. */
 class SocialLogin
 {
-    public string $access_token;
-    public ?int $expires_in = null;
+    public string $accessToken;
+    public ?string $createdAt = null;
+    public ?string $email = null;
+    public ?string $id = null;
+    public ?string $name = null;
+    public ?string $phone = null;
     public string $provider;
-    public ?string $refresh_token = null;
-    public ?bool $success = null;
-    public ?string $token = null;
-    public ?array $user = null;
+    public ?string $subscriptionStatus = null;
 }
 
 /** Request payload for SocialLogin#create. */
 class SocialLoginCreateData
 {
-    public string $access_token;
-    public ?int $expires_in = null;
+    public string $accessToken;
+    public ?string $createdAt = null;
+    public ?string $email = null;
+    public ?string $id = null;
+    public ?string $name = null;
+    public ?string $phone = null;
     public string $provider;
-    public ?string $refresh_token = null;
-    public ?bool $success = null;
-    public ?string $token = null;
-    public ?array $user = null;
+    public ?string $subscriptionStatus = null;
 }
 
