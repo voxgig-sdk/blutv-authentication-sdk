@@ -15,7 +15,7 @@ require_relative "../BlutvAuthentication_sdk"
 module BlutvAuthenticationFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = BlutvAuthenticationConfig.make_config["feature"]
+    f = BlutvAuthenticationConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

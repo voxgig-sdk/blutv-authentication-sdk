@@ -28,7 +28,7 @@ class BlutvAuthenticationSDK
     utility = BlutvAuthenticationUtility.new
     @_utility = utility
 
-    config = BlutvAuthenticationConfig.make_config
+    config = BlutvAuthenticationConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

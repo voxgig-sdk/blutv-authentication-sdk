@@ -23,6 +23,7 @@ build = {
   modules = {
     ["blutv-authentication_sdk"] = "blutv-authentication_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

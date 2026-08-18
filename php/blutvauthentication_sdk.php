@@ -40,7 +40,7 @@ class BlutvAuthenticationSDK
         $utility = new BlutvAuthenticationUtility();
         $this->_utility = $utility;
 
-        $config = BlutvAuthenticationConfig::make_config();
+        $config = BlutvAuthenticationConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
