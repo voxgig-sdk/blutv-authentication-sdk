@@ -1,0 +1,6 @@
+# Flows
+
+@"BasicLoginFlow.aon"
+@"BasicPasswordRecoveryFlow.aon"
+@"BasicRegisterFlow.aon"
+@"BasicSocialLoginFlow.aon"

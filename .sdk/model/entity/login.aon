@@ -1,0 +1,92 @@
+# Entity: login
+
+main: kit: entity: login: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "createdAt"
+      req: false
+      short: "Account creation timestamp"
+      type: "`$STRING`"
+    }
+    {
+      name: "email"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      short: "User's email address"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique user identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "User's full name"
+      type: "`$STRING`"
+    }
+    {
+      name: "password"
+      req: true
+      short: "User's password"
+      type: "`$STRING`"
+    }
+    {
+      name: "phone"
+      req: false
+      short: "User's phone number"
+      type: "`$STRING`"
+    }
+    {
+      name: "rememberMe"
+      req: false
+      short: "Keep user logged in"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "subscriptionStatus"
+      req: false
+      short: "User's subscription status"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "login"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/auth/login"
+          parts: [
+            "auth"
+            "login"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.user`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

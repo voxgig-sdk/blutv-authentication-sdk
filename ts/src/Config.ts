@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'BlutvAuthentication',
+        slug: "blutv-authentication",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -69,6 +80,7 @@ class Config {
       "fields": [
         {
           "name": "createdAt",
+          "short": "Account creation timestamp",
           "type": "`$STRING`"
         },
         {
@@ -79,31 +91,38 @@ class Config {
               "type": "`$STRING`"
             }
           },
+          "short": "User's email address",
           "type": "`$STRING`"
         },
         {
           "name": "id",
+          "short": "Unique user identifier",
           "type": "`$STRING`"
         },
         {
           "name": "name",
+          "short": "User's full name",
           "type": "`$STRING`"
         },
         {
           "name": "password",
           "req": true,
+          "short": "User's password",
           "type": "`$STRING`"
         },
         {
           "name": "phone",
+          "short": "User's phone number",
           "type": "`$STRING`"
         },
         {
           "name": "rememberMe",
+          "short": "Keep user logged in",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "subscriptionStatus",
+          "short": "User's subscription status",
           "type": "`$STRING`"
         }
       ],
@@ -140,10 +159,12 @@ class Config {
         {
           "name": "email",
           "req": true,
+          "short": "Email address for password recovery",
           "type": "`$STRING`"
         },
         {
           "name": "message",
+          "short": "Success message",
           "type": "`$STRING`"
         },
         {
@@ -184,24 +205,29 @@ class Config {
         {
           "name": "email",
           "req": true,
+          "short": "User's email address",
           "type": "`$STRING`"
         },
         {
           "name": "name",
           "req": true,
+          "short": "User's full name",
           "type": "`$STRING`"
         },
         {
           "name": "password",
           "req": true,
+          "short": "User's password",
           "type": "`$STRING`"
         },
         {
           "name": "phone",
+          "short": "User's phone number",
           "type": "`$STRING`"
         },
         {
           "name": "termsAccepted",
+          "short": "User acceptance of terms and conditions",
           "type": "`$BOOLEAN`"
         }
       ],
@@ -238,35 +264,43 @@ class Config {
         {
           "name": "accessToken",
           "req": true,
+          "short": "OAuth access token from the social provider",
           "type": "`$STRING`"
         },
         {
           "name": "createdAt",
+          "short": "Account creation timestamp",
           "type": "`$STRING`"
         },
         {
           "name": "email",
+          "short": "User's email address",
           "type": "`$STRING`"
         },
         {
           "name": "id",
+          "short": "Unique user identifier",
           "type": "`$STRING`"
         },
         {
           "name": "name",
+          "short": "User's full name",
           "type": "`$STRING`"
         },
         {
           "name": "phone",
+          "short": "User's phone number",
           "type": "`$STRING`"
         },
         {
           "name": "provider",
           "req": true,
+          "short": "Social media provider",
           "type": "`$STRING`"
         },
         {
           "name": "subscriptionStatus",
+          "short": "User's subscription status",
           "type": "`$STRING`"
         }
       ],

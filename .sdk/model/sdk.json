@@ -36,6 +36,7 @@
               "active": true,
               "name": "createdAt",
               "req": false,
+              "short": "Account creation timestamp",
               "type": "`$STRING`"
             },
             {
@@ -48,42 +49,49 @@
                 }
               },
               "req": false,
+              "short": "User's email address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique user identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "User's full name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "password",
               "req": true,
+              "short": "User's password",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "phone",
               "req": false,
+              "short": "User's phone number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "rememberMe",
               "req": false,
+              "short": "Keep user logged in",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "subscriptionStatus",
               "req": false,
+              "short": "User's subscription status",
               "type": "`$STRING`"
             }
           ],
@@ -130,12 +138,14 @@
               "active": true,
               "name": "email",
               "req": true,
+              "short": "Email address for password recovery",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "message",
               "req": false,
+              "short": "Success message",
               "type": "`$STRING`"
             },
             {
@@ -184,30 +194,35 @@
               "active": true,
               "name": "email",
               "req": true,
+              "short": "User's email address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": true,
+              "short": "User's full name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "password",
               "req": true,
+              "short": "User's password",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "phone",
               "req": false,
+              "short": "User's phone number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "termsAccepted",
               "req": false,
+              "short": "User acceptance of terms and conditions",
               "type": "`$BOOLEAN`"
             }
           ],
@@ -250,48 +265,56 @@
               "active": true,
               "name": "accessToken",
               "req": true,
+              "short": "OAuth access token from the social provider",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "createdAt",
               "req": false,
+              "short": "Account creation timestamp",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "email",
               "req": false,
+              "short": "User's email address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique user identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "User's full name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "phone",
               "req": false,
+              "short": "User's phone number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "provider",
               "req": true,
+              "short": "Social media provider",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "subscriptionStatus",
               "req": false,
+              "short": "User's subscription status",
               "type": "`$STRING`"
             }
           ],

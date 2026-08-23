@@ -106,14 +106,14 @@ login = client.Login
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `String` | No |  |
-| `email` | `String` | No |  |
-| `id` | `String` | No |  |
-| `name` | `String` | No |  |
-| `password` | `String` | Yes |  |
-| `phone` | `String` | No |  |
-| `rememberMe` | `Boolean` | No |  |
-| `subscriptionStatus` | `String` | No |  |
+| `createdAt` | `String` | No | Account creation timestamp |
+| `email` | `String` | No | User's email address |
+| `id` | `String` | No | Unique user identifier |
+| `name` | `String` | No | User's full name |
+| `password` | `String` | Yes | User's password |
+| `phone` | `String` | No | User's phone number |
+| `rememberMe` | `Boolean` | No | Keep user logged in |
+| `subscriptionStatus` | `String` | No | User's subscription status |
 
 ### Field Usage by Operation
 
@@ -180,8 +180,8 @@ password_recovery = client.PasswordRecovery
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `String` | Yes |  |
-| `message` | `String` | No |  |
+| `email` | `String` | Yes | Email address for password recovery |
+| `message` | `String` | No | Success message |
 | `success` | `Boolean` | No |  |
 
 ### Operations
@@ -236,11 +236,11 @@ register = client.Register
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `String` | Yes |  |
-| `name` | `String` | Yes |  |
-| `password` | `String` | Yes |  |
-| `phone` | `String` | No |  |
-| `termsAccepted` | `Boolean` | No |  |
+| `email` | `String` | Yes | User's email address |
+| `name` | `String` | Yes | User's full name |
+| `password` | `String` | Yes | User's password |
+| `phone` | `String` | No | User's phone number |
+| `termsAccepted` | `Boolean` | No | User acceptance of terms and conditions |
 
 ### Operations
 
@@ -296,14 +296,14 @@ social_login = client.SocialLogin
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accessToken` | `String` | Yes |  |
-| `createdAt` | `String` | No |  |
-| `email` | `String` | No |  |
-| `id` | `String` | No |  |
-| `name` | `String` | No |  |
-| `phone` | `String` | No |  |
-| `provider` | `String` | Yes |  |
-| `subscriptionStatus` | `String` | No |  |
+| `accessToken` | `String` | Yes | OAuth access token from the social provider |
+| `createdAt` | `String` | No | Account creation timestamp |
+| `email` | `String` | No | User's email address |
+| `id` | `String` | No | Unique user identifier |
+| `name` | `String` | No | User's full name |
+| `phone` | `String` | No | User's phone number |
+| `provider` | `String` | Yes | Social media provider |
+| `subscriptionStatus` | `String` | No | User's subscription status |
 
 ### Operations
 

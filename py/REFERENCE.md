@@ -100,14 +100,14 @@ login = client.Login()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `str` | No |  |
-| `email` | `str` | No |  |
-| `id` | `str` | No |  |
-| `name` | `str` | No |  |
-| `password` | `str` | Yes |  |
-| `phone` | `str` | No |  |
-| `rememberMe` | `bool` | No |  |
-| `subscriptionStatus` | `str` | No |  |
+| `createdAt` | `str` | No | Account creation timestamp |
+| `email` | `str` | No | User's email address |
+| `id` | `str` | No | Unique user identifier |
+| `name` | `str` | No | User's full name |
+| `password` | `str` | Yes | User's password |
+| `phone` | `str` | No | User's phone number |
+| `rememberMe` | `bool` | No | Keep user logged in |
+| `subscriptionStatus` | `str` | No | User's subscription status |
 
 ### Field Usage by Operation
 
@@ -173,8 +173,8 @@ password_recovery = client.PasswordRecovery()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `str` | Yes |  |
-| `message` | `str` | No |  |
+| `email` | `str` | Yes | Email address for password recovery |
+| `message` | `str` | No | Success message |
 | `success` | `bool` | No |  |
 
 ### Operations
@@ -228,11 +228,11 @@ register = client.Register()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `str` | Yes |  |
-| `name` | `str` | Yes |  |
-| `password` | `str` | Yes |  |
-| `phone` | `str` | No |  |
-| `termsAccepted` | `bool` | No |  |
+| `email` | `str` | Yes | User's email address |
+| `name` | `str` | Yes | User's full name |
+| `password` | `str` | Yes | User's password |
+| `phone` | `str` | No | User's phone number |
+| `termsAccepted` | `bool` | No | User acceptance of terms and conditions |
 
 ### Operations
 
@@ -287,14 +287,14 @@ social_login = client.SocialLogin()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accessToken` | `str` | Yes |  |
-| `createdAt` | `str` | No |  |
-| `email` | `str` | No |  |
-| `id` | `str` | No |  |
-| `name` | `str` | No |  |
-| `phone` | `str` | No |  |
-| `provider` | `str` | Yes |  |
-| `subscriptionStatus` | `str` | No |  |
+| `accessToken` | `str` | Yes | OAuth access token from the social provider |
+| `createdAt` | `str` | No | Account creation timestamp |
+| `email` | `str` | No | User's email address |
+| `id` | `str` | No | Unique user identifier |
+| `name` | `str` | No | User's full name |
+| `phone` | `str` | No | User's phone number |
+| `provider` | `str` | Yes | Social media provider |
+| `subscriptionStatus` | `str` | No | User's subscription status |
 
 ### Operations
 

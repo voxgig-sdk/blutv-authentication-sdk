@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "BlutvAuthentication",
+			"slug": "blutv-authentication",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -39,6 +42,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "createdAt",
+						"short": "Account creation timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -49,31 +53,38 @@ func MakeConfig() map[string]any {
 								"type": "`$STRING`",
 							},
 						},
+						"short": "User's email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique user identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "User's full name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "password",
 						"req": true,
+						"short": "User's password",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "phone",
+						"short": "User's phone number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rememberMe",
+						"short": "Keep user logged in",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "subscriptionStatus",
+						"short": "User's subscription status",
 						"type": "`$STRING`",
 					},
 				},
@@ -110,10 +121,12 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "email",
 						"req": true,
+						"short": "Email address for password recovery",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "message",
+						"short": "Success message",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -154,24 +167,29 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "email",
 						"req": true,
+						"short": "User's email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
 						"req": true,
+						"short": "User's full name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "password",
 						"req": true,
+						"short": "User's password",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "phone",
+						"short": "User's phone number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "termsAccepted",
+						"short": "User acceptance of terms and conditions",
 						"type": "`$BOOLEAN`",
 					},
 				},
@@ -208,35 +226,43 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "accessToken",
 						"req": true,
+						"short": "OAuth access token from the social provider",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "createdAt",
+						"short": "Account creation timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "email",
+						"short": "User's email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique user identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "User's full name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "phone",
+						"short": "User's phone number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "provider",
 						"req": true,
+						"short": "Social media provider",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "subscriptionStatus",
+						"short": "User's subscription status",
 						"type": "`$STRING`",
 					},
 				},

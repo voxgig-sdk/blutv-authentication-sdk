@@ -238,14 +238,14 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `createdAt` |  |
-| `email` |  |
-| `id` |  |
-| `name` |  |
-| `password` |  |
-| `phone` |  |
-| `rememberMe` |  |
-| `subscriptionStatus` |  |
+| `createdAt` | Account creation timestamp |
+| `email` | User's email address |
+| `id` | Unique user identifier |
+| `name` | User's full name |
+| `password` | User's password |
+| `phone` | User's phone number |
+| `rememberMe` | Keep user logged in |
+| `subscriptionStatus` | User's subscription status |
 
 Operations: Create.
 
@@ -255,8 +255,8 @@ API path: `/auth/login`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `message` |  |
+| `email` | Email address for password recovery |
+| `message` | Success message |
 | `success` |  |
 
 Operations: Create.
@@ -267,11 +267,11 @@ API path: `/auth/password-recovery`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `name` |  |
-| `password` |  |
-| `phone` |  |
-| `termsAccepted` |  |
+| `email` | User's email address |
+| `name` | User's full name |
+| `password` | User's password |
+| `phone` | User's phone number |
+| `termsAccepted` | User acceptance of terms and conditions |
 
 Operations: Create.
 
@@ -281,14 +281,14 @@ API path: `/auth/register`
 
 | Field | Description |
 | --- | --- |
-| `accessToken` |  |
-| `createdAt` |  |
-| `email` |  |
-| `id` |  |
-| `name` |  |
-| `phone` |  |
-| `provider` |  |
-| `subscriptionStatus` |  |
+| `accessToken` | OAuth access token from the social provider |
+| `createdAt` | Account creation timestamp |
+| `email` | User's email address |
+| `id` | Unique user identifier |
+| `name` | User's full name |
+| `phone` | User's phone number |
+| `provider` | Social media provider |
+| `subscriptionStatus` | User's subscription status |
 
 Operations: Create.
 
@@ -313,14 +313,14 @@ Create an instance: `login = client.Login`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `String` |  |
-| `email` | `String` |  |
-| `id` | `String` |  |
-| `name` | `String` |  |
-| `password` | `String` |  |
-| `phone` | `String` |  |
-| `rememberMe` | `Boolean` |  |
-| `subscriptionStatus` | `String` |  |
+| `createdAt` | `String` | Account creation timestamp |
+| `email` | `String` | User's email address |
+| `id` | `String` | Unique user identifier |
+| `name` | `String` | User's full name |
+| `password` | `String` | User's password |
+| `phone` | `String` | User's phone number |
+| `rememberMe` | `Boolean` | Keep user logged in |
+| `subscriptionStatus` | `String` | User's subscription status |
 
 #### Example: Create
 
@@ -345,8 +345,8 @@ Create an instance: `password_recovery = client.PasswordRecovery`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `String` |  |
-| `message` | `String` |  |
+| `email` | `String` | Email address for password recovery |
+| `message` | `String` | Success message |
 | `success` | `Boolean` |  |
 
 #### Example: Create
@@ -372,11 +372,11 @@ Create an instance: `register = client.Register`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `String` |  |
-| `name` | `String` |  |
-| `password` | `String` |  |
-| `phone` | `String` |  |
-| `termsAccepted` | `Boolean` |  |
+| `email` | `String` | User's email address |
+| `name` | `String` | User's full name |
+| `password` | `String` | User's password |
+| `phone` | `String` | User's phone number |
+| `termsAccepted` | `Boolean` | User acceptance of terms and conditions |
 
 #### Example: Create
 
@@ -403,14 +403,14 @@ Create an instance: `social_login = client.SocialLogin`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accessToken` | `String` |  |
-| `createdAt` | `String` |  |
-| `email` | `String` |  |
-| `id` | `String` |  |
-| `name` | `String` |  |
-| `phone` | `String` |  |
-| `provider` | `String` |  |
-| `subscriptionStatus` | `String` |  |
+| `accessToken` | `String` | OAuth access token from the social provider |
+| `createdAt` | `String` | Account creation timestamp |
+| `email` | `String` | User's email address |
+| `id` | `String` | Unique user identifier |
+| `name` | `String` | User's full name |
+| `phone` | `String` | User's phone number |
+| `provider` | `String` | Social media provider |
+| `subscriptionStatus` | `String` | User's subscription status |
 
 #### Example: Create
 

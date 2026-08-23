@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "BlutvAuthentication",
+            "slug": "blutv-authentication",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -56,6 +59,7 @@ def make_config():
         "fields": [
           {
             "name": "createdAt",
+            "short": "Account creation timestamp",
             "type": "`$STRING`",
           },
           {
@@ -66,31 +70,38 @@ def make_config():
                 "type": "`$STRING`",
               },
             },
+            "short": "User's email address",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "Unique user identifier",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "short": "User's full name",
             "type": "`$STRING`",
           },
           {
             "name": "password",
             "req": True,
+            "short": "User's password",
             "type": "`$STRING`",
           },
           {
             "name": "phone",
+            "short": "User's phone number",
             "type": "`$STRING`",
           },
           {
             "name": "rememberMe",
+            "short": "Keep user logged in",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "subscriptionStatus",
+            "short": "User's subscription status",
             "type": "`$STRING`",
           },
         ],
@@ -127,10 +138,12 @@ def make_config():
           {
             "name": "email",
             "req": True,
+            "short": "Email address for password recovery",
             "type": "`$STRING`",
           },
           {
             "name": "message",
+            "short": "Success message",
             "type": "`$STRING`",
           },
           {
@@ -171,24 +184,29 @@ def make_config():
           {
             "name": "email",
             "req": True,
+            "short": "User's email address",
             "type": "`$STRING`",
           },
           {
             "name": "name",
             "req": True,
+            "short": "User's full name",
             "type": "`$STRING`",
           },
           {
             "name": "password",
             "req": True,
+            "short": "User's password",
             "type": "`$STRING`",
           },
           {
             "name": "phone",
+            "short": "User's phone number",
             "type": "`$STRING`",
           },
           {
             "name": "termsAccepted",
+            "short": "User acceptance of terms and conditions",
             "type": "`$BOOLEAN`",
           },
         ],
@@ -225,35 +243,43 @@ def make_config():
           {
             "name": "accessToken",
             "req": True,
+            "short": "OAuth access token from the social provider",
             "type": "`$STRING`",
           },
           {
             "name": "createdAt",
+            "short": "Account creation timestamp",
             "type": "`$STRING`",
           },
           {
             "name": "email",
+            "short": "User's email address",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "Unique user identifier",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "short": "User's full name",
             "type": "`$STRING`",
           },
           {
             "name": "phone",
+            "short": "User's phone number",
             "type": "`$STRING`",
           },
           {
             "name": "provider",
             "req": True,
+            "short": "Social media provider",
             "type": "`$STRING`",
           },
           {
             "name": "subscriptionStatus",
+            "short": "User's subscription status",
             "type": "`$STRING`",
           },
         ],

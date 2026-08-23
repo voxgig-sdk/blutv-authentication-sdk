@@ -105,14 +105,14 @@ $login = $client->Login();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `string` | No |  |
-| `email` | `string` | No |  |
-| `id` | `string` | No |  |
-| `name` | `string` | No |  |
-| `password` | `string` | Yes |  |
-| `phone` | `string` | No |  |
-| `rememberMe` | `bool` | No |  |
-| `subscriptionStatus` | `string` | No |  |
+| `createdAt` | `string` | No | Account creation timestamp |
+| `email` | `string` | No | User's email address |
+| `id` | `string` | No | Unique user identifier |
+| `name` | `string` | No | User's full name |
+| `password` | `string` | Yes | User's password |
+| `phone` | `string` | No | User's phone number |
+| `rememberMe` | `bool` | No | Keep user logged in |
+| `subscriptionStatus` | `string` | No | User's subscription status |
 
 ### Field Usage by Operation
 
@@ -179,8 +179,8 @@ $password_recovery = $client->PasswordRecovery();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `message` | `string` | No |  |
+| `email` | `string` | Yes | Email address for password recovery |
+| `message` | `string` | No | Success message |
 | `success` | `bool` | No |  |
 
 ### Operations
@@ -235,11 +235,11 @@ $register = $client->Register();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `name` | `string` | Yes |  |
-| `password` | `string` | Yes |  |
-| `phone` | `string` | No |  |
-| `termsAccepted` | `bool` | No |  |
+| `email` | `string` | Yes | User's email address |
+| `name` | `string` | Yes | User's full name |
+| `password` | `string` | Yes | User's password |
+| `phone` | `string` | No | User's phone number |
+| `termsAccepted` | `bool` | No | User acceptance of terms and conditions |
 
 ### Operations
 
@@ -295,14 +295,14 @@ $social_login = $client->SocialLogin();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accessToken` | `string` | Yes |  |
-| `createdAt` | `string` | No |  |
-| `email` | `string` | No |  |
-| `id` | `string` | No |  |
-| `name` | `string` | No |  |
-| `phone` | `string` | No |  |
-| `provider` | `string` | Yes |  |
-| `subscriptionStatus` | `string` | No |  |
+| `accessToken` | `string` | Yes | OAuth access token from the social provider |
+| `createdAt` | `string` | No | Account creation timestamp |
+| `email` | `string` | No | User's email address |
+| `id` | `string` | No | Unique user identifier |
+| `name` | `string` | No | User's full name |
+| `phone` | `string` | No | User's phone number |
+| `provider` | `string` | Yes | Social media provider |
+| `subscriptionStatus` | `string` | No | User's subscription status |
 
 ### Operations
 

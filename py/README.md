@@ -245,14 +245,14 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `createdAt` |  |
-| `email` |  |
-| `id` |  |
-| `name` |  |
-| `password` |  |
-| `phone` |  |
-| `rememberMe` |  |
-| `subscriptionStatus` |  |
+| `createdAt` | Account creation timestamp |
+| `email` | User's email address |
+| `id` | Unique user identifier |
+| `name` | User's full name |
+| `password` | User's password |
+| `phone` | User's phone number |
+| `rememberMe` | Keep user logged in |
+| `subscriptionStatus` | User's subscription status |
 
 Operations: Create.
 
@@ -262,8 +262,8 @@ API path: `/auth/login`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `message` |  |
+| `email` | Email address for password recovery |
+| `message` | Success message |
 | `success` |  |
 
 Operations: Create.
@@ -274,11 +274,11 @@ API path: `/auth/password-recovery`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `name` |  |
-| `password` |  |
-| `phone` |  |
-| `termsAccepted` |  |
+| `email` | User's email address |
+| `name` | User's full name |
+| `password` | User's password |
+| `phone` | User's phone number |
+| `termsAccepted` | User acceptance of terms and conditions |
 
 Operations: Create.
 
@@ -288,14 +288,14 @@ API path: `/auth/register`
 
 | Field | Description |
 | --- | --- |
-| `accessToken` |  |
-| `createdAt` |  |
-| `email` |  |
-| `id` |  |
-| `name` |  |
-| `phone` |  |
-| `provider` |  |
-| `subscriptionStatus` |  |
+| `accessToken` | OAuth access token from the social provider |
+| `createdAt` | Account creation timestamp |
+| `email` | User's email address |
+| `id` | Unique user identifier |
+| `name` | User's full name |
+| `phone` | User's phone number |
+| `provider` | Social media provider |
+| `subscriptionStatus` | User's subscription status |
 
 Operations: Create.
 
@@ -320,14 +320,14 @@ Create an instance: `login = client.Login()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `str` |  |
-| `email` | `str` |  |
-| `id` | `str` |  |
-| `name` | `str` |  |
-| `password` | `str` |  |
-| `phone` | `str` |  |
-| `rememberMe` | `bool` |  |
-| `subscriptionStatus` | `str` |  |
+| `createdAt` | `str` | Account creation timestamp |
+| `email` | `str` | User's email address |
+| `id` | `str` | Unique user identifier |
+| `name` | `str` | User's full name |
+| `password` | `str` | User's password |
+| `phone` | `str` | User's phone number |
+| `rememberMe` | `bool` | Keep user logged in |
+| `subscriptionStatus` | `str` | User's subscription status |
 
 #### Example: Create
 
@@ -352,8 +352,8 @@ Create an instance: `password_recovery = client.PasswordRecovery()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `str` |  |
-| `message` | `str` |  |
+| `email` | `str` | Email address for password recovery |
+| `message` | `str` | Success message |
 | `success` | `bool` |  |
 
 #### Example: Create
@@ -379,11 +379,11 @@ Create an instance: `register = client.Register()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `str` |  |
-| `name` | `str` |  |
-| `password` | `str` |  |
-| `phone` | `str` |  |
-| `termsAccepted` | `bool` |  |
+| `email` | `str` | User's email address |
+| `name` | `str` | User's full name |
+| `password` | `str` | User's password |
+| `phone` | `str` | User's phone number |
+| `termsAccepted` | `bool` | User acceptance of terms and conditions |
 
 #### Example: Create
 
@@ -410,14 +410,14 @@ Create an instance: `social_login = client.SocialLogin()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accessToken` | `str` |  |
-| `createdAt` | `str` |  |
-| `email` | `str` |  |
-| `id` | `str` |  |
-| `name` | `str` |  |
-| `phone` | `str` |  |
-| `provider` | `str` |  |
-| `subscriptionStatus` | `str` |  |
+| `accessToken` | `str` | OAuth access token from the social provider |
+| `createdAt` | `str` | Account creation timestamp |
+| `email` | `str` | User's email address |
+| `id` | `str` | Unique user identifier |
+| `name` | `str` | User's full name |
+| `phone` | `str` | User's phone number |
+| `provider` | `str` | Social media provider |
+| `subscriptionStatus` | `str` | User's subscription status |
 
 #### Example: Create
 

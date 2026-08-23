@@ -233,14 +233,14 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `createdAt` |  |
-| `email` |  |
-| `id` |  |
-| `name` |  |
-| `password` |  |
-| `phone` |  |
-| `rememberMe` |  |
-| `subscriptionStatus` |  |
+| `createdAt` | Account creation timestamp |
+| `email` | User's email address |
+| `id` | Unique user identifier |
+| `name` | User's full name |
+| `password` | User's password |
+| `phone` | User's phone number |
+| `rememberMe` | Keep user logged in |
+| `subscriptionStatus` | User's subscription status |
 
 Operations: Create.
 
@@ -250,8 +250,8 @@ API path: `/auth/login`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `message` |  |
+| `email` | Email address for password recovery |
+| `message` | Success message |
 | `success` |  |
 
 Operations: Create.
@@ -262,11 +262,11 @@ API path: `/auth/password-recovery`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `name` |  |
-| `password` |  |
-| `phone` |  |
-| `termsAccepted` |  |
+| `email` | User's email address |
+| `name` | User's full name |
+| `password` | User's password |
+| `phone` | User's phone number |
+| `termsAccepted` | User acceptance of terms and conditions |
 
 Operations: Create.
 
@@ -276,14 +276,14 @@ API path: `/auth/register`
 
 | Field | Description |
 | --- | --- |
-| `accessToken` |  |
-| `createdAt` |  |
-| `email` |  |
-| `id` |  |
-| `name` |  |
-| `phone` |  |
-| `provider` |  |
-| `subscriptionStatus` |  |
+| `accessToken` | OAuth access token from the social provider |
+| `createdAt` | Account creation timestamp |
+| `email` | User's email address |
+| `id` | Unique user identifier |
+| `name` | User's full name |
+| `phone` | User's phone number |
+| `provider` | Social media provider |
+| `subscriptionStatus` | User's subscription status |
 
 Operations: Create.
 
@@ -308,14 +308,14 @@ Create an instance: `local login = client:Login(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `string` |  |
-| `email` | `string` |  |
-| `id` | `string` |  |
-| `name` | `string` |  |
-| `password` | `string` |  |
-| `phone` | `string` |  |
-| `rememberMe` | `boolean` |  |
-| `subscriptionStatus` | `string` |  |
+| `createdAt` | `string` | Account creation timestamp |
+| `email` | `string` | User's email address |
+| `id` | `string` | Unique user identifier |
+| `name` | `string` | User's full name |
+| `password` | `string` | User's password |
+| `phone` | `string` | User's phone number |
+| `rememberMe` | `boolean` | Keep user logged in |
+| `subscriptionStatus` | `string` | User's subscription status |
 
 #### Example: Create
 
@@ -340,8 +340,8 @@ Create an instance: `local password_recovery = client:PasswordRecovery(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `string` |  |
-| `message` | `string` |  |
+| `email` | `string` | Email address for password recovery |
+| `message` | `string` | Success message |
 | `success` | `boolean` |  |
 
 #### Example: Create
@@ -367,11 +367,11 @@ Create an instance: `local register = client:Register(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `string` |  |
-| `name` | `string` |  |
-| `password` | `string` |  |
-| `phone` | `string` |  |
-| `termsAccepted` | `boolean` |  |
+| `email` | `string` | User's email address |
+| `name` | `string` | User's full name |
+| `password` | `string` | User's password |
+| `phone` | `string` | User's phone number |
+| `termsAccepted` | `boolean` | User acceptance of terms and conditions |
 
 #### Example: Create
 
@@ -398,14 +398,14 @@ Create an instance: `local social_login = client:SocialLogin(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accessToken` | `string` |  |
-| `createdAt` | `string` |  |
-| `email` | `string` |  |
-| `id` | `string` |  |
-| `name` | `string` |  |
-| `phone` | `string` |  |
-| `provider` | `string` |  |
-| `subscriptionStatus` | `string` |  |
+| `accessToken` | `string` | OAuth access token from the social provider |
+| `createdAt` | `string` | Account creation timestamp |
+| `email` | `string` | User's email address |
+| `id` | `string` | Unique user identifier |
+| `name` | `string` | User's full name |
+| `phone` | `string` | User's phone number |
+| `provider` | `string` | Social media provider |
+| `subscriptionStatus` | `string` | User's subscription status |
 
 #### Example: Create
 
