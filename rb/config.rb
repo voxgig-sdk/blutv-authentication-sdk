@@ -28,6 +28,7 @@ module BlutvAuthenticationConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
