@@ -77,7 +77,7 @@ def social_login_basic_setup(extra)
     "BLUTV_AUTHENTICATION_TEST_SOCIAL_LOGIN_ENTID" => idmap,
     "BLUTV_AUTHENTICATION_TEST_LIVE" => "FALSE",
     "BLUTV_AUTHENTICATION_TEST_EXPLAIN" => "FALSE",
-    "BLUTV_AUTHENTICATION_APIKEY" => "NONE",
+    "BLUTV_AUTHENTICATION_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -88,6 +88,9 @@ def social_login_basic_setup(extra)
 
   if env["BLUTV_AUTHENTICATION_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["BLUTV_AUTHENTICATION_APIKEY"],
       },

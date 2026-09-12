@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -80,11 +91,13 @@ class Config {
     "login": {
       "fields": [
         {
+          "format": "date-time",
           "name": "createdAt",
           "short": "Account creation timestamp",
           "type": "`$STRING`"
         },
         {
+          "format": "email",
           "name": "email",
           "op": {
             "create": {
@@ -106,6 +119,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "password",
           "name": "password",
           "req": true,
           "short": "User's password",
@@ -127,6 +141,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "login",
       "op": {
         "create": {
@@ -138,15 +156,23 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/auth/login",
-              "parts": [
-                "auth",
-                "login"
+              "segments": [
+                {
+                  "lit": "auth"
+                },
+                {
+                  "lit": "login"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.user`"
-              }
+              },
+              "parts": [
+                "auth",
+                "login"
+              ]
             }
           ]
         }
@@ -158,6 +184,7 @@ class Config {
     "password_recovery": {
       "fields": [
         {
+          "format": "email",
           "name": "email",
           "req": true,
           "short": "Email address for password recovery",
@@ -184,15 +211,23 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/auth/password-recovery",
-              "parts": [
-                "auth",
-                "password-recovery"
+              "segments": [
+                {
+                  "lit": "auth"
+                },
+                {
+                  "lit": "password-recovery"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "auth",
+                "password-recovery"
+              ]
             }
           ]
         }
@@ -204,6 +239,7 @@ class Config {
     "register": {
       "fields": [
         {
+          "format": "email",
           "name": "email",
           "req": true,
           "short": "User's email address",
@@ -216,6 +252,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "password",
           "name": "password",
           "req": true,
           "short": "User's password",
@@ -243,15 +280,23 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/auth/register",
-              "parts": [
-                "auth",
-                "register"
+              "segments": [
+                {
+                  "lit": "auth"
+                },
+                {
+                  "lit": "register"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.user`"
-              }
+              },
+              "parts": [
+                "auth",
+                "register"
+              ]
             }
           ]
         }
@@ -269,11 +314,13 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "createdAt",
           "short": "Account creation timestamp",
           "type": "`$STRING`"
         },
         {
+          "format": "email",
           "name": "email",
           "short": "User's email address",
           "type": "`$STRING`"
@@ -305,6 +352,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "social_login",
       "op": {
         "create": {
@@ -316,15 +367,23 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/auth/social-login",
-              "parts": [
-                "auth",
-                "social-login"
+              "segments": [
+                {
+                  "lit": "auth"
+                },
+                {
+                  "lit": "social-login"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.user`"
-              }
+              },
+              "parts": [
+                "auth",
+                "social-login"
+              ]
             }
           ]
         }
@@ -340,6 +399,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

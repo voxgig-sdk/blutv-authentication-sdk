@@ -50,11 +50,13 @@ module BlutvAuthenticationConfig
         "login" => {
           "fields" => [
             {
+              "format" => "date-time",
               "name" => "createdAt",
               "short" => "Account creation timestamp",
               "type" => "`$STRING`",
             },
             {
+              "format" => "email",
               "name" => "email",
               "op" => {
                 "create" => {
@@ -76,6 +78,7 @@ module BlutvAuthenticationConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "password",
               "name" => "password",
               "req" => true,
               "short" => "User's password",
@@ -97,6 +100,10 @@ module BlutvAuthenticationConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "login",
           "op" => {
             "create" => {
@@ -108,15 +115,23 @@ module BlutvAuthenticationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/auth/login",
-                  "parts" => [
-                    "auth",
-                    "login",
+                  "segments" => [
+                    {
+                      "lit" => "auth",
+                    },
+                    {
+                      "lit" => "login",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.user`",
                   },
+                  "parts" => [
+                    "auth",
+                    "login",
+                  ],
                 },
               ],
             },
@@ -128,6 +143,7 @@ module BlutvAuthenticationConfig
         "password_recovery" => {
           "fields" => [
             {
+              "format" => "email",
               "name" => "email",
               "req" => true,
               "short" => "Email address for password recovery",
@@ -154,15 +170,23 @@ module BlutvAuthenticationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/auth/password-recovery",
-                  "parts" => [
-                    "auth",
-                    "password-recovery",
+                  "segments" => [
+                    {
+                      "lit" => "auth",
+                    },
+                    {
+                      "lit" => "password-recovery",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "auth",
+                    "password-recovery",
+                  ],
                 },
               ],
             },
@@ -174,6 +198,7 @@ module BlutvAuthenticationConfig
         "register" => {
           "fields" => [
             {
+              "format" => "email",
               "name" => "email",
               "req" => true,
               "short" => "User's email address",
@@ -186,6 +211,7 @@ module BlutvAuthenticationConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "password",
               "name" => "password",
               "req" => true,
               "short" => "User's password",
@@ -213,15 +239,23 @@ module BlutvAuthenticationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/auth/register",
-                  "parts" => [
-                    "auth",
-                    "register",
+                  "segments" => [
+                    {
+                      "lit" => "auth",
+                    },
+                    {
+                      "lit" => "register",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.user`",
                   },
+                  "parts" => [
+                    "auth",
+                    "register",
+                  ],
                 },
               ],
             },
@@ -239,11 +273,13 @@ module BlutvAuthenticationConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "createdAt",
               "short" => "Account creation timestamp",
               "type" => "`$STRING`",
             },
             {
+              "format" => "email",
               "name" => "email",
               "short" => "User's email address",
               "type" => "`$STRING`",
@@ -275,6 +311,10 @@ module BlutvAuthenticationConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "social_login",
           "op" => {
             "create" => {
@@ -286,15 +326,23 @@ module BlutvAuthenticationConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/auth/social-login",
-                  "parts" => [
-                    "auth",
-                    "social-login",
+                  "segments" => [
+                    {
+                      "lit" => "auth",
+                    },
+                    {
+                      "lit" => "social-login",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.user`",
                   },
+                  "parts" => [
+                    "auth",
+                    "social-login",
+                  ],
                 },
               ],
             },

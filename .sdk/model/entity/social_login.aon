@@ -12,12 +12,14 @@ main: kit: entity: social_login: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "createdAt"
       req: false
       short: "Account creation timestamp"
       type: "`$STRING`"
     }
     {
+      format: "email"
       name: "email"
       req: false
       short: "User's email address"
@@ -68,9 +70,13 @@ main: kit: entity: social_login: {
         {
           method: "POST"
           orig: "/auth/social-login"
-          parts: [
-            "auth"
-            "social-login"
+          segments: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "social-login"
+            }
           ]
           transform: {
             req: "`reqdata`"

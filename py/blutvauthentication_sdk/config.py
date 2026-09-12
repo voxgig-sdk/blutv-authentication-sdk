@@ -1,6 +1,14 @@
 # BlutvAuthentication SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -59,11 +67,13 @@ def make_config():
       "login": {
         "fields": [
           {
+            "format": "date-time",
             "name": "createdAt",
             "short": "Account creation timestamp",
             "type": "`$STRING`",
           },
           {
+            "format": "email",
             "name": "email",
             "op": {
               "create": {
@@ -85,6 +95,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "password",
             "name": "password",
             "req": True,
             "short": "User's password",
@@ -106,6 +117,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "login",
         "op": {
           "create": {
@@ -117,15 +132,23 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/auth/login",
-                "parts": [
-                  "auth",
-                  "login",
+                "segments": [
+                  {
+                    "lit": "auth",
+                  },
+                  {
+                    "lit": "login",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.user`",
                 },
+                "parts": [
+                  "auth",
+                  "login",
+                ],
               },
             ],
           },
@@ -137,6 +160,7 @@ def make_config():
       "password_recovery": {
         "fields": [
           {
+            "format": "email",
             "name": "email",
             "req": True,
             "short": "Email address for password recovery",
@@ -163,15 +187,23 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/auth/password-recovery",
-                "parts": [
-                  "auth",
-                  "password-recovery",
+                "segments": [
+                  {
+                    "lit": "auth",
+                  },
+                  {
+                    "lit": "password-recovery",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "auth",
+                  "password-recovery",
+                ],
               },
             ],
           },
@@ -183,6 +215,7 @@ def make_config():
       "register": {
         "fields": [
           {
+            "format": "email",
             "name": "email",
             "req": True,
             "short": "User's email address",
@@ -195,6 +228,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "password",
             "name": "password",
             "req": True,
             "short": "User's password",
@@ -222,15 +256,23 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/auth/register",
-                "parts": [
-                  "auth",
-                  "register",
+                "segments": [
+                  {
+                    "lit": "auth",
+                  },
+                  {
+                    "lit": "register",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.user`",
                 },
+                "parts": [
+                  "auth",
+                  "register",
+                ],
               },
             ],
           },
@@ -248,11 +290,13 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "createdAt",
             "short": "Account creation timestamp",
             "type": "`$STRING`",
           },
           {
+            "format": "email",
             "name": "email",
             "short": "User's email address",
             "type": "`$STRING`",
@@ -284,6 +328,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "social_login",
         "op": {
           "create": {
@@ -295,15 +343,23 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/auth/social-login",
-                "parts": [
-                  "auth",
-                  "social-login",
+                "segments": [
+                  {
+                    "lit": "auth",
+                  },
+                  {
+                    "lit": "social-login",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.user`",
                 },
+                "parts": [
+                  "auth",
+                  "social-login",
+                ],
               },
             ],
           },
