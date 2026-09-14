@@ -107,7 +107,7 @@ local result, err = client:Register():create({ email = "example", name = "exampl
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/blutv-authentication` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases) |
+| TypeScript | `@voxgig-sdk/blutv-authentication-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases) |
 | Python | `voxgig-sdk-blutv-authentication` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases) |
 | PHP | `voxgig-sdk/blutv-authentication` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/blutv-authentication-sdk/go` | `go get github.com/voxgig-sdk/blutv-authentication-sdk/go@latest` |
@@ -121,7 +121,7 @@ local result, err = client:Register():create({ email = "example", name = "exampl
 ### TypeScript
 
 ```ts
-import { BlutvAuthenticationSDK } from '@voxgig-sdk/blutv-authentication'
+import { BlutvAuthenticationSDK } from '@voxgig-sdk/blutv-authentication-sdk'
 
 const client = new BlutvAuthenticationSDK({
   apikey: process.env.BLUTV_AUTHENTICATION_APIKEY,

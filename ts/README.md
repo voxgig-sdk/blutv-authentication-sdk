@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { BlutvAuthenticationSDK } from '@voxgig-sdk/blutv-authentication'
+import { BlutvAuthenticationSDK } from '@voxgig-sdk/blutv-authentication-sdk'
 
 const client = new BlutvAuthenticationSDK({
   apikey: process.env.BLUTV_AUTHENTICATION_APIKEY,
@@ -557,7 +557,7 @@ blutv-authentication/
 Import the SDK from the package root:
 
 ```ts
-import { BlutvAuthenticationSDK } from '@voxgig-sdk/blutv-authentication'
+import { BlutvAuthenticationSDK } from '@voxgig-sdk/blutv-authentication-sdk'
 ```
 
 ### Entity state
