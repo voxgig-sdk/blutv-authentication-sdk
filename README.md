@@ -107,12 +107,12 @@ local result, err = client:Register():create({ email = "example", name = "exampl
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/blutv-authentication-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases) |
-| Python | `voxgig-sdk-blutv-authentication` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases) |
-| PHP | `voxgig-sdk/blutv-authentication` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases) |
+| TypeScript | `@voxgig-sdk/blutv-authentication-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/tags) |
+| Python | `voxgig-sdk-blutv-authentication` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/tags) |
+| PHP | `voxgig-sdk/blutv-authentication` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/blutv-authentication-sdk/go` | `go get github.com/voxgig-sdk/blutv-authentication-sdk/go@latest` |
-| Ruby | `voxgig-sdk-blutv-authentication` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases) |
-| Lua | `voxgig-sdk-blutv-authentication` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases) |
+| Ruby | `voxgig-sdk-blutv-authentication` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/tags) |
+| Lua | `voxgig-sdk-blutv-authentication` | publish pending — [install from git tag](https://github.com/voxgig-sdk/blutv-authentication-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/blutv-authentication-sdk/go-cli` | `go install github.com/voxgig-sdk/blutv-authentication-sdk/go-cli/cmd/blutv-authentication@latest` |
 | Go MCP server | `github.com/voxgig-sdk/blutv-authentication-sdk/go-mcp` | `go get github.com/voxgig-sdk/blutv-authentication-sdk/go-mcp@latest` |
 

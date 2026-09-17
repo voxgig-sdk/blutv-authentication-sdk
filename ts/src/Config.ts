@@ -131,18 +131,18 @@ class Config {
 
     entity: {
       
-      login: {
-      },
-
-      password_recovery: {
-      },
-
-      register: {
-      },
-
-      social_login: {
-      },
-
+        login: {
+        },
+  
+        password_recovery: {
+        },
+  
+        register: {
+        },
+  
+        social_login: {
+        },
+  
     }
   }
 
