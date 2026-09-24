@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -151,14 +144,16 @@ class Config {
     "login": {
       "fields": [
         {
-          "format": "date-time",
           "name": "createdAt",
+          "title": "Created At",
+          "type": "`$STRING`",
           "short": "Account creation timestamp",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
-          "format": "email",
           "name": "email",
+          "title": "Email",
+          "type": "`$STRING`",
           "op": {
             "create": {
               "req": true,
@@ -166,39 +161,45 @@ class Config {
             }
           },
           "short": "User's email address",
-          "type": "`$STRING`"
+          "format": "email"
         },
         {
           "name": "id",
-          "short": "Unique user identifier",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique user identifier"
         },
         {
           "name": "name",
-          "short": "User's full name",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "User's full name"
         },
         {
-          "format": "password",
           "name": "password",
+          "title": "Password",
+          "type": "`$STRING`",
           "req": true,
           "short": "User's password",
-          "type": "`$STRING`"
+          "format": "password"
         },
         {
           "name": "phone",
-          "short": "User's phone number",
-          "type": "`$STRING`"
+          "title": "Phone",
+          "type": "`$STRING`",
+          "short": "User's phone number"
         },
         {
           "name": "rememberMe",
-          "short": "Keep user logged in",
-          "type": "`$BOOLEAN`"
+          "title": "Remember Me",
+          "type": "`$BOOLEAN`",
+          "short": "Keep user logged in"
         },
         {
           "name": "subscriptionStatus",
-          "short": "User's subscription status",
-          "type": "`$STRING`"
+          "title": "Subscription Status",
+          "type": "`$STRING`",
+          "short": "User's subscription status"
         }
       ],
       "id": {
@@ -212,7 +213,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/auth/login",
@@ -224,15 +224,17 @@ class Config {
                   "lit": "login"
                 }
               ],
-              "select": {},
+              "parts": [
+                "auth",
+                "login"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.user`"
               },
-              "parts": [
-                "auth",
-                "login"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -244,19 +246,22 @@ class Config {
     "password_recovery": {
       "fields": [
         {
-          "format": "email",
           "name": "email",
+          "title": "Email",
+          "type": "`$STRING`",
           "req": true,
           "short": "Email address for password recovery",
-          "type": "`$STRING`"
+          "format": "email"
         },
         {
           "name": "message",
-          "short": "Success message",
-          "type": "`$STRING`"
+          "title": "Message",
+          "type": "`$STRING`",
+          "short": "Success message"
         },
         {
           "name": "success",
+          "title": "Success",
           "type": "`$BOOLEAN`"
         }
       ],
@@ -267,7 +272,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/auth/password-recovery",
@@ -279,15 +283,17 @@ class Config {
                   "lit": "password-recovery"
                 }
               ],
-              "select": {},
+              "parts": [
+                "auth",
+                "password-recovery"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "auth",
-                "password-recovery"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -299,34 +305,39 @@ class Config {
     "register": {
       "fields": [
         {
-          "format": "email",
           "name": "email",
+          "title": "Email",
+          "type": "`$STRING`",
           "req": true,
           "short": "User's email address",
-          "type": "`$STRING`"
+          "format": "email"
         },
         {
           "name": "name",
+          "title": "Name",
+          "type": "`$STRING`",
           "req": true,
-          "short": "User's full name",
-          "type": "`$STRING`"
+          "short": "User's full name"
         },
         {
-          "format": "password",
           "name": "password",
+          "title": "Password",
+          "type": "`$STRING`",
           "req": true,
           "short": "User's password",
-          "type": "`$STRING`"
+          "format": "password"
         },
         {
           "name": "phone",
-          "short": "User's phone number",
-          "type": "`$STRING`"
+          "title": "Phone",
+          "type": "`$STRING`",
+          "short": "User's phone number"
         },
         {
           "name": "termsAccepted",
-          "short": "User acceptance of terms and conditions",
-          "type": "`$BOOLEAN`"
+          "title": "Terms Accepted",
+          "type": "`$BOOLEAN`",
+          "short": "User acceptance of terms and conditions"
         }
       ],
       "name": "register",
@@ -336,7 +347,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/auth/register",
@@ -348,15 +358,17 @@ class Config {
                   "lit": "register"
                 }
               ],
-              "select": {},
+              "parts": [
+                "auth",
+                "register"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.user`"
               },
-              "parts": [
-                "auth",
-                "register"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -369,47 +381,55 @@ class Config {
       "fields": [
         {
           "name": "accessToken",
+          "title": "Access Token",
+          "type": "`$STRING`",
           "req": true,
-          "short": "OAuth access token from the social provider",
-          "type": "`$STRING`"
+          "short": "OAuth access token from the social provider"
         },
         {
-          "format": "date-time",
           "name": "createdAt",
+          "title": "Created At",
+          "type": "`$STRING`",
           "short": "Account creation timestamp",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
-          "format": "email",
           "name": "email",
+          "title": "Email",
+          "type": "`$STRING`",
           "short": "User's email address",
-          "type": "`$STRING`"
+          "format": "email"
         },
         {
           "name": "id",
-          "short": "Unique user identifier",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique user identifier"
         },
         {
           "name": "name",
-          "short": "User's full name",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "User's full name"
         },
         {
           "name": "phone",
-          "short": "User's phone number",
-          "type": "`$STRING`"
+          "title": "Phone",
+          "type": "`$STRING`",
+          "short": "User's phone number"
         },
         {
           "name": "provider",
+          "title": "Provider",
+          "type": "`$STRING`",
           "req": true,
-          "short": "Social media provider",
-          "type": "`$STRING`"
+          "short": "Social media provider"
         },
         {
           "name": "subscriptionStatus",
-          "short": "User's subscription status",
-          "type": "`$STRING`"
+          "title": "Subscription Status",
+          "type": "`$STRING`",
+          "short": "User's subscription status"
         }
       ],
       "id": {
@@ -423,7 +443,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/auth/social-login",
@@ -435,15 +454,17 @@ class Config {
                   "lit": "social-login"
                 }
               ],
-              "select": {},
+              "parts": [
+                "auth",
+                "social-login"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.user`"
               },
-              "parts": [
-                "auth",
-                "social-login"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }

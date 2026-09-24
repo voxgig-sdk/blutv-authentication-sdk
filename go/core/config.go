@@ -96,14 +96,16 @@ func MakeConfig() map[string]any {
 			"login": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "date-time",
 						"name": "createdAt",
-						"short": "Account creation timestamp",
+						"title": "Created At",
 						"type": "`$STRING`",
+						"short": "Account creation timestamp",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "email",
 						"name": "email",
+						"title": "Email",
+						"type": "`$STRING`",
 						"op": map[string]any{
 							"create": map[string]any{
 								"req": true,
@@ -111,39 +113,45 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "User's email address",
-						"type": "`$STRING`",
+						"format": "email",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique user identifier",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique user identifier",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "User's full name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "User's full name",
 					},
 					map[string]any{
-						"format": "password",
 						"name": "password",
+						"title": "Password",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "User's password",
-						"type": "`$STRING`",
+						"format": "password",
 					},
 					map[string]any{
 						"name": "phone",
-						"short": "User's phone number",
+						"title": "Phone",
 						"type": "`$STRING`",
+						"short": "User's phone number",
 					},
 					map[string]any{
 						"name": "rememberMe",
-						"short": "Keep user logged in",
+						"title": "Remember Me",
 						"type": "`$BOOLEAN`",
+						"short": "Keep user logged in",
 					},
 					map[string]any{
 						"name": "subscriptionStatus",
-						"short": "User's subscription status",
+						"title": "Subscription Status",
 						"type": "`$STRING`",
+						"short": "User's subscription status",
 					},
 				},
 				"id": map[string]any{
@@ -157,7 +165,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/login",
@@ -169,15 +176,17 @@ func MakeConfig() map[string]any {
 										"lit": "login",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.user`",
-								},
 								"parts": []any{
 									"auth",
 									"login",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.user`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -189,19 +198,22 @@ func MakeConfig() map[string]any {
 			"password_recovery": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "email",
 						"name": "email",
+						"title": "Email",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Email address for password recovery",
-						"type": "`$STRING`",
+						"format": "email",
 					},
 					map[string]any{
 						"name": "message",
-						"short": "Success message",
+						"title": "Message",
 						"type": "`$STRING`",
+						"short": "Success message",
 					},
 					map[string]any{
 						"name": "success",
+						"title": "Success",
 						"type": "`$BOOLEAN`",
 					},
 				},
@@ -212,7 +224,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/password-recovery",
@@ -224,15 +235,17 @@ func MakeConfig() map[string]any {
 										"lit": "password-recovery",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"auth",
 									"password-recovery",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -244,34 +257,39 @@ func MakeConfig() map[string]any {
 			"register": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "email",
 						"name": "email",
+						"title": "Email",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "User's email address",
-						"type": "`$STRING`",
+						"format": "email",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "User's full name",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "password",
 						"name": "password",
+						"title": "Password",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "User's password",
-						"type": "`$STRING`",
+						"format": "password",
 					},
 					map[string]any{
 						"name": "phone",
-						"short": "User's phone number",
+						"title": "Phone",
 						"type": "`$STRING`",
+						"short": "User's phone number",
 					},
 					map[string]any{
 						"name": "termsAccepted",
-						"short": "User acceptance of terms and conditions",
+						"title": "Terms Accepted",
 						"type": "`$BOOLEAN`",
+						"short": "User acceptance of terms and conditions",
 					},
 				},
 				"name": "register",
@@ -281,7 +299,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/register",
@@ -293,15 +310,17 @@ func MakeConfig() map[string]any {
 										"lit": "register",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.user`",
-								},
 								"parts": []any{
 									"auth",
 									"register",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.user`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -314,47 +333,55 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "accessToken",
+						"title": "Access Token",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "OAuth access token from the social provider",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "createdAt",
-						"short": "Account creation timestamp",
+						"title": "Created At",
 						"type": "`$STRING`",
+						"short": "Account creation timestamp",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "email",
 						"name": "email",
-						"short": "User's email address",
+						"title": "Email",
 						"type": "`$STRING`",
+						"short": "User's email address",
+						"format": "email",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique user identifier",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique user identifier",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "User's full name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "User's full name",
 					},
 					map[string]any{
 						"name": "phone",
-						"short": "User's phone number",
+						"title": "Phone",
 						"type": "`$STRING`",
+						"short": "User's phone number",
 					},
 					map[string]any{
 						"name": "provider",
+						"title": "Provider",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "Social media provider",
-						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "subscriptionStatus",
-						"short": "User's subscription status",
+						"title": "Subscription Status",
 						"type": "`$STRING`",
+						"short": "User's subscription status",
 					},
 				},
 				"id": map[string]any{
@@ -368,7 +395,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/social-login",
@@ -380,15 +406,17 @@ func MakeConfig() map[string]any {
 										"lit": "social-login",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.user`",
-								},
 								"parts": []any{
 									"auth",
 									"social-login",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.user`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},

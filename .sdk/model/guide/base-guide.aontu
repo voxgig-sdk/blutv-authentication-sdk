@@ -1,0 +1,38 @@
+# Generated from the API definition and overwritten on every build: do not
+# edit this file. Put customizations in the guide entry file, which includes
+# this one and overrides its defaults:
+#   guide.aontu
+
+guide: {
+  metrics: count: entity: 4
+  metrics: count: path: 4
+  metrics: count: method: 4
+
+  entity: login: {
+    path: "/auth/login": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.user`")|top
+    }
+  }
+
+  entity: password_recovery: {
+    path: "/auth/password-recovery": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: register: {
+    path: "/auth/register": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.user`")|top
+    }
+  }
+
+  entity: social_login: {
+    path: "/auth/social-login": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.user`")|top
+    }
+  }
+
+}

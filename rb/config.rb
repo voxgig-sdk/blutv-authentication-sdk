@@ -104,14 +104,16 @@ module BlutvAuthenticationConfig
         "login" => {
           "fields" => [
             {
-              "format" => "date-time",
               "name" => "createdAt",
-              "short" => "Account creation timestamp",
+              "title" => "Created At",
               "type" => "`$STRING`",
+              "short" => "Account creation timestamp",
+              "format" => "date-time",
             },
             {
-              "format" => "email",
               "name" => "email",
+              "title" => "Email",
+              "type" => "`$STRING`",
               "op" => {
                 "create" => {
                   "req" => true,
@@ -119,39 +121,45 @@ module BlutvAuthenticationConfig
                 },
               },
               "short" => "User's email address",
-              "type" => "`$STRING`",
+              "format" => "email",
             },
             {
               "name" => "id",
-              "short" => "Unique user identifier",
+              "title" => "Id",
               "type" => "`$STRING`",
+              "short" => "Unique user identifier",
             },
             {
               "name" => "name",
-              "short" => "User's full name",
+              "title" => "Name",
               "type" => "`$STRING`",
+              "short" => "User's full name",
             },
             {
-              "format" => "password",
               "name" => "password",
+              "title" => "Password",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "User's password",
-              "type" => "`$STRING`",
+              "format" => "password",
             },
             {
               "name" => "phone",
-              "short" => "User's phone number",
+              "title" => "Phone",
               "type" => "`$STRING`",
+              "short" => "User's phone number",
             },
             {
               "name" => "rememberMe",
-              "short" => "Keep user logged in",
+              "title" => "Remember Me",
               "type" => "`$BOOLEAN`",
+              "short" => "Keep user logged in",
             },
             {
               "name" => "subscriptionStatus",
-              "short" => "User's subscription status",
+              "title" => "Subscription Status",
               "type" => "`$STRING`",
+              "short" => "User's subscription status",
             },
           ],
           "id" => {
@@ -165,7 +173,6 @@ module BlutvAuthenticationConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/auth/login",
@@ -177,15 +184,17 @@ module BlutvAuthenticationConfig
                       "lit" => "login",
                     },
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.user`",
-                  },
                   "parts" => [
                     "auth",
                     "login",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.user`",
+                  },
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -197,19 +206,22 @@ module BlutvAuthenticationConfig
         "password_recovery" => {
           "fields" => [
             {
-              "format" => "email",
               "name" => "email",
+              "title" => "Email",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "Email address for password recovery",
-              "type" => "`$STRING`",
+              "format" => "email",
             },
             {
               "name" => "message",
-              "short" => "Success message",
+              "title" => "Message",
               "type" => "`$STRING`",
+              "short" => "Success message",
             },
             {
               "name" => "success",
+              "title" => "Success",
               "type" => "`$BOOLEAN`",
             },
           ],
@@ -220,7 +232,6 @@ module BlutvAuthenticationConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/auth/password-recovery",
@@ -232,15 +243,17 @@ module BlutvAuthenticationConfig
                       "lit" => "password-recovery",
                     },
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "auth",
                     "password-recovery",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -252,34 +265,39 @@ module BlutvAuthenticationConfig
         "register" => {
           "fields" => [
             {
-              "format" => "email",
               "name" => "email",
+              "title" => "Email",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "User's email address",
-              "type" => "`$STRING`",
+              "format" => "email",
             },
             {
               "name" => "name",
+              "title" => "Name",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "User's full name",
-              "type" => "`$STRING`",
             },
             {
-              "format" => "password",
               "name" => "password",
+              "title" => "Password",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "User's password",
-              "type" => "`$STRING`",
+              "format" => "password",
             },
             {
               "name" => "phone",
-              "short" => "User's phone number",
+              "title" => "Phone",
               "type" => "`$STRING`",
+              "short" => "User's phone number",
             },
             {
               "name" => "termsAccepted",
-              "short" => "User acceptance of terms and conditions",
+              "title" => "Terms Accepted",
               "type" => "`$BOOLEAN`",
+              "short" => "User acceptance of terms and conditions",
             },
           ],
           "name" => "register",
@@ -289,7 +307,6 @@ module BlutvAuthenticationConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/auth/register",
@@ -301,15 +318,17 @@ module BlutvAuthenticationConfig
                       "lit" => "register",
                     },
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.user`",
-                  },
                   "parts" => [
                     "auth",
                     "register",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.user`",
+                  },
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -322,47 +341,55 @@ module BlutvAuthenticationConfig
           "fields" => [
             {
               "name" => "accessToken",
+              "title" => "Access Token",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "OAuth access token from the social provider",
-              "type" => "`$STRING`",
             },
             {
-              "format" => "date-time",
               "name" => "createdAt",
-              "short" => "Account creation timestamp",
+              "title" => "Created At",
               "type" => "`$STRING`",
+              "short" => "Account creation timestamp",
+              "format" => "date-time",
             },
             {
-              "format" => "email",
               "name" => "email",
-              "short" => "User's email address",
+              "title" => "Email",
               "type" => "`$STRING`",
+              "short" => "User's email address",
+              "format" => "email",
             },
             {
               "name" => "id",
-              "short" => "Unique user identifier",
+              "title" => "Id",
               "type" => "`$STRING`",
+              "short" => "Unique user identifier",
             },
             {
               "name" => "name",
-              "short" => "User's full name",
+              "title" => "Name",
               "type" => "`$STRING`",
+              "short" => "User's full name",
             },
             {
               "name" => "phone",
-              "short" => "User's phone number",
+              "title" => "Phone",
               "type" => "`$STRING`",
+              "short" => "User's phone number",
             },
             {
               "name" => "provider",
+              "title" => "Provider",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "Social media provider",
-              "type" => "`$STRING`",
             },
             {
               "name" => "subscriptionStatus",
-              "short" => "User's subscription status",
+              "title" => "Subscription Status",
               "type" => "`$STRING`",
+              "short" => "User's subscription status",
             },
           ],
           "id" => {
@@ -376,7 +403,6 @@ module BlutvAuthenticationConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/auth/social-login",
@@ -388,15 +414,17 @@ module BlutvAuthenticationConfig
                       "lit" => "social-login",
                     },
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.user`",
-                  },
                   "parts" => [
                     "auth",
                     "social-login",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.user`",
+                  },
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },

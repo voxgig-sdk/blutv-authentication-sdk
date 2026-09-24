@@ -1,7 +1,7 @@
 // Typed models for the BlutvAuthentication SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,14 +14,6 @@ import (
 
 // Login is the typed data model for the login entity.
 type Login struct {
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Password string `json:"password"`
-	Phone *string `json:"phone,omitempty"`
-	RememberMe *bool `json:"rememberMe,omitempty"`
-	SubscriptionStatus *string `json:"subscriptionStatus,omitempty"`
 }
 
 // LoginCreateData is the typed request payload for Login.CreateTyped.
@@ -38,9 +30,6 @@ type LoginCreateData struct {
 
 // PasswordRecovery is the typed data model for the password_recovery entity.
 type PasswordRecovery struct {
-	Email string `json:"email"`
-	Message *string `json:"message,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // PasswordRecoveryCreateData is the typed request payload for PasswordRecovery.CreateTyped.
@@ -52,11 +41,6 @@ type PasswordRecoveryCreateData struct {
 
 // Register is the typed data model for the register entity.
 type Register struct {
-	Email string `json:"email"`
-	Name string `json:"name"`
-	Password string `json:"password"`
-	Phone *string `json:"phone,omitempty"`
-	TermsAccepted *bool `json:"termsAccepted,omitempty"`
 }
 
 // RegisterCreateData is the typed request payload for Register.CreateTyped.
@@ -70,14 +54,6 @@ type RegisterCreateData struct {
 
 // SocialLogin is the typed data model for the social_login entity.
 type SocialLogin struct {
-	AccessToken string `json:"accessToken"`
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Provider string `json:"provider"`
-	SubscriptionStatus *string `json:"subscriptionStatus,omitempty"`
 }
 
 // SocialLoginCreateData is the typed request payload for SocialLogin.CreateTyped.

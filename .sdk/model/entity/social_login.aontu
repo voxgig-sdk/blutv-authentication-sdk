@@ -1,0 +1,105 @@
+# Entity: social_login
+
+main: kit: entity: social_login: {
+
+  alias: field: {}
+
+  fields: {
+    accessToken: {
+      h: "Access Token"
+      n: "accessToken"
+      r: true
+      sh: "OAuth access token from the social provider"
+      t: "`$STRING`"
+    }
+    createdAt: {
+      fo: "date-time"
+      h: "Created At"
+      n: "createdAt"
+      r: false
+      sh: "Account creation timestamp"
+      t: "`$STRING`"
+    }
+    email: {
+      fo: "email"
+      h: "Email"
+      n: "email"
+      r: false
+      sh: "User's email address"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique user identifier"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "User's full name"
+      t: "`$STRING`"
+    }
+    phone: {
+      h: "Phone"
+      n: "phone"
+      r: false
+      sh: "User's phone number"
+      t: "`$STRING`"
+    }
+    provider: {
+      h: "Provider"
+      n: "provider"
+      r: true
+      sh: "Social media provider"
+      t: "`$STRING`"
+    }
+    subscriptionStatus: {
+      h: "Subscription Status"
+      n: "subscriptionStatus"
+      r: false
+      sh: "User's subscription status"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "social_login"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /auth/social-login"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/auth/social-login"
+          s: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "social-login"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.user`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

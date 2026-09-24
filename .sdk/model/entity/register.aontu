@@ -1,0 +1,79 @@
+# Entity: register
+
+main: kit: entity: register: {
+
+  alias: field: {}
+
+  fields: {
+    email: {
+      fo: "email"
+      h: "Email"
+      n: "email"
+      r: true
+      sh: "User's email address"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      sh: "User's full name"
+      t: "`$STRING`"
+    }
+    password: {
+      fo: "password"
+      h: "Password"
+      n: "password"
+      r: true
+      sh: "User's password"
+      t: "`$STRING`"
+    }
+    phone: {
+      h: "Phone"
+      n: "phone"
+      r: false
+      sh: "User's phone number"
+      t: "`$STRING`"
+    }
+    termsAccepted: {
+      h: "Terms Accepted"
+      n: "termsAccepted"
+      r: false
+      sh: "User acceptance of terms and conditions"
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "register"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /auth/register"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/auth/register"
+          s: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "register"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.user`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
