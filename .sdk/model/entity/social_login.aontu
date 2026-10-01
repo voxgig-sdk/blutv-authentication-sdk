@@ -12,42 +12,12 @@ main: kit: entity: social_login: {
       sh: "OAuth access token from the social provider"
       t: "`$STRING`"
     }
-    createdAt: {
-      fo: "date-time"
-      h: "Created At"
-      n: "createdAt"
+    expiresIn: {
+      h: "Expires In"
+      n: "expiresIn"
       r: false
-      sh: "Account creation timestamp"
-      t: "`$STRING`"
-    }
-    email: {
-      fo: "email"
-      h: "Email"
-      n: "email"
-      r: false
-      sh: "User's email address"
-      t: "`$STRING`"
-    }
-    id: {
-      h: "Id"
-      n: "id"
-      r: false
-      sh: "Unique user identifier"
-      t: "`$STRING`"
-    }
-    name: {
-      h: "Name"
-      n: "name"
-      r: false
-      sh: "User's full name"
-      t: "`$STRING`"
-    }
-    phone: {
-      h: "Phone"
-      n: "phone"
-      r: false
-      sh: "User's phone number"
-      t: "`$STRING`"
+      sh: "Token expiration time in seconds"
+      t: "`$INTEGER`"
     }
     provider: {
       h: "Provider"
@@ -56,18 +26,32 @@ main: kit: entity: social_login: {
       sh: "Social media provider"
       t: "`$STRING`"
     }
-    subscriptionStatus: {
-      h: "Subscription Status"
-      n: "subscriptionStatus"
+    refreshToken: {
+      h: "Refresh Token"
+      n: "refreshToken"
       r: false
-      sh: "User's subscription status"
+      sh: "Refresh token for obtaining new access tokens"
       t: "`$STRING`"
     }
-  }
-
-  id: {
-    field: "id"
-    name: "id"
+    success: {
+      h: "Success"
+      n: "success"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    token: {
+      h: "Token"
+      n: "token"
+      r: false
+      sh: "JWT authentication token"
+      t: "`$STRING`"
+    }
+    user: {
+      h: "User"
+      n: "user"
+      r: false
+      t: "`$OBJECT`"
+    }
   }
 
   name: "social_login"
@@ -93,7 +77,7 @@ main: kit: entity: social_login: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.user`"
+            res: "`body`"
           }
         }
       ]

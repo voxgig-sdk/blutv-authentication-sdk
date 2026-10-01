@@ -96,36 +96,18 @@ func MakeConfig() map[string]any {
 			"login": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "createdAt",
-						"title": "Created At",
-						"type": "`$STRING`",
-						"short": "Account creation timestamp",
-						"format": "date-time",
-					},
-					map[string]any{
 						"name": "email",
 						"title": "Email",
 						"type": "`$STRING`",
-						"op": map[string]any{
-							"create": map[string]any{
-								"req": true,
-								"type": "`$STRING`",
-							},
-						},
-						"short": "User's email address",
+						"req": true,
+						"short": "User's email address or username",
 						"format": "email",
 					},
 					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-						"short": "Unique user identifier",
-					},
-					map[string]any{
-						"name": "name",
-						"title": "Name",
-						"type": "`$STRING`",
-						"short": "User's full name",
+						"name": "expiresIn",
+						"title": "Expires In",
+						"type": "`$INTEGER`",
+						"short": "Token expiration time in seconds",
 					},
 					map[string]any{
 						"name": "password",
@@ -136,10 +118,10 @@ func MakeConfig() map[string]any {
 						"format": "password",
 					},
 					map[string]any{
-						"name": "phone",
-						"title": "Phone",
+						"name": "refreshToken",
+						"title": "Refresh Token",
 						"type": "`$STRING`",
-						"short": "User's phone number",
+						"short": "Refresh token for obtaining new access tokens",
 					},
 					map[string]any{
 						"name": "rememberMe",
@@ -148,15 +130,21 @@ func MakeConfig() map[string]any {
 						"short": "Keep user logged in",
 					},
 					map[string]any{
-						"name": "subscriptionStatus",
-						"title": "Subscription Status",
-						"type": "`$STRING`",
-						"short": "User's subscription status",
+						"name": "success",
+						"title": "Success",
+						"type": "`$BOOLEAN`",
 					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
+					map[string]any{
+						"name": "token",
+						"title": "Token",
+						"type": "`$STRING`",
+						"short": "JWT authentication token",
+					},
+					map[string]any{
+						"name": "user",
+						"title": "User",
+						"type": "`$OBJECT`",
+					},
 				},
 				"name": "login",
 				"op": map[string]any{
@@ -183,7 +171,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.user`",
+									"res": "`body`",
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
@@ -317,7 +305,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.user`",
+									"res": "`body`",
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},
@@ -339,36 +327,10 @@ func MakeConfig() map[string]any {
 						"short": "OAuth access token from the social provider",
 					},
 					map[string]any{
-						"name": "createdAt",
-						"title": "Created At",
-						"type": "`$STRING`",
-						"short": "Account creation timestamp",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "email",
-						"title": "Email",
-						"type": "`$STRING`",
-						"short": "User's email address",
-						"format": "email",
-					},
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-						"short": "Unique user identifier",
-					},
-					map[string]any{
-						"name": "name",
-						"title": "Name",
-						"type": "`$STRING`",
-						"short": "User's full name",
-					},
-					map[string]any{
-						"name": "phone",
-						"title": "Phone",
-						"type": "`$STRING`",
-						"short": "User's phone number",
+						"name": "expiresIn",
+						"title": "Expires In",
+						"type": "`$INTEGER`",
+						"short": "Token expiration time in seconds",
 					},
 					map[string]any{
 						"name": "provider",
@@ -378,15 +340,27 @@ func MakeConfig() map[string]any {
 						"short": "Social media provider",
 					},
 					map[string]any{
-						"name": "subscriptionStatus",
-						"title": "Subscription Status",
+						"name": "refreshToken",
+						"title": "Refresh Token",
 						"type": "`$STRING`",
-						"short": "User's subscription status",
+						"short": "Refresh token for obtaining new access tokens",
 					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
+					map[string]any{
+						"name": "success",
+						"title": "Success",
+						"type": "`$BOOLEAN`",
+					},
+					map[string]any{
+						"name": "token",
+						"title": "Token",
+						"type": "`$STRING`",
+						"short": "JWT authentication token",
+					},
+					map[string]any{
+						"name": "user",
+						"title": "User",
+						"type": "`$OBJECT`",
+					},
 				},
 				"name": "social_login",
 				"op": map[string]any{
@@ -413,7 +387,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.user`",
+									"res": "`body`",
 								},
 								"args": map[string]any{},
 								"select": map[string]any{},

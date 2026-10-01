@@ -39,7 +39,6 @@ class SocialLoginEntityTest < Minitest::Test
     social_login_ref01_data_result = social_login_ref01_ent.create(social_login_ref01_data, nil)
     social_login_ref01_data = Helpers.to_map(social_login_ref01_data_result.respond_to?(:data_get) ? social_login_ref01_data_result.data_get : social_login_ref01_data_result)
     assert !social_login_ref01_data.nil?
-    assert !social_login_ref01_data["id"].nil?
 
   end
 end

@@ -7,24 +7,24 @@
 -- edit by hand.
 
 ---@class Login
----@field createdAt? string
----@field email? string
----@field id? string
----@field name? string
+---@field email string
+---@field expiresIn? number
 ---@field password string
----@field phone? string
+---@field refreshToken? string
 ---@field rememberMe? boolean
----@field subscriptionStatus? string
+---@field success? boolean
+---@field token? string
+---@field user? table
 
 ---@class LoginCreateData
----@field createdAt? string
----@field email? string
----@field id? string
----@field name? string
+---@field email string
+---@field expiresIn? number
 ---@field password string
----@field phone? string
+---@field refreshToken? string
 ---@field rememberMe? boolean
----@field subscriptionStatus? string
+---@field success? boolean
+---@field token? string
+---@field user? table
 
 ---@class PasswordRecovery
 ---@field email string
@@ -52,23 +52,21 @@
 
 ---@class SocialLogin
 ---@field accessToken string
----@field createdAt? string
----@field email? string
----@field id? string
----@field name? string
----@field phone? string
+---@field expiresIn? number
 ---@field provider string
----@field subscriptionStatus? string
+---@field refreshToken? string
+---@field success? boolean
+---@field token? string
+---@field user? table
 
 ---@class SocialLoginCreateData
 ---@field accessToken string
----@field createdAt? string
----@field email? string
----@field id? string
----@field name? string
----@field phone? string
+---@field expiresIn? number
 ---@field provider string
----@field subscriptionStatus? string
+---@field refreshToken? string
+---@field success? boolean
+---@field token? string
+---@field user? table
 
 local M = {}
 

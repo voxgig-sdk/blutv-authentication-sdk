@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 BlutvAuthenticationUtility.registrar = ->(u) {
   u.clean = BlutvAuthenticationUtilities::Clean
+  u.clean_add = BlutvAuthenticationUtilities::CleanAdd
+  u.clean_explain = BlutvAuthenticationUtilities::CleanExplain
   u.done = BlutvAuthenticationUtilities::Done
   u.make_error = BlutvAuthenticationUtilities::MakeError
   u.feature_add = BlutvAuthenticationUtilities::FeatureAdd

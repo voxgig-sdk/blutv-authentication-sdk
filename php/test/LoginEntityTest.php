@@ -46,7 +46,6 @@ class LoginEntityTest extends TestCase
         $login_ref01_data_result = $login_ref01_ent->create($login_ref01_data, null);
         $login_ref01_data = Helpers::to_map(is_object($login_ref01_data_result) && method_exists($login_ref01_data_result, 'data_get') ? $login_ref01_data_result->data_get() : $login_ref01_data_result);
         $this->assertNotNull($login_ref01_data);
-        $this->assertNotNull($login_ref01_data["id"]);
 
     }
 }

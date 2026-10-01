@@ -2,47 +2,51 @@
   "existing": {
     "login": {
       "LOGIN00": {
-        "createdAt": "s50",
-        "email": "s51",
-        "id": "LOGIN00",
-        "name": "s53",
-        "password": "s54",
-        "phone": "s55",
+        "email": "s50",
+        "expiresIn": 81,
+        "password": "s52",
+        "refreshToken": "s53",
         "rememberMe": true,
-        "subscriptionStatus": "s57"
+        "success": false,
+        "token": "s56",
+        "user": {},
+        "id": "LOGIN00"
       },
       "LOGIN01": {
-        "createdAt": "sa0",
-        "email": "sa1",
-        "id": "LOGIN01",
-        "name": "sa3",
-        "password": "sa4",
-        "phone": "sa5",
+        "email": "sa0",
+        "expiresIn": 161,
+        "password": "sa2",
+        "refreshToken": "sa3",
         "rememberMe": true,
-        "subscriptionStatus": "sa7"
+        "success": false,
+        "token": "sa6",
+        "user": {},
+        "id": "LOGIN01"
       },
       "LOGIN02": {
-        "createdAt": "sf0",
-        "email": "sf1",
-        "id": "LOGIN02",
-        "name": "sf3",
-        "password": "sf4",
-        "phone": "sf5",
+        "email": "sf0",
+        "expiresIn": 241,
+        "password": "sf2",
+        "refreshToken": "sf3",
         "rememberMe": true,
-        "subscriptionStatus": "sf7"
+        "success": false,
+        "token": "sf6",
+        "user": {},
+        "id": "LOGIN02"
       }
     }
   },
   "new": {
     "login": {
       "login_ref01": {
-        "createdAt": "s140",
-        "email": "s141",
-        "name": "s143",
-        "password": "s144",
-        "phone": "s145",
+        "email": "s140",
+        "expiresIn": 321,
+        "password": "s142",
+        "refreshToken": "s143",
         "rememberMe": true,
-        "subscriptionStatus": "s147"
+        "success": false,
+        "token": "s146",
+        "user": {}
       }
     }
   },

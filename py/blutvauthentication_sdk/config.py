@@ -121,36 +121,18 @@ def make_config():
       "login": {
         "fields": [
           {
-            "name": "createdAt",
-            "title": "Created At",
-            "type": "`$STRING`",
-            "short": "Account creation timestamp",
-            "format": "date-time",
-          },
-          {
             "name": "email",
             "title": "Email",
             "type": "`$STRING`",
-            "op": {
-              "create": {
-                "req": True,
-                "type": "`$STRING`",
-              },
-            },
-            "short": "User's email address",
+            "req": True,
+            "short": "User's email address or username",
             "format": "email",
           },
           {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-            "short": "Unique user identifier",
-          },
-          {
-            "name": "name",
-            "title": "Name",
-            "type": "`$STRING`",
-            "short": "User's full name",
+            "name": "expiresIn",
+            "title": "Expires In",
+            "type": "`$INTEGER`",
+            "short": "Token expiration time in seconds",
           },
           {
             "name": "password",
@@ -161,10 +143,10 @@ def make_config():
             "format": "password",
           },
           {
-            "name": "phone",
-            "title": "Phone",
+            "name": "refreshToken",
+            "title": "Refresh Token",
             "type": "`$STRING`",
-            "short": "User's phone number",
+            "short": "Refresh token for obtaining new access tokens",
           },
           {
             "name": "rememberMe",
@@ -173,16 +155,22 @@ def make_config():
             "short": "Keep user logged in",
           },
           {
-            "name": "subscriptionStatus",
-            "title": "Subscription Status",
+            "name": "success",
+            "title": "Success",
+            "type": "`$BOOLEAN`",
+          },
+          {
+            "name": "token",
+            "title": "Token",
             "type": "`$STRING`",
-            "short": "User's subscription status",
+            "short": "JWT authentication token",
+          },
+          {
+            "name": "user",
+            "title": "User",
+            "type": "`$OBJECT`",
           },
         ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
         "name": "login",
         "op": {
           "create": {
@@ -208,7 +196,7 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body.user`",
+                  "res": "`body`",
                 },
                 "args": {},
                 "select": {},
@@ -342,7 +330,7 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body.user`",
+                  "res": "`body`",
                 },
                 "args": {},
                 "select": {},
@@ -364,36 +352,10 @@ def make_config():
             "short": "OAuth access token from the social provider",
           },
           {
-            "name": "createdAt",
-            "title": "Created At",
-            "type": "`$STRING`",
-            "short": "Account creation timestamp",
-            "format": "date-time",
-          },
-          {
-            "name": "email",
-            "title": "Email",
-            "type": "`$STRING`",
-            "short": "User's email address",
-            "format": "email",
-          },
-          {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-            "short": "Unique user identifier",
-          },
-          {
-            "name": "name",
-            "title": "Name",
-            "type": "`$STRING`",
-            "short": "User's full name",
-          },
-          {
-            "name": "phone",
-            "title": "Phone",
-            "type": "`$STRING`",
-            "short": "User's phone number",
+            "name": "expiresIn",
+            "title": "Expires In",
+            "type": "`$INTEGER`",
+            "short": "Token expiration time in seconds",
           },
           {
             "name": "provider",
@@ -403,16 +365,28 @@ def make_config():
             "short": "Social media provider",
           },
           {
-            "name": "subscriptionStatus",
-            "title": "Subscription Status",
+            "name": "refreshToken",
+            "title": "Refresh Token",
             "type": "`$STRING`",
-            "short": "User's subscription status",
+            "short": "Refresh token for obtaining new access tokens",
+          },
+          {
+            "name": "success",
+            "title": "Success",
+            "type": "`$BOOLEAN`",
+          },
+          {
+            "name": "token",
+            "title": "Token",
+            "type": "`$STRING`",
+            "short": "JWT authentication token",
+          },
+          {
+            "name": "user",
+            "title": "User",
+            "type": "`$OBJECT`",
           },
         ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
         "name": "social_login",
         "op": {
           "create": {
@@ -438,7 +412,7 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body.user`",
+                  "res": "`body`",
                 },
                 "args": {},
                 "select": {},

@@ -43,7 +43,7 @@ client = BlutvAuthenticationSDK({
 
 ```python
 # Create — returns the ENTITY (call data_get() for the record)
-created = client.Login().create({"password": "example_password"})
+created = client.Login().create({"email": "example_email", "password": "example_password"})
 
 ```
 
@@ -245,14 +245,14 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `createdAt` | Account creation timestamp |
-| `email` | User's email address |
-| `id` | Unique user identifier |
-| `name` | User's full name |
+| `email` | User's email address or username |
+| `expiresIn` | Token expiration time in seconds |
 | `password` | User's password |
-| `phone` | User's phone number |
+| `refreshToken` | Refresh token for obtaining new access tokens |
 | `rememberMe` | Keep user logged in |
-| `subscriptionStatus` | User's subscription status |
+| `success` |  |
+| `token` | JWT authentication token |
+| `user` |  |
 
 Operations: Create.
 
@@ -289,13 +289,12 @@ API path: `/auth/register`
 | Field | Description |
 | --- | --- |
 | `accessToken` | OAuth access token from the social provider |
-| `createdAt` | Account creation timestamp |
-| `email` | User's email address |
-| `id` | Unique user identifier |
-| `name` | User's full name |
-| `phone` | User's phone number |
+| `expiresIn` | Token expiration time in seconds |
 | `provider` | Social media provider |
-| `subscriptionStatus` | User's subscription status |
+| `refreshToken` | Refresh token for obtaining new access tokens |
+| `success` |  |
+| `token` | JWT authentication token |
+| `user` |  |
 
 Operations: Create.
 
@@ -320,19 +319,20 @@ Create an instance: `login = client.Login()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `str` | Account creation timestamp |
-| `email` | `str` | User's email address |
-| `id` | `str` | Unique user identifier |
-| `name` | `str` | User's full name |
+| `email` | `str` | User's email address or username |
+| `expiresIn` | `int` | Token expiration time in seconds |
 | `password` | `str` | User's password |
-| `phone` | `str` | User's phone number |
+| `refreshToken` | `str` | Refresh token for obtaining new access tokens |
 | `rememberMe` | `bool` | Keep user logged in |
-| `subscriptionStatus` | `str` | User's subscription status |
+| `success` | `bool` |  |
+| `token` | `str` | JWT authentication token |
+| `user` | `dict` |  |
 
 #### Example: Create
 
 ```python
 login = client.Login().create({
+    "email": "example_email",  # str
     "password": "example_password",  # str
 })
 ```
@@ -411,13 +411,12 @@ Create an instance: `social_login = client.SocialLogin()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `accessToken` | `str` | OAuth access token from the social provider |
-| `createdAt` | `str` | Account creation timestamp |
-| `email` | `str` | User's email address |
-| `id` | `str` | Unique user identifier |
-| `name` | `str` | User's full name |
-| `phone` | `str` | User's phone number |
+| `expiresIn` | `int` | Token expiration time in seconds |
 | `provider` | `str` | Social media provider |
-| `subscriptionStatus` | `str` | User's subscription status |
+| `refreshToken` | `str` | Refresh token for obtaining new access tokens |
+| `success` | `bool` |  |
+| `token` | `str` | JWT authentication token |
+| `user` | `dict` |  |
 
 #### Example: Create
 

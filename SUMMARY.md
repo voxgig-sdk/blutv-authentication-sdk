@@ -20,11 +20,11 @@ SDK operations: `create`.
 
 Key fields to recognise:
 
-- `createdAt`: Account creation timestamp
 - `email`: User&#39;s email address
-- `id`: Unique user identifier
-- `name`: User&#39;s full name
+- `expiresIn`: Token expiration time in seconds
 - `password`: User&#39;s password
+- `refreshToken`: Refresh token for obtaining new access tokens
+- `rememberMe`: Keep user logged in
 
 ### PasswordRecovery
 
@@ -60,10 +60,10 @@ SDK operations: `create`.
 Key fields to recognise:
 
 - `accessToken`: OAuth access token from the social provider
-- `createdAt`: Account creation timestamp
-- `email`: User&#39;s email address
-- `id`: Unique user identifier
-- `name`: User&#39;s full name
+- `expiresIn`: Token expiration time in seconds
+- `provider`: Social media provider
+- `refreshToken`: Refresh token for obtaining new access tokens
+- `token`: JWT authentication token
 
 ### Route map
 

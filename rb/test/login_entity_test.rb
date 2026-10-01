@@ -39,7 +39,6 @@ class LoginEntityTest < Minitest::Test
     login_ref01_data_result = login_ref01_ent.create(login_ref01_data, nil)
     login_ref01_data = Helpers.to_map(login_ref01_data_result.respond_to?(:data_get) ? login_ref01_data_result.data_get : login_ref01_data_result)
     assert !login_ref01_data.nil?
-    assert !login_ref01_data["id"].nil?
 
   end
 end

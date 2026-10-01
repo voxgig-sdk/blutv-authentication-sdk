@@ -2,47 +2,47 @@
   "existing": {
     "social_login": {
       "SOCIAL_LOGIN00": {
-        "accessToken": "s50",
-        "createdAt": "s51",
-        "email": "s52",
-        "id": "SOCIAL_LOGIN00",
-        "name": "s54",
-        "phone": "s55",
-        "provider": "s56",
-        "subscriptionStatus": "s57"
+        "accessToken": "s46",
+        "expiresIn": 71,
+        "provider": "s48",
+        "refreshToken": "s49",
+        "success": true,
+        "token": "s4b",
+        "user": {},
+        "id": "SOCIAL_LOGIN00"
       },
       "SOCIAL_LOGIN01": {
-        "accessToken": "sa0",
-        "createdAt": "sa1",
-        "email": "sa2",
-        "id": "SOCIAL_LOGIN01",
-        "name": "sa4",
-        "phone": "sa5",
-        "provider": "sa6",
-        "subscriptionStatus": "sa7"
+        "accessToken": "s8c",
+        "expiresIn": 141,
+        "provider": "s8e",
+        "refreshToken": "s8f",
+        "success": true,
+        "token": "s91",
+        "user": {},
+        "id": "SOCIAL_LOGIN01"
       },
       "SOCIAL_LOGIN02": {
-        "accessToken": "sf0",
-        "createdAt": "sf1",
-        "email": "sf2",
-        "id": "SOCIAL_LOGIN02",
-        "name": "sf4",
-        "phone": "sf5",
-        "provider": "sf6",
-        "subscriptionStatus": "sf7"
+        "accessToken": "sd2",
+        "expiresIn": 211,
+        "provider": "sd4",
+        "refreshToken": "sd5",
+        "success": true,
+        "token": "sd7",
+        "user": {},
+        "id": "SOCIAL_LOGIN02"
       }
     }
   },
   "new": {
     "social_login": {
       "social_login_ref01": {
-        "accessToken": "s140",
-        "createdAt": "s141",
-        "email": "s142",
-        "name": "s144",
-        "phone": "s145",
-        "provider": "s146",
-        "subscriptionStatus": "s147"
+        "accessToken": "s118",
+        "expiresIn": 281,
+        "provider": "s11a",
+        "refreshToken": "s11b",
+        "success": true,
+        "token": "s11d",
+        "user": {}
       }
     }
   },

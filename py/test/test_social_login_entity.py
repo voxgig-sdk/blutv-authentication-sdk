@@ -46,7 +46,6 @@ class TestSocialLoginEntity:
 
         social_login_ref01_data = helpers.to_map(runner.entity_data(social_login_ref01_ent.create(social_login_ref01_data, None)))
         assert social_login_ref01_data is not None
-        assert social_login_ref01_data["id"] is not None
 
 
 

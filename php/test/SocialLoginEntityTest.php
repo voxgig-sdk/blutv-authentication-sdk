@@ -46,7 +46,6 @@ class SocialLoginEntityTest extends TestCase
         $social_login_ref01_data_result = $social_login_ref01_ent->create($social_login_ref01_data, null);
         $social_login_ref01_data = Helpers::to_map(is_object($social_login_ref01_data_result) && method_exists($social_login_ref01_data_result, 'data_get') ? $social_login_ref01_data_result->data_get() : $social_login_ref01_data_result);
         $this->assertNotNull($social_login_ref01_data);
-        $this->assertNotNull($social_login_ref01_data["id"]);
 
     }
 }

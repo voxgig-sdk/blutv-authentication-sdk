@@ -100,27 +100,14 @@ login = client.Login()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `str` | No | Account creation timestamp |
-| `email` | `str` | No | User's email address |
-| `id` | `str` | No | Unique user identifier |
-| `name` | `str` | No | User's full name |
+| `email` | `str` | Yes | User's email address or username |
+| `expiresIn` | `int` | No | Token expiration time in seconds |
 | `password` | `str` | Yes | User's password |
-| `phone` | `str` | No | User's phone number |
+| `refreshToken` | `str` | No | Refresh token for obtaining new access tokens |
 | `rememberMe` | `bool` | No | Keep user logged in |
-| `subscriptionStatus` | `str` | No | User's subscription status |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `createdAt` | - |
-| `email` | Yes |
-| `id` | - |
-| `name` | - |
-| `password` | - |
-| `phone` | - |
-| `rememberMe` | - |
-| `subscriptionStatus` | - |
+| `success` | `bool` | No |  |
+| `token` | `str` | No | JWT authentication token |
+| `user` | `dict` | No |  |
 
 ### Operations
 
@@ -130,6 +117,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Login().create({
+    "email": "example_email",  # str
     "password": "example_password",  # str
 })
 ```
@@ -288,13 +276,12 @@ social_login = client.SocialLogin()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `accessToken` | `str` | Yes | OAuth access token from the social provider |
-| `createdAt` | `str` | No | Account creation timestamp |
-| `email` | `str` | No | User's email address |
-| `id` | `str` | No | Unique user identifier |
-| `name` | `str` | No | User's full name |
-| `phone` | `str` | No | User's phone number |
+| `expiresIn` | `int` | No | Token expiration time in seconds |
 | `provider` | `str` | Yes | Social media provider |
-| `subscriptionStatus` | `str` | No | User's subscription status |
+| `refreshToken` | `str` | No | Refresh token for obtaining new access tokens |
+| `success` | `bool` | No |  |
+| `token` | `str` | No | JWT authentication token |
+| `user` | `dict` | No |  |
 
 ### Operations
 

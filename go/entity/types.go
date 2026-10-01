@@ -18,14 +18,14 @@ type Login struct {
 
 // LoginCreateData is the typed request payload for Login.CreateTyped.
 type LoginCreateData struct {
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
+	Email string `json:"email"`
+	ExpiresIn *int `json:"expiresIn,omitempty"`
 	Password string `json:"password"`
-	Phone *string `json:"phone,omitempty"`
+	RefreshToken *string `json:"refreshToken,omitempty"`
 	RememberMe *bool `json:"rememberMe,omitempty"`
-	SubscriptionStatus *string `json:"subscriptionStatus,omitempty"`
+	Success *bool `json:"success,omitempty"`
+	Token *string `json:"token,omitempty"`
+	User *map[string]any `json:"user,omitempty"`
 }
 
 // PasswordRecovery is the typed data model for the password_recovery entity.
@@ -59,13 +59,12 @@ type SocialLogin struct {
 // SocialLoginCreateData is the typed request payload for SocialLogin.CreateTyped.
 type SocialLoginCreateData struct {
 	AccessToken string `json:"accessToken"`
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Phone *string `json:"phone,omitempty"`
+	ExpiresIn *int `json:"expiresIn,omitempty"`
 	Provider string `json:"provider"`
-	SubscriptionStatus *string `json:"subscriptionStatus,omitempty"`
+	RefreshToken *string `json:"refreshToken,omitempty"`
+	Success *bool `json:"success,omitempty"`
+	Token *string `json:"token,omitempty"`
+	User *map[string]any `json:"user,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

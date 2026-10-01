@@ -17,31 +17,31 @@ from typing import TypedDict, Any
 
 
 class LoginRequired(TypedDict):
+    email: str
     password: str
 
 
 class Login(LoginRequired, total=False):
-    createdAt: str
-    email: str
-    id: str
-    name: str
-    phone: str
+    expiresIn: int
+    refreshToken: str
     rememberMe: bool
-    subscriptionStatus: str
+    success: bool
+    token: str
+    user: dict
 
 
 class LoginCreateDataRequired(TypedDict):
+    email: str
     password: str
 
 
 class LoginCreateData(LoginCreateDataRequired, total=False):
-    createdAt: str
-    email: str
-    id: str
-    name: str
-    phone: str
+    expiresIn: int
+    refreshToken: str
     rememberMe: bool
-    subscriptionStatus: str
+    success: bool
+    token: str
+    user: dict
 
 
 class PasswordRecoveryRequired(TypedDict):
@@ -90,12 +90,11 @@ class SocialLoginRequired(TypedDict):
 
 
 class SocialLogin(SocialLoginRequired, total=False):
-    createdAt: str
-    email: str
-    id: str
-    name: str
-    phone: str
-    subscriptionStatus: str
+    expiresIn: int
+    refreshToken: str
+    success: bool
+    token: str
+    user: dict
 
 
 class SocialLoginCreateDataRequired(TypedDict):
@@ -104,9 +103,8 @@ class SocialLoginCreateDataRequired(TypedDict):
 
 
 class SocialLoginCreateData(SocialLoginCreateDataRequired, total=False):
-    createdAt: str
-    email: str
-    id: str
-    name: str
-    phone: str
-    subscriptionStatus: str
+    expiresIn: int
+    refreshToken: str
+    success: bool
+    token: str
+    user: dict

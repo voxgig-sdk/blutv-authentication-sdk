@@ -6,25 +6,25 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Login {
-  createdAt?: string
-  email?: string
-  id?: string
-  name?: string
+  email: string
+  expiresIn?: number
   password: string
-  phone?: string
+  refreshToken?: string
   rememberMe?: boolean
-  subscriptionStatus?: string
+  success?: boolean
+  token?: string
+  user?: Record<string, any>
 }
 
 export interface LoginCreateData {
-  createdAt?: string
-  email?: string
-  id?: string
-  name?: string
+  email: string
+  expiresIn?: number
   password: string
-  phone?: string
+  refreshToken?: string
   rememberMe?: boolean
-  subscriptionStatus?: string
+  success?: boolean
+  token?: string
+  user?: Record<string, any>
 }
 
 export interface PasswordRecovery {
@@ -57,23 +57,21 @@ export interface RegisterCreateData {
 
 export interface SocialLogin {
   accessToken: string
-  createdAt?: string
-  email?: string
-  id?: string
-  name?: string
-  phone?: string
+  expiresIn?: number
   provider: string
-  subscriptionStatus?: string
+  refreshToken?: string
+  success?: boolean
+  token?: string
+  user?: Record<string, any>
 }
 
 export interface SocialLoginCreateData {
   accessToken: string
-  createdAt?: string
-  email?: string
-  id?: string
-  name?: string
-  phone?: string
+  expiresIn?: number
   provider: string
-  subscriptionStatus?: string
+  refreshToken?: string
+  success?: boolean
+  token?: string
+  user?: Record<string, any>
 }
 

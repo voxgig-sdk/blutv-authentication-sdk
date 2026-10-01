@@ -103,27 +103,14 @@ local login = client:Login(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `string` | No | Account creation timestamp |
-| `email` | `string` | No | User's email address |
-| `id` | `string` | No | Unique user identifier |
-| `name` | `string` | No | User's full name |
+| `email` | `string` | Yes | User's email address or username |
+| `expiresIn` | `number` | No | Token expiration time in seconds |
 | `password` | `string` | Yes | User's password |
-| `phone` | `string` | No | User's phone number |
+| `refreshToken` | `string` | No | Refresh token for obtaining new access tokens |
 | `rememberMe` | `boolean` | No | Keep user logged in |
-| `subscriptionStatus` | `string` | No | User's subscription status |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `createdAt` | - |
-| `email` | Yes |
-| `id` | - |
-| `name` | - |
-| `password` | - |
-| `phone` | - |
-| `rememberMe` | - |
-| `subscriptionStatus` | - |
+| `success` | `boolean` | No |  |
+| `token` | `string` | No | JWT authentication token |
+| `user` | `table` | No |  |
 
 ### Operations
 
@@ -133,6 +120,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Login():create({
+  email = --[[ string ]],
   password = --[[ string ]],
 })
 ```
@@ -294,13 +282,12 @@ local social_login = client:SocialLogin(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `accessToken` | `string` | Yes | OAuth access token from the social provider |
-| `createdAt` | `string` | No | Account creation timestamp |
-| `email` | `string` | No | User's email address |
-| `id` | `string` | No | Unique user identifier |
-| `name` | `string` | No | User's full name |
-| `phone` | `string` | No | User's phone number |
+| `expiresIn` | `number` | No | Token expiration time in seconds |
 | `provider` | `string` | Yes | Social media provider |
-| `subscriptionStatus` | `string` | No | User's subscription status |
+| `refreshToken` | `string` | No | Refresh token for obtaining new access tokens |
+| `success` | `boolean` | No |  |
+| `token` | `string` | No | JWT authentication token |
+| `user` | `table` | No |  |
 
 ### Operations
 

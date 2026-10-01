@@ -15,9 +15,13 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`):
+release tag (`ts/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases)), or from a
+clone, which carries the compiled `dist/`:
 
-- Releases: [https://github.com/voxgig-sdk/blutv-authentication-sdk/releases](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/blutv-authentication-sdk
+npm install ./blutv-authentication-sdk/ts
+```
 
 
 ## Tutorial: your first API call
@@ -40,6 +44,7 @@ const client = new BlutvAuthenticationSDK({
 ```ts
 // Create — returns the created Login ENTITY (.data() for the record)
 const created = await client.Login().create({
+  email: 'example_email',
   password: 'example_password',
 })
 
@@ -296,14 +301,14 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `createdAt` | Account creation timestamp |
-| `email` | User's email address |
-| `id` | Unique user identifier |
-| `name` | User's full name |
+| `email` | User's email address or username |
+| `expiresIn` | Token expiration time in seconds |
 | `password` | User's password |
-| `phone` | User's phone number |
+| `refreshToken` | Refresh token for obtaining new access tokens |
 | `rememberMe` | Keep user logged in |
-| `subscriptionStatus` | User's subscription status |
+| `success` |  |
+| `token` | JWT authentication token |
+| `user` |  |
 
 Operations: create.
 
@@ -340,13 +345,12 @@ API path: `/auth/register`
 | Field | Description |
 | --- | --- |
 | `accessToken` | OAuth access token from the social provider |
-| `createdAt` | Account creation timestamp |
-| `email` | User's email address |
-| `id` | Unique user identifier |
-| `name` | User's full name |
-| `phone` | User's phone number |
+| `expiresIn` | Token expiration time in seconds |
 | `provider` | Social media provider |
-| `subscriptionStatus` | User's subscription status |
+| `refreshToken` | Refresh token for obtaining new access tokens |
+| `success` |  |
+| `token` | JWT authentication token |
+| `user` |  |
 
 Operations: create.
 
@@ -371,19 +375,20 @@ Create an instance: `const login = client.Login()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `string` | Account creation timestamp |
-| `email` | `string` | User's email address |
-| `id` | `string` | Unique user identifier |
-| `name` | `string` | User's full name |
+| `email` | `string` | User's email address or username |
+| `expiresIn` | `number` | Token expiration time in seconds |
 | `password` | `string` | User's password |
-| `phone` | `string` | User's phone number |
+| `refreshToken` | `string` | Refresh token for obtaining new access tokens |
 | `rememberMe` | `boolean` | Keep user logged in |
-| `subscriptionStatus` | `string` | User's subscription status |
+| `success` | `boolean` |  |
+| `token` | `string` | JWT authentication token |
+| `user` | `Record<string, any>` |  |
 
 #### Example: Create
 
 ```ts
 const login = await client.Login().create({
+  email: 'example_email',
   password: 'example_password',
 })
 ```
@@ -462,13 +467,12 @@ Create an instance: `const social_login = client.SocialLogin()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `accessToken` | `string` | OAuth access token from the social provider |
-| `createdAt` | `string` | Account creation timestamp |
-| `email` | `string` | User's email address |
-| `id` | `string` | Unique user identifier |
-| `name` | `string` | User's full name |
-| `phone` | `string` | User's phone number |
+| `expiresIn` | `number` | Token expiration time in seconds |
 | `provider` | `string` | Social media provider |
-| `subscriptionStatus` | `string` | User's subscription status |
+| `refreshToken` | `string` | Refresh token for obtaining new access tokens |
+| `success` | `boolean` |  |
+| `token` | `string` | JWT authentication token |
+| `user` | `Record<string, any>` |  |
 
 #### Example: Create
 

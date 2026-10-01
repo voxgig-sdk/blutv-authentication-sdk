@@ -111,27 +111,14 @@ fmt.Println(login.GetName()) // "login"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `string` | No | Account creation timestamp |
-| `email` | `string` | No | User's email address |
-| `id` | `string` | No | Unique user identifier |
-| `name` | `string` | No | User's full name |
+| `email` | `string` | Yes | User's email address or username |
+| `expiresIn` | `int` | No | Token expiration time in seconds |
 | `password` | `string` | Yes | User's password |
-| `phone` | `string` | No | User's phone number |
+| `refreshToken` | `string` | No | Refresh token for obtaining new access tokens |
 | `rememberMe` | `bool` | No | Keep user logged in |
-| `subscriptionStatus` | `string` | No | User's subscription status |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `createdAt` | - |
-| `email` | Yes |
-| `id` | - |
-| `name` | - |
-| `password` | - |
-| `phone` | - |
-| `rememberMe` | - |
-| `subscriptionStatus` | - |
+| `success` | `bool` | No |  |
+| `token` | `string` | No | JWT authentication token |
+| `user` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -141,6 +128,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Login(nil).Create(map[string]any{
+    "email": "example_email",
     "password": "example_password",
 }, nil)
 if err != nil {
@@ -299,13 +287,12 @@ fmt.Println(socialLogin.GetName()) // "social_login"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `accessToken` | `string` | Yes | OAuth access token from the social provider |
-| `createdAt` | `string` | No | Account creation timestamp |
-| `email` | `string` | No | User's email address |
-| `id` | `string` | No | Unique user identifier |
-| `name` | `string` | No | User's full name |
-| `phone` | `string` | No | User's phone number |
+| `expiresIn` | `int` | No | Token expiration time in seconds |
 | `provider` | `string` | Yes | Social media provider |
-| `subscriptionStatus` | `string` | No | User's subscription status |
+| `refreshToken` | `string` | No | Refresh token for obtaining new access tokens |
+| `success` | `bool` | No |  |
+| `token` | `string` | No | JWT authentication token |
+| `user` | `map[string]any` | No |  |
 
 ### Operations
 

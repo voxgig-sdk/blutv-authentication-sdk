@@ -46,7 +46,6 @@ class TestLoginEntity:
 
         login_ref01_data = helpers.to_map(runner.entity_data(login_ref01_ent.create(login_ref01_data, None)))
         assert login_ref01_data is not None
-        assert login_ref01_data["id"] is not None
 
 
 

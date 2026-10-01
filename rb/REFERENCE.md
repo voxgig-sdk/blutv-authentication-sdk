@@ -106,27 +106,14 @@ login = client.Login
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `String` | No | Account creation timestamp |
-| `email` | `String` | No | User's email address |
-| `id` | `String` | No | Unique user identifier |
-| `name` | `String` | No | User's full name |
+| `email` | `String` | Yes | User's email address or username |
+| `expiresIn` | `Integer` | No | Token expiration time in seconds |
 | `password` | `String` | Yes | User's password |
-| `phone` | `String` | No | User's phone number |
+| `refreshToken` | `String` | No | Refresh token for obtaining new access tokens |
 | `rememberMe` | `Boolean` | No | Keep user logged in |
-| `subscriptionStatus` | `String` | No | User's subscription status |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `createdAt` | - |
-| `email` | Yes |
-| `id` | - |
-| `name` | - |
-| `password` | - |
-| `phone` | - |
-| `rememberMe` | - |
-| `subscriptionStatus` | - |
+| `success` | `Boolean` | No |  |
+| `token` | `String` | No | JWT authentication token |
+| `user` | `Hash` | No |  |
 
 ### Operations
 
@@ -136,6 +123,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Login.create({
+  "email" => "example_email", # String
   "password" => "example_password", # String
 })
 ```
@@ -297,13 +285,12 @@ social_login = client.SocialLogin
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `accessToken` | `String` | Yes | OAuth access token from the social provider |
-| `createdAt` | `String` | No | Account creation timestamp |
-| `email` | `String` | No | User's email address |
-| `id` | `String` | No | Unique user identifier |
-| `name` | `String` | No | User's full name |
-| `phone` | `String` | No | User's phone number |
+| `expiresIn` | `Integer` | No | Token expiration time in seconds |
 | `provider` | `String` | Yes | Social media provider |
-| `subscriptionStatus` | `String` | No | User's subscription status |
+| `refreshToken` | `String` | No | Refresh token for obtaining new access tokens |
+| `success` | `Boolean` | No |  |
+| `token` | `String` | No | JWT authentication token |
+| `user` | `Hash` | No |  |
 
 ### Operations
 

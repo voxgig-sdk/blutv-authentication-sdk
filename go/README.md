@@ -54,7 +54,7 @@ func main() {
     })
 
     // Create a login.
-    created, err := client.Login(nil).Create(map[string]any{"password": "example_password"}, nil)
+    created, err := client.Login(nil).Create(map[string]any{"email": "example_email", "password": "example_password"}, nil)
     if err != nil {
         panic(err)
     }
@@ -266,14 +266,14 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"createdAt"` | Account creation timestamp |
-| `"email"` | User's email address |
-| `"id"` | Unique user identifier |
-| `"name"` | User's full name |
+| `"email"` | User's email address or username |
+| `"expiresIn"` | Token expiration time in seconds |
 | `"password"` | User's password |
-| `"phone"` | User's phone number |
+| `"refreshToken"` | Refresh token for obtaining new access tokens |
 | `"rememberMe"` | Keep user logged in |
-| `"subscriptionStatus"` | User's subscription status |
+| `"success"` |  |
+| `"token"` | JWT authentication token |
+| `"user"` |  |
 
 Operations: Create.
 
@@ -310,13 +310,12 @@ API path: `/auth/register`
 | Field | Description |
 | --- | --- |
 | `"accessToken"` | OAuth access token from the social provider |
-| `"createdAt"` | Account creation timestamp |
-| `"email"` | User's email address |
-| `"id"` | Unique user identifier |
-| `"name"` | User's full name |
-| `"phone"` | User's phone number |
+| `"expiresIn"` | Token expiration time in seconds |
 | `"provider"` | Social media provider |
-| `"subscriptionStatus"` | User's subscription status |
+| `"refreshToken"` | Refresh token for obtaining new access tokens |
+| `"success"` |  |
+| `"token"` | JWT authentication token |
+| `"user"` |  |
 
 Operations: Create.
 
@@ -341,19 +340,20 @@ Create an instance: `login := client.Login(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `string` | Account creation timestamp |
-| `email` | `string` | User's email address |
-| `id` | `string` | Unique user identifier |
-| `name` | `string` | User's full name |
+| `email` | `string` | User's email address or username |
+| `expiresIn` | `int` | Token expiration time in seconds |
 | `password` | `string` | User's password |
-| `phone` | `string` | User's phone number |
+| `refreshToken` | `string` | Refresh token for obtaining new access tokens |
 | `rememberMe` | `bool` | Keep user logged in |
-| `subscriptionStatus` | `string` | User's subscription status |
+| `success` | `bool` |  |
+| `token` | `string` | JWT authentication token |
+| `user` | `map[string]any` |  |
 
 #### Example: Create
 
 ```go
 result, err := client.Login(nil).Create(map[string]any{
+    "email": "example_email",
     "password": "example_password",
 }, nil)
 if err != nil {
@@ -444,13 +444,12 @@ Create an instance: `socialLogin := client.SocialLogin(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `accessToken` | `string` | OAuth access token from the social provider |
-| `createdAt` | `string` | Account creation timestamp |
-| `email` | `string` | User's email address |
-| `id` | `string` | Unique user identifier |
-| `name` | `string` | User's full name |
-| `phone` | `string` | User's phone number |
+| `expiresIn` | `int` | Token expiration time in seconds |
 | `provider` | `string` | Social media provider |
-| `subscriptionStatus` | `string` | User's subscription status |
+| `refreshToken` | `string` | Refresh token for obtaining new access tokens |
+| `success` | `bool` |  |
+| `token` | `string` | JWT authentication token |
+| `user` | `map[string]any` |  |
 
 #### Example: Create
 

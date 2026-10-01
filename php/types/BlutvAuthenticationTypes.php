@@ -15,27 +15,27 @@ declare(strict_types=1);
 /** Login entity data model. */
 class Login
 {
-    public ?string $createdAt = null;
-    public ?string $email = null;
-    public ?string $id = null;
-    public ?string $name = null;
+    public string $email;
+    public ?int $expiresIn = null;
     public string $password;
-    public ?string $phone = null;
+    public ?string $refreshToken = null;
     public ?bool $rememberMe = null;
-    public ?string $subscriptionStatus = null;
+    public ?bool $success = null;
+    public ?string $token = null;
+    public ?array $user = null;
 }
 
 /** Request payload for Login#create. */
 class LoginCreateData
 {
-    public ?string $createdAt = null;
-    public ?string $email = null;
-    public ?string $id = null;
-    public ?string $name = null;
+    public string $email;
+    public ?int $expiresIn = null;
     public string $password;
-    public ?string $phone = null;
+    public ?string $refreshToken = null;
     public ?bool $rememberMe = null;
-    public ?string $subscriptionStatus = null;
+    public ?bool $success = null;
+    public ?string $token = null;
+    public ?array $user = null;
 }
 
 /** PasswordRecovery entity data model. */
@@ -78,25 +78,23 @@ class RegisterCreateData
 class SocialLogin
 {
     public string $accessToken;
-    public ?string $createdAt = null;
-    public ?string $email = null;
-    public ?string $id = null;
-    public ?string $name = null;
-    public ?string $phone = null;
+    public ?int $expiresIn = null;
     public string $provider;
-    public ?string $subscriptionStatus = null;
+    public ?string $refreshToken = null;
+    public ?bool $success = null;
+    public ?string $token = null;
+    public ?array $user = null;
 }
 
 /** Request payload for SocialLogin#create. */
 class SocialLoginCreateData
 {
     public string $accessToken;
-    public ?string $createdAt = null;
-    public ?string $email = null;
-    public ?string $id = null;
-    public ?string $name = null;
-    public ?string $phone = null;
+    public ?int $expiresIn = null;
     public string $provider;
-    public ?string $subscriptionStatus = null;
+    public ?string $refreshToken = null;
+    public ?bool $success = null;
+    public ?string $token = null;
+    public ?array $user = null;
 }
 

@@ -43,7 +43,6 @@ describe("LoginEntity", function()
     assert.is_nil(err)
     login_ref01_data = helpers.to_map(type(login_ref01_data_result) == 'table' and login_ref01_data_result.data_get and login_ref01_data_result:data_get() or login_ref01_data_result)
     assert.is_not_nil(login_ref01_data)
-    assert.is_not_nil(login_ref01_data["id"])
 
   end)
 end)

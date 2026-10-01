@@ -67,7 +67,7 @@ main: kit: entity: register: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.user`"
+            res: "`body`"
           }
         }
       ]

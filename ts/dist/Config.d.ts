@@ -84,44 +84,24 @@ declare class Config {
                 name: string;
                 title: string;
                 type: string;
-                short: string;
-                format: string;
-                op?: undefined;
-                req?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                op: {
-                    create: {
-                        req: boolean;
-                        type: string;
-                    };
-                };
-                short: string;
-                format: string;
-                req?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                short: string;
-                format?: undefined;
-                op?: undefined;
-                req?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
                 req: boolean;
                 short: string;
                 format: string;
-                op?: undefined;
-            })[];
-            id: {
-                field: string;
+            } | {
                 name: string;
-            };
+                title: string;
+                type: string;
+                short: string;
+                req?: undefined;
+                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+                short?: undefined;
+                format?: undefined;
+            })[];
             name: string;
             op: {
                 create: {
@@ -256,26 +236,19 @@ declare class Config {
                 type: string;
                 req: boolean;
                 short: string;
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                short: string;
-                format: string;
-                req?: undefined;
             } | {
                 name: string;
                 title: string;
                 type: string;
                 short: string;
                 req?: undefined;
-                format?: undefined;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                req?: undefined;
+                short?: undefined;
             })[];
-            id: {
-                field: string;
-                name: string;
-            };
             name: string;
             op: {
                 create: {

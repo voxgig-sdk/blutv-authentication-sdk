@@ -12,9 +12,18 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`):
+GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases)), or
+from a clone:
 
-- Releases: [https://github.com/voxgig-sdk/blutv-authentication-sdk/releases](https://github.com/voxgig-sdk/blutv-authentication-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/blutv-authentication-sdk
+```
+
+Then add it to your `Gemfile` by path, and run `bundle install`:
+
+```ruby
+gem "voxgig-sdk-blutv-authentication-sdk", path: "./blutv-authentication-sdk/rb"
+```
 
 
 ## Tutorial: your first API call
@@ -36,7 +45,7 @@ client = BlutvAuthenticationSDK.new({
 
 ```ruby
 # create returns the ENTITY — call data_get for the created Login record.
-created = client.Login.create({ "password" => "example_password" })
+created = client.Login.create({ "email" => "example_email", "password" => "example_password" })
 
 ```
 
@@ -238,14 +247,14 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `createdAt` | Account creation timestamp |
-| `email` | User's email address |
-| `id` | Unique user identifier |
-| `name` | User's full name |
+| `email` | User's email address or username |
+| `expiresIn` | Token expiration time in seconds |
 | `password` | User's password |
-| `phone` | User's phone number |
+| `refreshToken` | Refresh token for obtaining new access tokens |
 | `rememberMe` | Keep user logged in |
-| `subscriptionStatus` | User's subscription status |
+| `success` |  |
+| `token` | JWT authentication token |
+| `user` |  |
 
 Operations: Create.
 
@@ -282,13 +291,12 @@ API path: `/auth/register`
 | Field | Description |
 | --- | --- |
 | `accessToken` | OAuth access token from the social provider |
-| `createdAt` | Account creation timestamp |
-| `email` | User's email address |
-| `id` | Unique user identifier |
-| `name` | User's full name |
-| `phone` | User's phone number |
+| `expiresIn` | Token expiration time in seconds |
 | `provider` | Social media provider |
-| `subscriptionStatus` | User's subscription status |
+| `refreshToken` | Refresh token for obtaining new access tokens |
+| `success` |  |
+| `token` | JWT authentication token |
+| `user` |  |
 
 Operations: Create.
 
@@ -313,19 +321,20 @@ Create an instance: `login = client.Login`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `String` | Account creation timestamp |
-| `email` | `String` | User's email address |
-| `id` | `String` | Unique user identifier |
-| `name` | `String` | User's full name |
+| `email` | `String` | User's email address or username |
+| `expiresIn` | `Integer` | Token expiration time in seconds |
 | `password` | `String` | User's password |
-| `phone` | `String` | User's phone number |
+| `refreshToken` | `String` | Refresh token for obtaining new access tokens |
 | `rememberMe` | `Boolean` | Keep user logged in |
-| `subscriptionStatus` | `String` | User's subscription status |
+| `success` | `Boolean` |  |
+| `token` | `String` | JWT authentication token |
+| `user` | `Hash` |  |
 
 #### Example: Create
 
 ```ruby
 login = client.Login.create({
+  "email" => "example_email", # String
   "password" => "example_password", # String
 })
 ```
@@ -404,13 +413,12 @@ Create an instance: `social_login = client.SocialLogin`
 | Field | Type | Description |
 | --- | --- | --- |
 | `accessToken` | `String` | OAuth access token from the social provider |
-| `createdAt` | `String` | Account creation timestamp |
-| `email` | `String` | User's email address |
-| `id` | `String` | Unique user identifier |
-| `name` | `String` | User's full name |
-| `phone` | `String` | User's phone number |
+| `expiresIn` | `Integer` | Token expiration time in seconds |
 | `provider` | `String` | Social media provider |
-| `subscriptionStatus` | `String` | User's subscription status |
+| `refreshToken` | `String` | Refresh token for obtaining new access tokens |
+| `success` | `Boolean` |  |
+| `token` | `String` | JWT authentication token |
+| `user` | `Hash` |  |
 
 #### Example: Create
 

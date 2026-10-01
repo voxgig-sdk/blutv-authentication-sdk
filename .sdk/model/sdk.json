@@ -97,45 +97,22 @@
             "field": {}
           },
           "fields": {
-            "createdAt": {
-              "a": true,
-              "fo": "date-time",
-              "h": "Created At",
-              "n": "createdAt",
-              "r": false,
-              "sh": "Account creation timestamp",
-              "t": "`$STRING`"
-            },
             "email": {
               "a": true,
               "fo": "email",
               "h": "Email",
               "n": "email",
-              "op": {
-                "create": {
-                  "req": true,
-                  "type": "`$STRING`"
-                }
-              },
-              "r": false,
-              "sh": "User's email address",
+              "r": true,
+              "sh": "User's email address or username",
               "t": "`$STRING`"
             },
-            "id": {
+            "expiresIn": {
               "a": true,
-              "h": "Id",
-              "n": "id",
+              "h": "Expires In",
+              "n": "expiresIn",
               "r": false,
-              "sh": "Unique user identifier",
-              "t": "`$STRING`"
-            },
-            "name": {
-              "a": true,
-              "h": "Name",
-              "n": "name",
-              "r": false,
-              "sh": "User's full name",
-              "t": "`$STRING`"
+              "sh": "Token expiration time in seconds",
+              "t": "`$INTEGER`"
             },
             "password": {
               "a": true,
@@ -146,12 +123,12 @@
               "sh": "User's password",
               "t": "`$STRING`"
             },
-            "phone": {
+            "refreshToken": {
               "a": true,
-              "h": "Phone",
-              "n": "phone",
+              "h": "Refresh Token",
+              "n": "refreshToken",
               "r": false,
-              "sh": "User's phone number",
+              "sh": "Refresh token for obtaining new access tokens",
               "t": "`$STRING`"
             },
             "rememberMe": {
@@ -162,18 +139,28 @@
               "sh": "Keep user logged in",
               "t": "`$BOOLEAN`"
             },
-            "subscriptionStatus": {
+            "success": {
               "a": true,
-              "h": "Subscription Status",
-              "n": "subscriptionStatus",
+              "h": "Success",
+              "n": "success",
               "r": false,
-              "sh": "User's subscription status",
+              "t": "`$BOOLEAN`"
+            },
+            "token": {
+              "a": true,
+              "h": "Token",
+              "n": "token",
+              "r": false,
+              "sh": "JWT authentication token",
               "t": "`$STRING`"
+            },
+            "user": {
+              "a": true,
+              "h": "User",
+              "n": "user",
+              "r": false,
+              "t": "`$OBJECT`"
             }
-          },
-          "id": {
-            "field": "id",
-            "name": "id"
           },
           "name": "login",
           "op": {
@@ -204,7 +191,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body.user`"
+                    "res": "`body`"
                   }
                 }
               ]
@@ -362,7 +349,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body.user`"
+                    "res": "`body`"
                   }
                 }
               ]
@@ -386,47 +373,13 @@
               "sh": "OAuth access token from the social provider",
               "t": "`$STRING`"
             },
-            "createdAt": {
+            "expiresIn": {
               "a": true,
-              "fo": "date-time",
-              "h": "Created At",
-              "n": "createdAt",
+              "h": "Expires In",
+              "n": "expiresIn",
               "r": false,
-              "sh": "Account creation timestamp",
-              "t": "`$STRING`"
-            },
-            "email": {
-              "a": true,
-              "fo": "email",
-              "h": "Email",
-              "n": "email",
-              "r": false,
-              "sh": "User's email address",
-              "t": "`$STRING`"
-            },
-            "id": {
-              "a": true,
-              "h": "Id",
-              "n": "id",
-              "r": false,
-              "sh": "Unique user identifier",
-              "t": "`$STRING`"
-            },
-            "name": {
-              "a": true,
-              "h": "Name",
-              "n": "name",
-              "r": false,
-              "sh": "User's full name",
-              "t": "`$STRING`"
-            },
-            "phone": {
-              "a": true,
-              "h": "Phone",
-              "n": "phone",
-              "r": false,
-              "sh": "User's phone number",
-              "t": "`$STRING`"
+              "sh": "Token expiration time in seconds",
+              "t": "`$INTEGER`"
             },
             "provider": {
               "a": true,
@@ -436,18 +389,36 @@
               "sh": "Social media provider",
               "t": "`$STRING`"
             },
-            "subscriptionStatus": {
+            "refreshToken": {
               "a": true,
-              "h": "Subscription Status",
-              "n": "subscriptionStatus",
+              "h": "Refresh Token",
+              "n": "refreshToken",
               "r": false,
-              "sh": "User's subscription status",
+              "sh": "Refresh token for obtaining new access tokens",
               "t": "`$STRING`"
+            },
+            "success": {
+              "a": true,
+              "h": "Success",
+              "n": "success",
+              "r": false,
+              "t": "`$BOOLEAN`"
+            },
+            "token": {
+              "a": true,
+              "h": "Token",
+              "n": "token",
+              "r": false,
+              "sh": "JWT authentication token",
+              "t": "`$STRING`"
+            },
+            "user": {
+              "a": true,
+              "h": "User",
+              "n": "user",
+              "r": false,
+              "t": "`$OBJECT`"
             }
-          },
-          "id": {
-            "field": "id",
-            "name": "id"
           },
           "name": "social_login",
           "op": {
@@ -478,7 +449,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body.user`"
+                    "res": "`body`"
                   }
                 }
               ]
@@ -1026,7 +997,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

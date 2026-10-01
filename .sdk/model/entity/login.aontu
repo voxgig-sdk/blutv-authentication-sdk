@@ -5,41 +5,20 @@ main: kit: entity: login: {
   alias: field: {}
 
   fields: {
-    createdAt: {
-      fo: "date-time"
-      h: "Created At"
-      n: "createdAt"
-      r: false
-      sh: "Account creation timestamp"
-      t: "`$STRING`"
-    }
     email: {
       fo: "email"
       h: "Email"
       n: "email"
-      op: {
-        create: {
-          req: true
-          type: "`$STRING`"
-        }
-      }
-      r: false
-      sh: "User's email address"
+      r: true
+      sh: "User's email address or username"
       t: "`$STRING`"
     }
-    id: {
-      h: "Id"
-      n: "id"
+    expiresIn: {
+      h: "Expires In"
+      n: "expiresIn"
       r: false
-      sh: "Unique user identifier"
-      t: "`$STRING`"
-    }
-    name: {
-      h: "Name"
-      n: "name"
-      r: false
-      sh: "User's full name"
-      t: "`$STRING`"
+      sh: "Token expiration time in seconds"
+      t: "`$INTEGER`"
     }
     password: {
       fo: "password"
@@ -49,11 +28,11 @@ main: kit: entity: login: {
       sh: "User's password"
       t: "`$STRING`"
     }
-    phone: {
-      h: "Phone"
-      n: "phone"
+    refreshToken: {
+      h: "Refresh Token"
+      n: "refreshToken"
       r: false
-      sh: "User's phone number"
+      sh: "Refresh token for obtaining new access tokens"
       t: "`$STRING`"
     }
     rememberMe: {
@@ -63,18 +42,25 @@ main: kit: entity: login: {
       sh: "Keep user logged in"
       t: "`$BOOLEAN`"
     }
-    subscriptionStatus: {
-      h: "Subscription Status"
-      n: "subscriptionStatus"
+    success: {
+      h: "Success"
+      n: "success"
       r: false
-      sh: "User's subscription status"
+      t: "`$BOOLEAN`"
+    }
+    token: {
+      h: "Token"
+      n: "token"
+      r: false
+      sh: "JWT authentication token"
       t: "`$STRING`"
     }
-  }
-
-  id: {
-    field: "id"
-    name: "id"
+    user: {
+      h: "User"
+      n: "user"
+      r: false
+      t: "`$OBJECT`"
+    }
   }
 
   name: "login"
@@ -100,7 +86,7 @@ main: kit: entity: login: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.user`"
+            res: "`body`"
           }
         }
       ]

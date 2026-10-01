@@ -39,7 +39,7 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, err = client:Login():create({ password = "example_password" })
+local created, err = client:Login():create({ email = "example_email", password = "example_password" })
 if err then error(err) end
 
 ```
@@ -233,14 +233,14 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `createdAt` | Account creation timestamp |
-| `email` | User's email address |
-| `id` | Unique user identifier |
-| `name` | User's full name |
+| `email` | User's email address or username |
+| `expiresIn` | Token expiration time in seconds |
 | `password` | User's password |
-| `phone` | User's phone number |
+| `refreshToken` | Refresh token for obtaining new access tokens |
 | `rememberMe` | Keep user logged in |
-| `subscriptionStatus` | User's subscription status |
+| `success` |  |
+| `token` | JWT authentication token |
+| `user` |  |
 
 Operations: Create.
 
@@ -277,13 +277,12 @@ API path: `/auth/register`
 | Field | Description |
 | --- | --- |
 | `accessToken` | OAuth access token from the social provider |
-| `createdAt` | Account creation timestamp |
-| `email` | User's email address |
-| `id` | Unique user identifier |
-| `name` | User's full name |
-| `phone` | User's phone number |
+| `expiresIn` | Token expiration time in seconds |
 | `provider` | Social media provider |
-| `subscriptionStatus` | User's subscription status |
+| `refreshToken` | Refresh token for obtaining new access tokens |
+| `success` |  |
+| `token` | JWT authentication token |
+| `user` |  |
 
 Operations: Create.
 
@@ -308,19 +307,20 @@ Create an instance: `local login = client:Login(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `string` | Account creation timestamp |
-| `email` | `string` | User's email address |
-| `id` | `string` | Unique user identifier |
-| `name` | `string` | User's full name |
+| `email` | `string` | User's email address or username |
+| `expiresIn` | `number` | Token expiration time in seconds |
 | `password` | `string` | User's password |
-| `phone` | `string` | User's phone number |
+| `refreshToken` | `string` | Refresh token for obtaining new access tokens |
 | `rememberMe` | `boolean` | Keep user logged in |
-| `subscriptionStatus` | `string` | User's subscription status |
+| `success` | `boolean` |  |
+| `token` | `string` | JWT authentication token |
+| `user` | `table` |  |
 
 #### Example: Create
 
 ```lua
 local login, err = client:Login():create({
+  email = "example_email", -- string
   password = "example_password", -- string
 })
 ```
@@ -399,13 +399,12 @@ Create an instance: `local social_login = client:SocialLogin(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `accessToken` | `string` | OAuth access token from the social provider |
-| `createdAt` | `string` | Account creation timestamp |
-| `email` | `string` | User's email address |
-| `id` | `string` | Unique user identifier |
-| `name` | `string` | User's full name |
-| `phone` | `string` | User's phone number |
+| `expiresIn` | `number` | Token expiration time in seconds |
 | `provider` | `string` | Social media provider |
-| `subscriptionStatus` | `string` | User's subscription status |
+| `refreshToken` | `string` | Refresh token for obtaining new access tokens |
+| `success` | `boolean` |  |
+| `token` | `string` | JWT authentication token |
+| `user` | `table` |  |
 
 #### Example: Create
 

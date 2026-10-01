@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 BlutvAuthenticationUtility::setRegistrar(function (BlutvAuthenticationUtility $u): void {
     $u->clean = [BlutvAuthenticationClean::class, 'call'];
+    $u->clean_add = [BlutvAuthenticationClean::class, 'add'];
+    $u->clean_explain = [BlutvAuthenticationDone::class, 'clean_explain'];
     $u->done = [BlutvAuthenticationDone::class, 'call'];
     $u->make_error = [BlutvAuthenticationMakeError::class, 'call'];
     $u->feature_add = [BlutvAuthenticationFeatureAdd::class, 'call'];
