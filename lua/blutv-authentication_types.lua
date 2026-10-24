@@ -18,13 +18,8 @@
 
 ---@class LoginCreateData
 ---@field email string
----@field expiresIn? number
 ---@field password string
----@field refreshToken? string
 ---@field rememberMe? boolean
----@field success? boolean
----@field token? string
----@field user? table
 
 ---@class PasswordRecovery
 ---@field email string
@@ -33,8 +28,6 @@
 
 ---@class PasswordRecoveryCreateData
 ---@field email string
----@field message? string
----@field success? boolean
 
 ---@class Register
 ---@field email string
@@ -61,12 +54,7 @@
 
 ---@class SocialLoginCreateData
 ---@field accessToken string
----@field expiresIn? number
 ---@field provider string
----@field refreshToken? string
----@field success? boolean
----@field token? string
----@field user? table
 
 local M = {}
 

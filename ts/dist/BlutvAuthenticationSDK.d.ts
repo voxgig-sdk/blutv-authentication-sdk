@@ -10,6 +10,19 @@ import { BlutvAuthenticationEntityBase } from './BlutvAuthenticationEntityBase';
 import { Utility } from './utility/Utility';
 import { BaseFeature } from './feature/base/BaseFeature';
 declare const stdutil: Utility;
+type DirectResult = {
+    ok: false;
+    err: any;
+    status?: undefined;
+    headers?: undefined;
+    data?: undefined;
+} | {
+    ok: boolean;
+    status: number;
+    headers: any;
+    data: any;
+    err?: any;
+};
 declare class BlutvAuthenticationSDK {
     _mode: string;
     _options: any;
@@ -20,32 +33,8 @@ declare class BlutvAuthenticationSDK {
     options(): any;
     utility(): any;
     prepare(fetchargs?: any): Promise<any>;
-    direct(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
-    _rawRequest(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
+    direct(fetchargs?: any): Promise<DirectResult>;
+    _rawRequest(fetchargs?: any): Promise<DirectResult>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     Login(entopts?: Record<string, any>): LoginEntity;
     PasswordRecovery(entopts?: Record<string, any>): PasswordRecoveryEntity;
@@ -61,3 +50,4 @@ declare class BlutvAuthenticationSDK {
 }
 declare const SDK: typeof BlutvAuthenticationSDK;
 export { stdutil, config, BaseFeature, BlutvAuthenticationEntityBase, BlutvAuthenticationSDK, SDK, };
+export type { DirectResult };

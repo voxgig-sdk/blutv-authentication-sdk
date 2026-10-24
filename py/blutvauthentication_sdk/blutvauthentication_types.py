@@ -36,12 +36,7 @@ class LoginCreateDataRequired(TypedDict):
 
 
 class LoginCreateData(LoginCreateDataRequired, total=False):
-    expiresIn: int
-    refreshToken: str
     rememberMe: bool
-    success: bool
-    token: str
-    user: dict
 
 
 class PasswordRecoveryRequired(TypedDict):
@@ -53,13 +48,8 @@ class PasswordRecovery(PasswordRecoveryRequired, total=False):
     success: bool
 
 
-class PasswordRecoveryCreateDataRequired(TypedDict):
+class PasswordRecoveryCreateData(TypedDict):
     email: str
-
-
-class PasswordRecoveryCreateData(PasswordRecoveryCreateDataRequired, total=False):
-    message: str
-    success: bool
 
 
 class RegisterRequired(TypedDict):
@@ -97,14 +87,6 @@ class SocialLogin(SocialLoginRequired, total=False):
     user: dict
 
 
-class SocialLoginCreateDataRequired(TypedDict):
+class SocialLoginCreateData(TypedDict):
     accessToken: str
     provider: str
-
-
-class SocialLoginCreateData(SocialLoginCreateDataRequired, total=False):
-    expiresIn: int
-    refreshToken: str
-    success: bool
-    token: str
-    user: dict

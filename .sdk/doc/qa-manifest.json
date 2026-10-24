@@ -3,5 +3,29 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Email address for password recovery",
+      "JWT authentication token",
+      "JWT token obtained from login or social login endpoints",
+      "Keep user logged in",
+      "OAuth access token from the social provider",
+      "Password recovery email sent successfully",
+      "Production server",
+      "Refresh token for obtaining new access tokens",
+      "Social media provider",
+      "Success message",
+      "Successfully authenticated",
+      "Successfully authenticated via social provider",
+      "This API handles user authentication for BluTV, allowing users to log in with their credentials or via social media accounts like Facebook and Google. It also provides functionality for password recovery and user registration, enhancing security and user experience.",
+      "Token expiration time in seconds",
+      "User acceptance of terms and conditions",
+      "User successfully registered",
+      "User&#39;s email address",
+      "User&#39;s full name",
+      "User&#39;s password",
+      "User&#39;s phone number"
+    ]
+  }
 }

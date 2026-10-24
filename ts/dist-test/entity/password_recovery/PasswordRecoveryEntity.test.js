@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.PasswordRecovery();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.BlutvAuthenticationSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.PasswordRecovery().create({ "email": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.BLUTV_AUTHENTICATION_TEST_LIVE;
         for (const op of ['create']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "email": { "a": true, "fo": "email", "h": "Email", "n": "email", "r": true, "sh": "Email address for password recovery", "t": "`$STRING`", "key$": "email", "index$": 0 }, "message": { "a": true, "h": "Message", "n": "message", "r": false, "sh": "Success message", "t": "`$STRING`", "key$": "message", "index$": 1 }, "success": { "a": true, "h": "Success", "n": "success", "r": false, "t": "`$BOOLEAN`", "key$": "success", "index$": 2 } }, "name": "password_recovery", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "co": { "id": "POST /auth/password-recovery", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/auth/password-recovery", "q": {}, "r": {}, "s": [{ "lit": "auth" }, { "lit": "password-recovery" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "password_recovery", "name__orig": "password_recovery", "Name": "PasswordRecovery", "name_": "password_recovery", "name-": "password-recovery", "NAME": "PASSWORD_RECOVERY", "index$": 1 }, { "active": true, "entity": "password_recovery", "key$": "BasicPasswordRecoveryFlow", "kind": "basic", "name": "BasicPasswordRecoveryFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "password_recovery_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "index$": 0 }] }, 'PasswordRecovery', { "POST /auth/password-recovery": { "protocol": "http", "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "required": ["email"], "properties": { "email": { "type": "string", "format": "email", "description": "Email address for password recovery", "example": "user@example.com", "key$": "email" } }, "x-ref": "#/components/schemas/PasswordRecoveryRequest", "index$": 1 } } } }, "parameters": [] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "email": { "a": true, "fo": "email", "h": "Email", "n": "email", "r": true, "sh": "Email address for password recovery", "t": "`$STRING`", "key$": "email", "index$": 0 }, "message": { "a": true, "h": "Message", "n": "message", "r": false, "sh": "Success message", "t": "`$STRING`", "key$": "message", "index$": 1 }, "success": { "a": true, "h": "Success", "n": "success", "r": false, "t": "`$BOOLEAN`", "key$": "success", "index$": 2 } }, "name": "password_recovery", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "bf": ["email"], "co": { "id": "POST /auth/password-recovery", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/auth/password-recovery", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "auth" }, { "lit": "password-recovery" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "password_recovery", "name__orig": "password_recovery", "Name": "PasswordRecovery", "name_": "password_recovery", "name-": "password-recovery", "NAME": "PASSWORD_RECOVERY", "index$": 1 }, { "active": true, "entity": "password_recovery", "key$": "BasicPasswordRecoveryFlow", "kind": "basic", "name": "BasicPasswordRecoveryFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "password_recovery_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "index$": 0 }] }, 'PasswordRecovery', { "POST /auth/password-recovery": { "protocol": "http", "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "required": ["email"], "properties": { "email": { "type": "string", "format": "email", "description": "Email address for password recovery", "example": "user@example.com", "key$": "email" } }, "x-ref": "#/components/schemas/PasswordRecoveryRequest", "index$": 1 } } } }, "parameters": [] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +83,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(null != password_recovery_ref01_data);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

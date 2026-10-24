@@ -10,13 +10,8 @@ export interface Login {
 }
 export interface LoginCreateData {
     email: string;
-    expiresIn?: number;
     password: string;
-    refreshToken?: string;
     rememberMe?: boolean;
-    success?: boolean;
-    token?: string;
-    user?: Record<string, any>;
 }
 export interface PasswordRecovery {
     email: string;
@@ -25,8 +20,6 @@ export interface PasswordRecovery {
 }
 export interface PasswordRecoveryCreateData {
     email: string;
-    message?: string;
-    success?: boolean;
 }
 export interface Register {
     email: string;
@@ -53,10 +46,5 @@ export interface SocialLogin {
 }
 export interface SocialLoginCreateData {
     accessToken: string;
-    expiresIn?: number;
     provider: string;
-    refreshToken?: string;
-    success?: boolean;
-    token?: string;
-    user?: Record<string, any>;
 }

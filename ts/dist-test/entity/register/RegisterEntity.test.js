@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Register();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.BlutvAuthenticationSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Register().create({ "email": 1, "name": "x", "password": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.BLUTV_AUTHENTICATION_TEST_LIVE;
         for (const op of ['create']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "email": { "a": true, "fo": "email", "h": "Email", "n": "email", "r": true, "sh": "User's email address", "t": "`$STRING`", "key$": "email", "index$": 0 }, "name": { "a": true, "h": "Name", "n": "name", "r": true, "sh": "User's full name", "t": "`$STRING`", "key$": "name", "index$": 1 }, "password": { "a": true, "fo": "password", "h": "Password", "n": "password", "r": true, "sh": "User's password", "t": "`$STRING`", "key$": "password", "index$": 2 }, "phone": { "a": true, "h": "Phone", "n": "phone", "r": false, "sh": "User's phone number", "t": "`$STRING`", "key$": "phone", "index$": 3 }, "termsAccepted": { "a": true, "h": "Terms Accepted", "n": "termsAccepted", "r": false, "sh": "User acceptance of terms and conditions", "t": "`$BOOLEAN`", "key$": "termsAccepted", "index$": 4 } }, "name": "register", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "co": { "id": "POST /auth/register", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/auth/register", "q": {}, "r": {}, "s": [{ "lit": "auth" }, { "lit": "register" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "register", "name__orig": "register", "Name": "Register", "name_": "register", "name-": "register", "NAME": "REGISTER", "index$": 2 }, { "active": true, "entity": "register", "key$": "BasicRegisterFlow", "kind": "basic", "name": "BasicRegisterFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "register_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "index$": 0 }] }, 'Register', { "POST /auth/register": { "protocol": "http", "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "required": ["email", "password", "name"], "properties": { "email": { "type": "string", "format": "email", "description": "User's email address", "example": "newuser@example.com", "key$": "email" }, "password": { "type": "string", "format": "password", "description": "User's password", "minLength": 6, "example": "SecurePassword123!", "key$": "password" }, "name": { "type": "string", "description": "User's full name", "minLength": 2, "example": "John Doe", "key$": "name" }, "phone": { "type": "string", "description": "User's phone number", "example": "+905551234567", "key$": "phone" }, "termsAccepted": { "type": "boolean", "description": "User acceptance of terms and conditions", "example": true, "key$": "termsAccepted" } }, "x-ref": "#/components/schemas/RegisterRequest", "index$": 1 } } } }, "parameters": [] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "email": { "a": true, "fo": "email", "h": "Email", "n": "email", "r": true, "sh": "User's email address", "t": "`$STRING`", "key$": "email", "index$": 0 }, "name": { "a": true, "h": "Name", "n": "name", "r": true, "sh": "User's full name", "t": "`$STRING`", "key$": "name", "index$": 1 }, "password": { "a": true, "fo": "password", "h": "Password", "n": "password", "r": true, "sh": "User's password", "t": "`$STRING`", "key$": "password", "index$": 2 }, "phone": { "a": true, "h": "Phone", "n": "phone", "r": false, "sh": "User's phone number", "t": "`$STRING`", "key$": "phone", "index$": 3 }, "termsAccepted": { "a": true, "h": "Terms Accepted", "n": "termsAccepted", "r": false, "sh": "User acceptance of terms and conditions", "t": "`$BOOLEAN`", "key$": "termsAccepted", "index$": 4 } }, "name": "register", "op": { "create": { "input": "data", "name": "create", "points": [{ "a": true, "bf": ["email", "name", "password", "phone", "termsAccepted"], "co": { "id": "POST /auth/register", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "POST", "o": "/auth/register", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "auth" }, { "lit": "register" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "register", "name__orig": "register", "Name": "Register", "name_": "register", "name-": "register", "NAME": "REGISTER", "index$": 2 }, { "active": true, "entity": "register", "key$": "BasicRegisterFlow", "kind": "basic", "name": "BasicRegisterFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "register_ref01" }, "m": {}, "o": "create", "s": [], "v": [], "index$": 0 }] }, 'Register', { "POST /auth/register": { "protocol": "http", "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "required": ["email", "password", "name"], "properties": { "email": { "type": "string", "format": "email", "description": "User's email address", "example": "newuser@example.com", "key$": "email" }, "password": { "type": "string", "format": "password", "description": "User's password", "minLength": 6, "example": "SecurePassword123!", "key$": "password" }, "name": { "type": "string", "description": "User's full name", "minLength": 2, "example": "John Doe", "key$": "name" }, "phone": { "type": "string", "description": "User's phone number", "example": "+905551234567", "key$": "phone" }, "termsAccepted": { "type": "boolean", "description": "User acceptance of terms and conditions", "example": true, "key$": "termsAccepted" } }, "x-ref": "#/components/schemas/RegisterRequest", "index$": 1 } } } }, "parameters": [] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +83,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(null != register_ref01_data);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

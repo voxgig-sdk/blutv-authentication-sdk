@@ -50,35 +50,15 @@ Login = Struct.new(
 # @!attribute [rw] email
 #   @return [String]
 #
-# @!attribute [rw] expiresIn
-#   @return [Integer, nil]
-#
 # @!attribute [rw] password
 #   @return [String]
 #
-# @!attribute [rw] refreshToken
-#   @return [String, nil]
-#
 # @!attribute [rw] rememberMe
 #   @return [Boolean, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] token
-#   @return [String, nil]
-#
-# @!attribute [rw] user
-#   @return [Hash, nil]
 LoginCreateData = Struct.new(
   :email,
-  :expiresIn,
   :password,
-  :refreshToken,
   :rememberMe,
-  :success,
-  :token,
-  :user,
   keyword_init: true
 )
 
@@ -103,16 +83,8 @@ PasswordRecovery = Struct.new(
 #
 # @!attribute [rw] email
 #   @return [String]
-#
-# @!attribute [rw] message
-#   @return [String, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
 PasswordRecoveryCreateData = Struct.new(
   :email,
-  :message,
-  :success,
   keyword_init: true
 )
 
@@ -204,31 +176,11 @@ SocialLogin = Struct.new(
 # @!attribute [rw] accessToken
 #   @return [String]
 #
-# @!attribute [rw] expiresIn
-#   @return [Integer, nil]
-#
 # @!attribute [rw] provider
 #   @return [String]
-#
-# @!attribute [rw] refreshToken
-#   @return [String, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] token
-#   @return [String, nil]
-#
-# @!attribute [rw] user
-#   @return [Hash, nil]
 SocialLoginCreateData = Struct.new(
   :accessToken,
-  :expiresIn,
   :provider,
-  :refreshToken,
-  :success,
-  :token,
-  :user,
   keyword_init: true
 )
 

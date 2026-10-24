@@ -19,13 +19,8 @@ type Login struct {
 // LoginCreateData is the typed request payload for Login.CreateTyped.
 type LoginCreateData struct {
 	Email string `json:"email"`
-	ExpiresIn *int `json:"expiresIn,omitempty"`
 	Password string `json:"password"`
-	RefreshToken *string `json:"refreshToken,omitempty"`
 	RememberMe *bool `json:"rememberMe,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Token *string `json:"token,omitempty"`
-	User *map[string]any `json:"user,omitempty"`
 }
 
 // PasswordRecovery is the typed data model for the password_recovery entity.
@@ -35,8 +30,6 @@ type PasswordRecovery struct {
 // PasswordRecoveryCreateData is the typed request payload for PasswordRecovery.CreateTyped.
 type PasswordRecoveryCreateData struct {
 	Email string `json:"email"`
-	Message *string `json:"message,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // Register is the typed data model for the register entity.
@@ -59,12 +52,7 @@ type SocialLogin struct {
 // SocialLoginCreateData is the typed request payload for SocialLogin.CreateTyped.
 type SocialLoginCreateData struct {
 	AccessToken string `json:"accessToken"`
-	ExpiresIn *int `json:"expiresIn,omitempty"`
 	Provider string `json:"provider"`
-	RefreshToken *string `json:"refreshToken,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	Token *string `json:"token,omitempty"`
-	User *map[string]any `json:"user,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

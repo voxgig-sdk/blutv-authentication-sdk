@@ -29,13 +29,8 @@ class Login
 class LoginCreateData
 {
     public string $email;
-    public ?int $expiresIn = null;
     public string $password;
-    public ?string $refreshToken = null;
     public ?bool $rememberMe = null;
-    public ?bool $success = null;
-    public ?string $token = null;
-    public ?array $user = null;
 }
 
 /** PasswordRecovery entity data model. */
@@ -50,8 +45,6 @@ class PasswordRecovery
 class PasswordRecoveryCreateData
 {
     public string $email;
-    public ?string $message = null;
-    public ?bool $success = null;
 }
 
 /** Register entity data model. */
@@ -90,11 +83,6 @@ class SocialLogin
 class SocialLoginCreateData
 {
     public string $accessToken;
-    public ?int $expiresIn = null;
     public string $provider;
-    public ?string $refreshToken = null;
-    public ?bool $success = null;
-    public ?string $token = null;
-    public ?array $user = null;
 }
 

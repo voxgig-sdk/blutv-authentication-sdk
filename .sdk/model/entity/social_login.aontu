@@ -60,6 +60,10 @@ main: kit: entity: social_login: {
       name: "create"
       points: [
         {
+          bf: [
+            "accessToken"
+            "provider"
+          ]
           co: {
             id: "POST /auth/social-login"
             source: "openapi3"
@@ -67,6 +71,10 @@ main: kit: entity: social_login: {
           }
           m: "POST"
           o: "/auth/social-login"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "auth"
